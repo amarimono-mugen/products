@@ -1,0 +1,61 @@
+;Config
+;---------------------------------------------------------------------------
+;ここではASBには無いシステム、技のON/OFFを設定できます。
+;よりASBの感覚を実感したい場合に変更してみてください。
+※現在準備中です
+;---------------------------------------------------------------------------
+;---------------------------------------------------------------------------
+;設定可能項目と初期設定
+;
+;【システム】
+;ASBスイッチ　　　　　　　　　　　…初期設定はOFF
+;ボスモード　　　　　　　　　　　 …初期設定はOFF
+;---------------------------------------------------------------------------
+;【English】
+;Item that can be set and default setting
+;
+;【System】
+;Escape　　　　　　　　　　　  …Default is ON
+;Advancing gurad　　　　　     …Default is ON
+;Guard cancel attack　　　　　 …Default is ON
+;Kawajiri's son(Hayato)　　　　…Default is ON
+;Short jump　　　　　　　　　　…Default is OFF
+;---------------------------------------------------------------------------
+[Statedef 5900];コモンステート。ラウンド始まり直前
+type = U
+
+[State 5900, 1] ;Clear all int variables
+type = VarRangeSet
+trigger1 = roundsexisted = 0
+value = 0
+
+[State 5900, 2] ;Clear all float variables
+type = VarRangeSet
+trigger1 = roundsexisted = 0
+fvalue = 0
+;---------------------------------------------------------------------------
+;ASBスイッチ(使用できる技、システムがASBと同じになるように限定されます)
+;---------------------------------------------------------------------------
+[State 5900]
+Type = VarSet
+Trigger1 = 1
+var(30) = 0
+;↑1で適用。デフォは0
+;(1=enable,0=disabled,default=0)
+;---------------------------------------------------------------------------
+;プッツンモード (性能が強化されます※準備中)
+;---------------------------------------------------------------------------
+[State 5900]
+Type = VarSet
+Trigger1 = 1
+var(31) = 0
+;↑1でボスモードを適用。デフォは0
+;(1=enable(bossmode),0=disabled,default=0)
+;---------------------------------------------------------------------------
+[State 5900, 3] ;Intro for round 1 
+type = ChangeState 
+value = 190 
+trigger1 = RoundNo = 1 
+trigger2 = RoundsExisted = 0 
+trigger2 = TeamMode = Turns 
+trigger2 = RoundNo > 0 
