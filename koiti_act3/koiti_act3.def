@@ -1,0 +1,55 @@
+; ---- Created by Uno Tag Team Patcher ---- ;
+
+
+
+[Info]
+Name         = "hirose koiti"
+DisplayName  = "Koichi Hirose"  ;M.U.G.E.N�Ŏ��ۂɕ\������閼�O�i�ȗ��\�j
+VersionDate  = 02,16,2013
+MugenVersion = 04,14,2002
+Author       = "amarimono"
+Pal.Defaults = 1,1,1,1
+
+
+[Files]
+Cmd     =koiti_act3 AI Patch(Anomi Polis)_unotag\koiti.cmd
+Cns     =koiti_act3 AI Patch(Anomi Polis)_unotag\koiti.cns
+St      =koiti_act3 AI Patch(Anomi Polis)_unotag\koiti.cns
+St2      = _config.cns
+StCommon = kocommon.cns
+st3 = normal.cns
+st4 = stand_normal.cns
+st5 = special.cns
+st6 = helper.cns
+st7 = hyper.cns
+st8 = custom.cns
+StCommon = kocommon.cns
+Sprite  = koiti.sff
+Anim    = koiti.air
+Sound   = koiti.snd
+pal1 = pal\koitiASB.act
+pal2 = pal\koiti2.act
+pal3 = pal\koiti3.act
+pal4 = pal\koiti.act
+pal5 = pal\koiti4.act
+pal6 = pal\koiti5.act
+st9=koiti_act3 AI Patch(Anomi Polis)_unotag\tag_system.cns
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[Arcade]
+Intro.Storyboard = intro.def
+Ending.Storyboard = ending.def
+
+

@@ -1,0 +1,67 @@
+[Statedef 1260 - Boing!]
+type    = A
+movetype= H
+physics = N
+velset = 0,0
+ctrl = 0
+
+[State 230, 2]
+type = statetypeset
+trigger1 = pos y < 0
+statetype = A
+ignorehitpause = 1
+
+[State 191, 2 ñ?g]]
+type = null
+trigger1 = 1
+
+[State 191, 2 ñ?g]]
+type = null
+trigger1 = Time >= 0
+trigger1 = Time <= 50
+value = 45
+
+
+[state 3000]
+type = ChangeAnim2
+trigger1 = Time = 0
+value = 1260
+
+[State 430, 1]
+type = velset
+trigger1 = Time = 0
+y = -12
+
+[State 430, 1]
+type = veladd
+trigger1 = Time >= 8
+y = .8
+
+[State 191, 2]
+type = null
+trigger1 = 1
+flag = noshadow
+
+[State 191, 2]
+type = AttackDist
+trigger1 = 1
+value = 0
+
+[State 191, 2]
+type = null
+trigger1 = 1
+value = 0
+
+[State 1061, 2]
+type = null
+trigger1 = Time >= 10
+trigger1 = pos y > 0
+trigger2 = Time > 100
+value = 10427
+
+[State 1061, 2]
+type = selfState
+trigger1 = Time >= 10
+trigger1 = pos y > 0
+trigger2 = Time > 100
+value = 5050

@@ -1,0 +1,695 @@
+[Statedef 160000]
+type    = A
+movetype= I
+physics = N
+velset = 0,0
+anim = 1251199
+
+[State 100, 1]
+type = helper
+triggerall = numhelper(16020) = 0
+triggerall = numhelper(16021) = 0
+triggerall = parent,alive = 0
+trigger1 = enemy,hitdefattr = SCA, HA, HP, HT
+trigger2 = enemy,stateno >= 2000 && enemy,stateno != [5000,5999]
+helpertype=normal
+name="ko"
+ID=16020
+pos=9999,9999
+postype=back
+facing=1
+stateno=6030
+keyctrl=0
+ownpal=1
+pausemovetime=99999999
+supermovetime=99999999
+persistent=0
+ignorehitpause=1
+
+[State 100, 1]
+type = helper
+triggerall = numhelper(16021) = 0
+triggerall = parent,alive = 0
+trigger1 = enemy,hitdefattr = SCA, NA, SA, NP, SP, NT, ST
+trigger2 = enemy,stateno < 2000 || enemy,stateno = [5000,5999]
+name = "no hyper ko"
+stateno = 16021
+id = 16021
+sprpriority = 1
+pos = 0,240
+postype = left
+supermovetime = 9999999
+pausemovetime = 9999999
+ownpal = 1
+keyctrl = 0
+
+[Statedef 16021]
+type    = A
+movetype= I
+physics = N
+velset = 0,0
+anim = 1251199
+sprpriority = 4
+
+[state 16021]
+type = destroySelf
+trigger1 = time > 99999999999999
+
+[Statedef -2]
+
+[state -2]
+type = removeexplod
+trigger1 = stateno != 100
+id = 108
+
+[State -3]
+type = helper
+trigger1 = numhelper(160000) = 0
+name = "kansi"
+stateno = 160000
+id = 160000
+sprpriority = 1
+pos = 0,255
+postype = p1
+supermovetime = 99999999999
+pausemovetime = 99999999999
+
+;
+
+
+
+[State -2]
+type = helper
+trigger1 = movetype != H
+trigger1 = !Numhelper(8500)
+stateno = 8500
+id = 8500
+pos = 0,0
+pausemovetime = 999999
+supermovetime = 999999
+sprpriority = -1
+postype = p1
+ownpal = 1
+size.xscale = 1.00
+size.yscale = 1.07
+[State 0, explod]
+type = removeexplod
+trigger1 = helper(1001),stateno != 11005
+id = 11008
+
+
+[State -2]
+type = VarSet
+trigger1 = statetype != A
+
+var(4) = 1
+
+[State 3000, ?????]
+type = PowerAdd
+triggerall = helper(1001),stateno = 11005
+triggerall = helper(1001),movecontact
+trigger1 = helper(1001),AnimElem = 5
+trigger2 = helper(1001),AnimElem = 7
+trigger3 = helper(1001),AnimElem = 9
+trigger4 = helper(1001),AnimElem = 11
+trigger5 = helper(1001),AnimElem = 13
+trigger6 = helper(1001),AnimElem = 15
+trigger7 = helper(1001),AnimElem = 17
+trigger8 = helper(1001),AnimElem = 19
+trigger9 = helper(1001),AnimElem = 21
+trigger10 = helper(1001),AnimElem = 23
+trigger11 = helper(1001),AnimElem = 25
+trigger12 = helper(1001),AnimElem = 27
+value = ifelse(helper(8500),fvar(8)=0,10,10*1.1)
+persistent = 0
+
+
+[state -2, var]
+type = varset
+trigger1 = 1
+var(39) = 0
+
+
+[State -2]
+type = varset
+trigger1 = ctrl
+var(8) = 0
+
+
+
+[state -2, var]
+type = varset
+trigger1 = numenemy
+var(24) = enemy(0),id
+
+[state -2, var]
+type = varset
+trigger1 = numenemy >= 2
+var(25) = enemy(1),id
+
+[State -2]
+type = ChangeState
+trigger1 = numhelper(960) > 0
+trigger1 = helper(960),stateno = 961
+trigger1 = stateno != 960
+value = 950
+ctrl = 0
+
+[State -2]
+type = ChangeState
+triggerall = var(59)&& RoundState = 2
+trigger1 = random <= var(59)*800
+trigger1 = statetype != A
+trigger1 = stateno != 950
+trigger1 = var(7) >= 4000
+trigger1 = p2bodydist x <= 40
+trigger1 = stateno = [150,159]
+value = 950
+ctrl = 1
+
+[State -2]
+type = VarAdd
+trigger1 = var(13) > 0
+v = 13
+value = 1
+
+[State -2]
+type = VarSet
+triggerall = var(13) <= 0
+triggerall = var(7) > 4000
+trigger1 = var(59) = 0
+trigger1 = command = "holdback"
+v = 13
+value = 1
+
+
+[State -2]
+type = VarAdd
+trigger1 = var(14) > 0
+v = 14
+value = -1
+
+[State -2]
+type = VarSet
+trigger1 = var(13) >= 25
+trigger1 = var(59) = 0
+trigger1 = command != "holdback"
+trigger2 = var(59) = 0
+trigger2 = command = "holdfwd"
+trigger2 = command != "holdback"
+trigger3 = stateno = 900 && time = 1
+trigger4 = var(13) < 0
+trigger5 = stateno = [5000,5100]
+v = 13
+value = 0
+
+[State -2]
+type = Helper
+trigger1 = numhelper(910) = 0
+trigger1 = var(13) = [1,9]
+trigger1 = var(14) <= 0
+helpertype = normal
+name = "SM"
+ID = 960
+pos = 0, 0
+postype = p1
+facing = 1
+stateno = 960
+keyctrl = 0
+ownpal = 1
+supermovetime = 99999
+pausemovetime = 99999
+
+
+[state -2, ???????]
+type = helper
+trigger1 = !numhelper(7050)
+trigger1 = !ishelper
+helpertype = normal
+name = "gauge"
+stateno = 7050
+ID = 7050
+postype = p1
+pos = 0,9999
+keyctrl = 0
+pausemovetime = 2147483647
+supermovetime = 2147483647
+
+
+[State -2]
+type = VarSet
+trigger1 = stateno = 5900
+trigger2 = stateno = [190,194]
+trigger3 = stateno = [25192,25199]
+trigger4 = stateno = [10192,10199]
+v = 7
+value = 10000
+ignorehitpause = 1
+
+[State -2]
+type = VarSet
+trigger1 = var(7) < 0
+v = 7
+value = 0
+ignorehitpause = 1
+
+[State -2]
+type = VarSet
+trigger1 = var(7) > 10000
+v = 7
+value = 10000
+ignorehitpause = 1
+
+[State -2]
+type = Varadd
+trigger1 = roundstate = 2
+v = 16
+value = 1
+ignorehitpause = 1
+
+[State -2]
+type = VarSet
+trigger1 = stateno = 150 ||  stateno = 152 ||  stateno = 154
+trigger2 = stateno = 950
+v = 16
+value = 0
+ignorehitpause = 1
+
+[State -2]
+type = Varadd
+trigger1 = var(7) < 10000
+trigger1 = var(16) > 200
+v = 7
+value = 10
+ignorehitpause = 1
+
+[State -2]
+type = Varadd
+trigger1 = !time
+trigger1 = prevstateno = 150 ||  prevstateno = 152 ||  prevstateno = 154
+trigger1 = stateno = 150 ||  stateno = 152 ||  stateno = 154
+v = 7
+value = -50
+ignorehitpause = 1
+
+[State -2]
+type = Varadd
+trigger1 = !time
+trigger1 = prevstateno = 151 ||  prevstateno = 153 ||  prevstateno = 155
+trigger1 = stateno = 150 ||  stateno = 152 ||  stateno = 154
+v = 7
+value = -150
+ignorehitpause = 1
+
+[State -2]
+type = Varadd
+trigger1 = prevstateno != 150 &&  prevstateno != 152 &&  prevstateno != 154
+trigger1 = prevstateno != 151 &&  prevstateno != 153 &&  prevstateno != 155
+trigger1 = !time
+trigger1 = stateno = 150 ||  stateno = 152 ||  stateno = 154
+v = 7
+value = -300
+ignorehitpause = 1
+
+[State -2]
+type = ChangeState
+trigger1 = var(7) <= 0
+trigger1 = alive
+trigger1 = stateno = [120,155]
+value = 5910
+ctrl = 0
+
+[State -2, ???????]
+type = DisplayToClipboard
+trigger1 = 1
+text = "Cancel=%d, Throw=%d, Button=%d, Body-Distance X=%d,Y=%d \n"
+params = var(1),var(2),var(5),floor(P2BodyDist X),floor(P2BodyDist Y)
+
+[State -2, ???????(????)]
+type = AppendToClipboard
+trigger1 = 1
+text = "Position X=%d,Y=%d, Velocity X=%f,Y=%f, Hit=%d \n"
+params = floor(Pos X),floor(Pos Y),(Vel X),(Vel Y),(MoveHit)
+
+
+[State -2, ??????]
+type=varset
+
+trigger1=!numtarget
+var(40)=0
+
+[State -2, ??????]
+type=varadd
+triggerall=numtarget
+triggerall=enemynear,movetype=h
+triggerall=enemynear,gethitvar(hitcount)>var(40)
+triggerall=stateno != 11000 && stateno != 11010 && stateno != 11020
+
+trigger1=movehit
+trigger2=projhittime(0)=0
+
+trigger3=numhelper(1001)
+trigger3=helper(1001),movehit=1+(movetype!=a)
+trigger3=helper(1001),stateno != 23001
+var(40)=1
+
+[State -2, ??????]
+type = varadd
+trigger1 = stateno = 23000
+trigger1 = time = 40
+v = 40
+value = 3
+
+[State -2, ??????]
+type = varadd
+trigger1 = stateno = 11000
+trigger1 = time = 13
+v = 40
+value = 2
+
+
+[State -2, ?????1]
+type=varset
+trigger1= var(40) = 0
+fvar(1) = 1
+
+[State -2, ?????2]
+type=varset
+trigger1= var(40) >= 3
+fvar(1) = 0.88
+
+[State -2, ?????2]
+type=varset
+trigger1= var(40) >= 5
+fvar(1) = 0.80
+
+[State -2, ?????3]
+type=varset
+trigger1= var(40) >= 8
+fvar(1) = 0.73
+
+[State -2, ?????4]
+type=varset
+trigger1= var(40) >= 11
+fvar(1) = 0.67
+
+[State -2, ?????5]
+type=varset
+trigger1= var(40) >= 14
+fvar(1) = 0.60
+
+[State -2, ?????6]
+type=varset
+trigger1= var(40) >= 17
+fvar(1) = 0.52
+
+[State -2, ?????7]
+type=varset
+trigger1= var(40) >= 20
+fvar(1) = 0.42
+
+[State -2, ?????8]
+type=varset
+trigger1= var(40) >= 25
+fvar(1) = 0.32
+
+[State -2, ?????9]
+type=varset
+trigger1= var(40) >= 30
+fvar(1) = 0.2
+
+[State -2, ????]
+type=null
+trigger1= var(31)
+fvar(1) = 2
+
+[State -2, ????]
+type=attackmulset
+trigger1=1
+value=ifelse(life <= 300,ifelse(p2movetype=A,1.1*2,1.1),ifelse(p2movetype=A,2,1))
+
+[state -2,]
+type=helper
+triggerall=roundstate=3
+trigger1 = RoundNo = 1
+triggerall=loseko
+triggerall=!numhelper(6030)
+trigger1 = NumHelper(6030) < 1
+trigger1=enemynear,hitdefattr=sca,ha,hp,ht
+trigger2=!(enemynear,hitdefattr=sca,na,np,nt,sa,sp,st)
+trigger2=enemynear,stateno=[2000,4999]
+helpertype=normal
+name="lose"
+ID=6031
+pos=9999,9999
+postype=back
+facing=1
+stateno=6030
+keyctrl=0
+ownpal=1
+pausemovetime=99999999
+supermovetime=99999999
+persistent=0
+ignorehitpause=1
+
+[State -2]
+type = Helper
+trigger1 = Var(49) = 10000
+trigger1 = NumHelper(1) = 0
+helpertype = normal
+stateno = 10000
+id = 1
+pos = 0,0
+postype = p1
+ownpal = 0
+keyctrl = 0
+pausemovetime = 999999
+supermovetime = 999999
+
+[State -2]
+type = varset
+var(49) = 0
+trigger1 = var(49) = 10000
+trigger1 = alive = 0
+trigger1 = animTime = 0
+trigger1 = time = 999999
+
+trigger2 = var(49) = 10000 && movetype = H
+trigger2 = stateno != 0
+trigger2 = stateno != [10,12]
+trigger2 = stateno != [20,21]
+trigger2 = stateno != 40
+trigger2 = stateno != 120
+trigger2 = stateno != [130,132]
+trigger2 = stateno != 140
+trigger2 = stateno != [150,155]
+trigger2 = stateno != [5000,5001]
+trigger2 = stateno != [5010,5011]
+trigger2 = stateno != 5020
+trigger2 = stateno != 5030
+trigger2 = stateno != 5035
+trigger2 = stateno != 5040
+trigger2 = stateno != 5050
+trigger2 = stateno != [5070,5071]
+trigger2 = stateno != [5080,5081]
+trigger2 = stateno != [5100,5101]
+trigger2 = stateno != 5110
+trigger2 = stateno != 5120
+trigger2 = stateno != 5150
+trigger2 = stateno != [5200,5201]
+trigger2 = stateno != 5210
+trigger2 = stateno != [15000,15001]
+trigger2 = stateno != [15010,15011]
+trigger2 = stateno != 15020
+trigger2 = stateno != 15030
+trigger2 = stateno != 15035
+trigger2 = stateno != 15040
+trigger2 = stateno != 15050
+trigger2 = stateno != [15070,15071]
+trigger2 = stateno != [15080,15081]
+trigger2 = stateno != [15100,15101]
+trigger2 = stateno != 15110
+trigger2 = stateno != 15120
+trigger2 = stateno != 15150
+trigger2 = stateno != [15200,15201]
+trigger2 = stateno != 15210
+trigger2 = stateno != [4000,4005]
+trigger2 = stateno != [14000,14005]
+trigger2 = movetype = H && anim != [15000,15210]
+trigger2 = stateno != [14400,14405]
+trigger2 = stateno != 1260000
+trigger3 = var(49) = 10000
+trigger3 = anim = 5110 && movetype = H
+trigger4 = statetype = L
+
+[State -2, ????(????)]
+Type = DisplayToClipBoard
+Trigger1 = 1
+Text = "var(24)=%d,playerID(var(24)),stateno=%d,fvar(1)=%f,fvar(6)=%f,3101 x=%f"
+Params = var(24),playerID(var(24)),stateno,fvar(1),fvar(6),helper(3101),pos x
+IgnoreHitPause = 1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[Statedef -3]
+
+
+
+[state -3, end]
+type = changestate
+triggerall = stateno != [15000,15999]
+triggerall = !IsHelper
+trigger1 = numhelper(1001)
+trigger1 = helper(1001),stateno = 9500
+trigger1 = !helper(1001),time
+trigger1 = statetype = S
+value = 15000
+ctrl = 0
+[state -3, end]
+type = changestate
+triggerall = stateno != [15000,15999]
+triggerall = !IsHelper
+trigger1 = numhelper(1001)
+trigger1 = helper(1001),stateno = 9500
+trigger1 = !helper(1001),time
+trigger1 = statetype = C
+value = 15010
+ctrl = 0
+[state -3, end]
+type = changestate
+triggerall = stateno != [15000,15999]
+triggerall = !IsHelper
+trigger1 = numhelper(1001)
+trigger1 = helper(1001),stateno = 9500
+trigger1 = !helper(1001),time
+trigger1 = statetype = A
+value = 15020
+ctrl = 0
+
+[State -3, ?????]
+type = PlaySnd
+triggerall = Time = 1
+trigger1 = stateno = 52
+trigger2 = stateno = 106
+value = 40, 0
+
+[State -3]
+type = VarSet
+triggerall = var(59)
+trigger1 = stateno = 39 && stateno = 1950
+
+v = 51
+value = 1
+
+
+[State -3, sysvar]
+type = VarSet
+trigger1 = Var(51) = 1
+trigger1 = stateno = 39 && stateno = 1950
+trigger1 = AnimTime = 0
+var(51) = ifelse(sysvar(1)=0, 2, ifelse(sysvar(1)=1, 3, 4))
+
+[State -3, var OFF]
+type = VarSet
+triggerall = Time = 2
+trigger1 = stateno = 50
+trigger2 = stateno != [40,59]
+v = 51
+value = 0
+
+[State -3]
+type = VelAdd
+trigger1 = var(51) = 3
+trigger1 = stateno = 50
+x = 0.5
+
+[State -3]
+type = VelAdd
+trigger1 = var(51) = 4
+trigger1 = stateno = 50
+x = -0.5
+
+[State -3, veladd]
+type = VelAdd
+trigger1 = var(51) = 2
+trigger1 = stateno = 50
+y = -0.3
+
+
+
+
+
+
+;Config
+;---------------------------------------------------------------------------
+;ここではASBには無いシステム、技のON/OFFを設定できます。
+;よりASBの感覚を実感したい場合に変更してみてください。
+;---------------------------------------------------------------------------
+;---------------------------------------------------------------------------
+;設定可能項目と初期設定
+;
+;【システム】
+;ASBスイッチ　　　　　　　　　　　…初期設定はOFF
+;ボスモード　　　　　　　　　　　 …初期設定はOFF
+;---------------------------------------------------------------------------
+;【English】
+;Item that can be set and default setting
+;
+;【System】
+;Escape　　　　　　　　　　　  …Default is ON
+;Advancing gurad　　　　　     …Default is ON
+;Guard cancel attack　　　　　 …Default is ON
+;Kawajiri's son(Hayato)　　　　…Default is ON
+;Short jump　　　　　　　　　　…Default is OFF
+;---------------------------------------------------------------------------
+[Statedef 5900];コモンステート。ラウンド始まり直前
+type = U
+
+[State 5900, 1] ;Clear all int variables
+type = VarRangeSet
+trigger1 = roundsexisted = 0
+value = 0
+
+[State 5900, 2] ;Clear all float variables
+type = VarRangeSet
+trigger1 = roundsexisted = 0
+fvalue = 0
+;---------------------------------------------------------------------------
+;ASBスイッチ(使用できる技、システムがASBと同じになるように限定されます)
+;---------------------------------------------------------------------------
+[State 5900]
+Type = VarSet
+Trigger1 = 1
+var(30) = 0
+;↑1で適用。デフォは0
+;(1=enable,0=disabled,default=0)
+;---------------------------------------------------------------------------
+;プッツンモード (性能が強化されます※準備中)
+;---------------------------------------------------------------------------
+[State 5900]
+Type = VarSet
+Trigger1 = 1
+var(31) = 0
+;↑1でボスモードを適用。デフォは0
+;(1=enable(bossmode),0=disabled,default=0)
+;---------------------------------------------------------------------------
+[State 5900, 3] ;Intro for round 1 
+type = ChangeState 
+value = 190 
+trigger1 = RoundNo = 1 
+trigger2 = RoundsExisted = 0 
+trigger2 = TeamMode = Turns 
+trigger2 = RoundNo > 0 
