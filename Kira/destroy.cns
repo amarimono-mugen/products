@@ -1,0 +1,24 @@
+;-----------------------------------------------------------
+
+[Statedef 8080]
+type = S
+movetype = A
+physics = S
+ctrl = 0
+anim = 13422123
+velset = -20,0
+
+[State 0, DestroySelf]
+type = DestroySelf
+trigger1 = time = 25
+
+[State 2500, NotHitBy]
+type = NotHitBy
+trigger1 = 1
+value = SCA
+
+[State 420, 3]
+type = ChangeState
+trigger1 = animtime = 1
+value = 0
+ctrl = !var(59);1

@@ -1,0 +1,30 @@
+
+
+[Info]
+name = "killa yoshikage"
+displayname = "Kira Yoshikage"
+versiondate = 03,02,2013
+mugenversion = 03,02,2013
+author = "Amarimono"
+pal.defaults = 4,8,1,2,3
+
+[Files]
+sprite = ASB\killa.sff
+anim = ASB\killa.air
+sound = ASB\killa.snd
+cmd = amaAI\killa.cmd
+cns = ASB\killa.cns
+stcommon = amaAI\killacommon.cns
+st = ASB\killa.cns
+st1 = newwcommands
+st2 = newspecial
+st3 = destroy
+pal1 = Anime.act
+pal2 = Anime2.act
+pal3 = 3.act
+pal4 = 4.act
+pal5 = 5.act
+pal6 = 6.act
+[Arcade]
+intro.storyboard = 
+ending.storyboard = 

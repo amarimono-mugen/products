@@ -1,0 +1,800 @@
+
+;Money
+;---------------------------------------------------------------------------
+;立ち強
+[Statedef 2401]
+type    = S
+movetype= A
+physics = S
+juggle  = 5
+poweradd= 65
+ctrl = 0
+velset = 0,0
+anim = 240
+sprpriority = 2
+
+[State 210, ヒット定義]
+type = HitDef
+trigger1 = animelem = 3
+attr = S, NA
+sprpriority = 3
+animtype  = Medium
+damage    = 64
+guardflag = MA
+pausetime = 0,13
+sparkno = s830
+sparkxy = -10,-60
+hitsound = s100, 16
+guardsound = s1,5
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 13
+ground.velocity = -5.5
+air.velocity = -2.5,-4
+
+[State 1000, 音を鳴らす]
+type = PlaySnd
+trigger1 = time = 0
+value = 100, 22
+channel = 0
+
+[state 0, helper]
+type = explod
+trigger1 = animelem = 1
+helpertype = normal
+name = "stand"
+anim = 241
+id = 241
+pos = 10,-10
+postype = p1
+ownpal = 1
+keyctrl = 0
+size.xscale = 1
+size.yscale = 1
+
+[State 400, 音を鳴らす]
+type = PlaySnd
+trigger1 = Time = 0
+value = 100,18
+
+[state 0, helper]
+type = helper
+trigger1 = animelem = 3
+helpertype = normal
+name = "stand"
+stateno = 24011
+id = 24011
+pos = 80,0
+postype = p1
+size.xscale = 0.05
+size.yscale = 0.05
+
+[State 240, ステート変更]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;---------------------------------------------
+
+[Statedef 24011]
+type    = S
+movetype= A
+physics = S
+juggle  = 0;1
+velset = 0,0
+ctrl = 0
+anim = 5412
+sprpriority = 1
+
+[State 10000]
+type = Turn      ;親と違う向きなら振り返る。
+trigger1 = facing != parent,facing
+
+[State 0]
+type = SprPriority
+trigger1 = 1
+value = -1
+ignorehitpause = 1
+
+[State 133001, 1]
+type = HitDef
+trigger1 = AnimElem = 1
+attr = S, SA
+animtype = hard
+guardflag = M
+hitflag = MAF
+damage = 0
+pausetime = 0,-9999999999999999999999999999999999999999
+hitsound = s100, 21
+
+[State 1000, 7]
+type = Helper
+trigger1 = MoveContact
+trigger1 = numhelper(1003) = 0
+helpertype = normal
+name = "bom"
+stateno = 1003
+id = 1003
+pos = 0, -50
+ownpal = 1
+facing = 1
+bindtime = 999999
+size.xscale = 1
+size.yscale = 1
+
+[State 0, DestroySelf]
+type = DestroySelf
+trigger1 = numhelper(1003) = 1
+trigger2 = time = 201
+;ignorehitpause =
+;persistent =
+;ignorehitpause =
+;persistent =
+
+[State 1000, 7]
+type = Helper
+trigger1 = time = 200
+stateno = 900
+id = 900
+pos = 0, 0
+size.xscale = 1
+size.yscale = 1
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 195
+value = S100,2
+volume = 0
+channel = -1
+;lowpriority = -1
+freqmul = 1.0
+loop = 0
+pan = 0
+;abspan =
+;ignorehitpause =
+;persistent =
+
+
+[State 220, 3]
+type = ChangeState
+trigger1 = AnimTime = 1
+value = 0
+ctrl = 1
+
+;---------------------------------
+
+[Statedef 900]
+type    = S
+movetype= A
+physics = S
+juggle  = 0;1
+velset = 0,0
+ctrl = 0
+anim = 900
+sprpriority = 1
+
+[State 133001, 1]
+type = HitDef
+trigger1 = AnimElem = 3
+trigger2 = AnimElem = 4
+trigger3 = AnimElem = 5
+trigger4 = AnimElem = 6
+trigger5 = AnimElem = 7
+attr = S, SA
+animtype = hard
+guardflag = M
+hitflag = MAF
+damage = 50
+pausetime = 0,0
+sparkno = -1
+guard.sparkno = -1
+sparkxy = -10,-55
+ground.type = High
+ground.slidetime = 15
+ground.hittime  = 15
+guard.hittime  = 15
+ground.velocity = -5.5*parent,const(size.xscale)
+air.velocity = -2*parent,const(size.xscale),-6+parent,var(22)*1.5
+air.fall = 1
+getpower = 72,0
+fall = 1
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = animelem = 1
+value = S300,0
+volume = 0
+channel = -1
+;lowpriority = -1
+freqmul = 1.0
+loop = 0
+pan = 0
+;abspan =
+;ignorehitpause =
+;persistent =
+
+
+[State 220, 3]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+
+
+
+
+
+
+
+;---------------------------------------------------------------------
+;Money2
+;---------------------------------------------------------------------------------
+
+[Statedef 11303]
+type    = C
+movetype= A
+physics = C
+juggle  = 5
+poweradd= 0
+ctrl = 0
+anim = 1303
+sprpriority = 2
+facep2 = 1
+
+[State 210, ヒット定義]
+type = HitDef
+trigger1 = animelem = 4
+attr = S, NA
+sprpriority = 3
+animtype  = Medium
+damage    = 30
+guardflag = MA
+pausetime = 0,13
+sparkno = s830
+sparkxy = -10,-60
+hitsound = s100, 16
+guardsound = s1,5
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 13
+ground.velocity = -5.5
+air.velocity = -2.5,-4
+
+[State 1000, 7]
+type = Helper
+trigger1 = Time = 0
+trigger1 = numhelper(1001) = 0
+helpertype = normal
+name = "kq"
+stateno = 1310
+id = 1001
+pos = 10, 0
+postype = p1
+ownpal = 1
+facing = 1
+size.xscale = 1
+size.yscale = 1
+
+[state 0, helper]
+type = helper
+trigger1 = animelem = 3
+helpertype = normal
+name = "stand"
+stateno = 24021
+id = 24021
+pos = 70,-80
+postype = p1
+size.xscale = 0.05
+size.yscale = 0.05
+
+
+[State 400, 音を鳴らす]
+type = PlaySnd
+trigger1 = Time = 0
+value = 100,18
+
+[State 400, ステート変更]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+
+;----------------------------------------------------------------
+
+
+[Statedef 24021]
+type = A
+movetype = A
+physics = N
+poweradd= 5
+juggle  = 0
+ctrl = 0
+anim = 5422
+sprpriority = 3
+facep2 = 0
+
+[State 230, 2]
+type = nothitby
+trigger1 = 1
+value = SCA
+time = 1
+
+[State 1305, 移動速度]
+type = VelSet
+trigger1 = time = 0
+x = 4
+
+[State 1310, 移動速度]
+type = VelSet
+trigger1 = 1
+trigger1 = time <= 5
+y = -2.5
+
+[State 1310, 移動速度]
+type = Veladd
+trigger1 = time > 5
+y = .55
+
+
+[State 1310, 移動速度]
+type = Veladd
+trigger1 = FrontEdgeBodyDist < 0
+x = -1.5
+
+[State 1320, 移動速度]
+type = Veladd
+trigger1 = time > 5
+x = -.01
+
+
+[State 1320, 移動速度]
+type = VelSet
+trigger1 = 1
+trigger1 = time <= 5
+y = -2.5
+
+[State 1320, 移動速度]
+type = Veladd
+trigger1 = time > 5
+y = .55
+
+[State 1320, 移動速度]
+type = Veladd
+trigger1 = FrontEdgeBodyDist < 0
+x = -1.5
+
+
+[State 1310, 移動速度]
+type = Veladd
+trigger1 = time > 5
+x = -.01
+
+[State 133001, 1]
+type = HitDef
+trigger1 = AnimElem = 1
+attr = A, SP
+damage = 0
+animtype = Light
+guardflag = MA
+hitflag = MAF
+damage = 0
+pausetime = 0,-9999999999999999999999999999999999999999
+hitsound = s100, 21
+
+[State 1000, 7]
+type = Helper
+trigger1 = MoveContact
+trigger1 = numhelper(1003) = 0
+helpertype = normal
+name = "bom"
+stateno = 1003
+id = 1003
+pos = 0, -50
+ownpal = 1
+facing = 1
+bindtime = 999999
+size.xscale = 1
+size.yscale = 1
+
+[State 0, DestroySelf]
+type = DestroySelf
+trigger1 = numhelper(1003) = 1
+trigger2 = time = 201
+
+[State 1305, 移動速度]
+type = changestate
+trigger1 = Vel Y > 0 && Pos Y >= -1
+Value =  24012
+Ctrl = 0
+
+;-------------------------------------------------------
+
+[Statedef 24012]
+type    = S
+movetype= A
+physics = S
+juggle  = 0;1
+velset = 0,0
+ctrl = 0
+anim = 5412
+sprpriority = 1
+
+[State 10000]
+type = Turn      ;親と違う向きなら振り返る。
+trigger1 = facing != parent,facing
+
+[State 0]
+type = SprPriority
+trigger1 = 1
+value = -1
+ignorehitpause = 1
+
+[State 133001, 1]
+type = HitDef
+trigger1 = AnimElem = 1
+attr = S, SA
+animtype = hard
+guardflag = M
+hitflag = MAF
+damage = 0
+pausetime = 0,-9999999999999999999999999999999999999999
+hitsound = s100, 21
+
+[State 1000, 7]
+type = Helper
+trigger1 = MoveContact
+trigger1 = numhelper(1003) = 0
+helpertype = normal
+name = "bom"
+stateno = 1003
+id = 1003
+pos = 0, -50
+ownpal = 1
+facing = 1
+bindtime = 999999
+size.xscale = 1
+size.yscale = 1
+
+[State 0, DestroySelf]
+type = DestroySelf
+trigger1 = numhelper(1003) = 1
+trigger2 = time = 201
+;ignorehitpause =
+;persistent =
+
+[State 1000, 7]
+type = Helper
+trigger1 = time = 200
+stateno = 900
+id = 900
+pos = 0, 0
+size.xscale = 1
+size.yscale = 1
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 195
+value = S100,2
+volume = 0
+channel = -1
+;lowpriority = -1
+freqmul = 1.0
+loop = 0
+pan = 0
+;abspan =
+;ignorehitpause =
+;persistent =
+
+
+[State 220, 3]
+type = ChangeState
+trigger1 = AnimTime = 1
+value = 0
+ctrl = 1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+;------------------------------------------------
+;money3
+;----------------------------------------------------
+
+[Statedef 11304]
+type    = C
+movetype= A
+physics = C
+juggle  = 5
+poweradd= 0
+ctrl = 0
+anim = 1303
+sprpriority = 2
+facep2 = 1
+
+[State 210, ヒット定義]
+type = HitDef
+trigger1 = animelem = 4
+attr = S, NA
+sprpriority = 3
+animtype  = Medium
+damage    = 30
+guardflag = MA
+pausetime = 0,13
+sparkno = s830
+sparkxy = -10,-60
+hitsound = s100, 16
+guardsound = s1,5
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 13
+ground.velocity = -5.5
+air.velocity = -2.5,-4
+
+[State 1000, 7]
+type = Helper
+trigger1 = Time = 0
+trigger1 = numhelper(1001) = 0
+helpertype = normal
+name = "kq"
+stateno = 1310
+id = 1001
+pos = 10, 0
+postype = p1
+ownpal = 1
+facing = 1
+size.xscale = 1
+size.yscale = 1
+
+[state 0, helper]
+type = helper
+trigger1 = animelem = 3
+helpertype = normal
+name = "stand"
+stateno = 240211
+id = 240211
+pos = 70,-80
+postype = p1
+size.xscale = 0.05
+size.yscale = 0.05
+
+[State 400, 音を鳴らす]
+type = PlaySnd
+trigger1 = Time = 0
+value = 100,18
+
+[State 400, ステート変更]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;---------------------------------------------------
+
+[Statedef 240211]
+type = A
+movetype = A
+physics = N
+poweradd= 5
+juggle  = 0
+ctrl = 0
+anim = 5422
+sprpriority = 3
+facep2 = 0
+
+[State 1305, 移動速度]
+type = VelSet
+trigger1 = time = 0
+x = 6
+
+[State 1310, 移動速度]
+type = VelSet
+trigger1 = 1
+trigger1 = time <= 5
+y = -2.5
+
+[State 1310, 移動速度]
+type = Veladd
+trigger1 = time > 5
+y = .55
+
+
+[State 1310, 移動速度]
+type = Veladd
+trigger1 = FrontEdgeBodyDist < 0
+x = 10
+
+[State 1320, 移動速度]
+type = Veladd
+trigger1 = time > 5
+x = -.01
+
+
+[State 1320, 移動速度]
+type = VelSet
+trigger1 = 1
+trigger1 = time <= 5
+y = -8
+
+[State 1320, 移動速度]
+type = Veladd
+trigger1 = time > 5
+y = .55
+
+[State 1320, 移動速度]
+type = Veladd
+trigger1 = FrontEdgeBodyDist < 0
+x = -15
+
+
+[State 1310, 移動速度]
+type = Veladd
+trigger1 = time > 5
+x = -.01
+
+[State 0, DestroySelf]
+type = DestroySelf
+trigger1 = numhelper(1003) = 1
+
+[State 133001, 1]
+type = HitDef
+trigger1 = AnimElem = 1
+attr = A, SP
+damage = 0
+animtype = Light
+guardflag = MA
+hitflag = MAF
+damage = 0
+pausetime = 0,-9999999999999999999999999999999999999999
+hitsound = s100, 21
+
+[State 1000, 7]
+type = Helper
+trigger1 = Movehit
+trigger1 = numhelper(1003) = 0
+helpertype = normal
+name = "bom"
+stateno = 1010
+id = 1003
+pos = 0, -50
+postype = p2
+ownpal = 1
+facing = 1
+bindtime = 999999
+size.xscale = 1
+size.yscale = 1
+
+[State 1305, 移動速度]
+type = changestate
+trigger1 = Vel Y > 0 && Pos Y >= -1
+Value =  24022
+Ctrl = 0
+
+;------------------------------------------------------
+
+[Statedef 24022]
+type    = S
+movetype= A
+physics = S
+juggle  = 0;1
+velset = 0,0
+ctrl = 0
+anim = 5412
+sprpriority = 1
+
+[State 10000]
+type = Turn      ;親と違う向きなら振り返る。
+trigger1 = facing != parent,facing
+
+[State 0]
+type = SprPriority
+trigger1 = 1
+value = -1
+ignorehitpause = 1
+
+[State 133001, 1]
+type = HitDef
+trigger1 = AnimElem = 1
+attr = S, SA
+animtype = hard
+guardflag = M
+hitflag = MAF
+damage = 0
+pausetime = 0,-9999999999999999999999999999999999999999
+hitsound = s100, 21
+
+[State 1000, 7]
+type = Helper
+trigger1 = Movehit
+trigger1 = numhelper(1003) = 0
+helpertype = normal
+name = "bom"
+stateno = 1010
+id = 1003
+pos = 0, -50
+postype = p2
+ownpal = 1
+facing = 1
+bindtime = 999999
+size.xscale = 1
+size.yscale = 1
+
+[State 0, DestroySelf]
+type = DestroySelf
+trigger1 = numhelper(1003) = 1
+trigger2 = time = 201
+;ignorehitpause =
+;persistent =
+
+[State 1000, 7]
+type = Helper
+trigger1 = time = 200
+stateno = 900
+id = 900
+pos = 0, 0
+size.xscale = 1
+size.yscale = 1
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 195
+value = S100,2
+volume = 0
+channel = -1
+;lowpriority = -1
+freqmul = 1.0
+loop = 0
+pan = 0
+;abspan =
+;ignorehitpause =
+;persistent =
+
+
+[State 220, 3]
+type = ChangeState
+trigger1 = AnimTime = 1
+value = 0
+ctrl = 1
+
+;--------------------------------------------------
+
+[Statedef 910]
+type    = S
+movetype= A
+physics = S
+juggle  = 0;1
+velset = 0,0
+ctrl = 0
+anim = 910
+sprpriority = 1
+
+
+[State 220, 3]
+type = ChangeState
+trigger1 = AnimTime = 1
+value = 0
+ctrl = 1
+
+
+
+
+

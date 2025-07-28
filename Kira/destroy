@@ -1,0 +1,141 @@
+;-----------------------------------------------------------
+
+[Statedef 8080]
+type = S
+movetype = A
+physics = S
+ctrl = 0
+anim = 13422123
+velset = -10,0
+
+[State 0, DestroySelf]
+type = DestroySelf
+trigger1 = time = 25
+
+[State 2500, NotHitBy]
+type = NotHitBy
+trigger1 = 1
+value = SCA
+
+[State 420, 3]
+type = ChangeState
+trigger1 = animtime = 1
+value = 0
+ctrl = !var(59);1
+
+;--------------------------------------------------------------
+
+[Statedef 8081]
+type = S
+movetype = A
+physics = S
+ctrl = 0
+anim = 911
+velset = 0,0
+
+[State 16500]
+type = ParentVarSet
+trigger1 = time = 0
+v = 11
+value = GetHitVar(damage)/2
+
+
+[State 1000, 7]
+type = explod
+trigger1 = time = 0
+anim = 910
+id = 900
+pos = 0, 0
+scale = 2,2
+sprpriority = 4
+
+
+[State 1000, 7]
+type = Helper
+trigger1 = time = 0
+stateno = 8080
+id = 8080
+pos = 0, -10
+facing =  1
+size.xscale = 0.5
+size.yscale = 0.6
+
+
+[State 600, 2　ヒット定義]
+type = HitDef
+trigger1 = time = 1
+attr = A, NA
+damage    = 100
+animtype  = hard
+guardflag =
+priority = 2, Hit
+pausetime = 0,0
+sparkno = s36400
+guard.sparkno = s36400
+sparkxy = -10,-77
+hitsound = s1, 3
+guardsound = s1,5
+ground.type = High
+ground.slidetime = 11
+ground.hittime  = 11
+ground.velocity = 3,-6
+air.velocity = -3,-6
+getpower = 10 * (var(14) = 0),0
+givepower = 10,0
+ground.cornerpush.veloff = 0
+air.hittime = 15
+palfx.color = 150
+palfx.time = 40
+palfx.add = 128,24,0
+palfx.mul = 90,64,64
+palfx.sinadd = 90,90,90,4
+guard.dist = 0
+air.fall = 1
+fall.recovertime = 15
+fall = 1
+
+[State 1000, 音を鳴らす]
+type = PlaySnd
+trigger1 = time = 0
+value = 100, 2
+channel = 0
+
+[State 1000, 音を鳴らす]
+type = PlaySnd
+trigger1 = time = 0
+value = 100, 5
+channel = 0
+
+
+[State 1027, Sound]
+type = PlaySnd
+trigger1 = time = 0
+value = 300,1
+
+[State 0, ts]
+type = TargetState
+trigger1 = movehit
+trigger1 = !Target,NumPartner
+trigger1 = Target,life = 0
+trigger1 = roundno > 1
+value = 186
+
+[State 10820, けむり]
+type = Explod
+trigger1 = time = 1
+facing = 1                 ;キャラと同じ向きに表示（デフォ
+postype = p1
+pos = 20,-20
+anim = 186
+sprpriority = 5
+ownpal = 1
+
+
+
+[State 230, 2]
+type = destroyself
+trigger1 = animtime = 0
+
+
+
+

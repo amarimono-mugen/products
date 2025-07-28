@@ -1,0 +1,80 @@
+;---------------------------------------------------------------------------
+;立ち強
+[Statedef 240]
+type    = S
+movetype= A
+physics = S
+juggle  = 5
+poweradd= 65
+ctrl = 0
+velset = 0,0
+anim = 240
+sprpriority = 2
+
+[State 210, ヒット定義]
+type = HitDef
+trigger1 = time = 0
+attr = S, NA
+sprpriority = 3
+animtype  = Medium
+damage    = 64
+guardflag = MA
+pausetime = 0,13
+sparkno = s830
+sparkxy = -10,-60
+hitsound = s100, 16
+guardsound = s1,5
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 13
+ground.velocity = -5.5
+air.velocity = -2.5,-4
+
+[State 1000, 音を鳴らす]
+type = PlaySnd
+trigger1 = time = 0
+value = 100, 22
+channel = 0
+
+[state 0, helper]
+type = helper
+trigger1 = animelem = 1
+helpertype = normal
+name = "stand"
+stateno = 241
+id = 241
+pos = 0,0
+postype = p1
+ownpal = 1
+keyctrl = 0
+size.xscale = 1
+size.yscale = 1
+
+[State 400, ステート変更]
+type = ChangeState
+triggerall = var(59)=1&& RoundState = 2
+triggerall = numhelper(1003) = 0
+triggerall = numhelper(3102) = 0
+triggerall = numhelper(1004) = 0
+triggerall = numhelper(3013) = 0
+triggerall= EnemyNear,MoveType = H && enemynear,stateno != [120,160]
+trigger1 = P2BodyDist X = [-30,150]
+trigger1 = Time >= 12
+value = 1008
+
+[State 400, ステート変更]
+type = ChangeState
+triggerall = var(59)=1&& RoundState = 2
+triggerall = numhelper(1003) = 0
+triggerall = numhelper(3102) = 0
+triggerall = numhelper(1004) = 0
+triggerall = numhelper(3013) = 0
+trigger1 = P2BodyDist X = [-30,150]
+trigger1 = Time >= 12
+value = 1006
+
+[State 240, ステート変更]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
