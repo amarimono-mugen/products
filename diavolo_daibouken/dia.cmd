@@ -662,6 +662,28 @@ trigger2 = stateno = 600 && time >= 6
 trigger3 = stateno = 610 && time >= 7
 trigger4 = stateno = [700, 795]
 trigger4 = time >= 7
+;------------------------------------------------------------------------------
+[State -1, 水平ボスキック 弱]
+type = ChangeState
+value = 1600
+triggerall = command = "QCB_x"
+trigger1 = statetype != A
+trigger1 = ctrl
+trigger2 = stateno = [200, 410]
+trigger2 = time >= 6
+trigger3 = stateno = 420
+trigger3 = movecontact
+
+[State -1, 水平ボスキック 強]
+type = ChangeState
+value = 1610
+triggerall = command = "QCB_y"
+trigger1 = statetype != A
+trigger1 = ctrl
+trigger2 = stateno = [200, 410]
+trigger2 = time >= 6
+trigger3 = stateno = 420
+trigger3 = movecontact
 ;==============================================================================
 ; 移動関連
 ;==============================================================================
@@ -1278,7 +1300,7 @@ value = 10050
 triggerall = NumHelper(3327) = 0 
 triggerall = power >= 100
 triggerall = command = "holdfwd"
-triggerall = command = "a"
+triggerall = var(9) = 8
 triggerall = statetype != A
 trigger1 = ctrl
 trigger2 = stateno = 420 && time >= 14

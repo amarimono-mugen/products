@@ -341,7 +341,7 @@ y = 0
 [State 100, 1]
 type = VelSet
 trigger1 = 1
-x = 6.5
+x = ifelse(var(49),5.5,3.5)
 
 [State 100, 2] ;Prevent run from canceling into walk
 type = AssertSpecial
@@ -423,7 +423,7 @@ y = 0
 [State 100, 1]
 type = VelSet
 trigger1 = AnimElem = 2
-x = -6.5
+x = ifelse(var(49),-6,-4)
 
 [State 100, 4]
 type = ChangeState

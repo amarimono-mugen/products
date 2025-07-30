@@ -71,15 +71,15 @@ draw.offset      = 0,0     ;キャラの表示座標（Ｘ軸,Ｙ軸）
 ; 移動速度
 ;---------------------------------------------------------------------------
 [Velocity]
-walk.fwd     = 2.4         ;前進速度（Ｘ軸・[Statedef 20]に適用される）
-walk.back    = -2.2        ;後退速度（Ｘ軸・[Statedef 20]に適用される）
+walk.fwd     = 1.6         ;前進速度（Ｘ軸・[Statedef 20]に適用される）
+walk.back    = -1.6        ;後退速度（Ｘ軸・[Statedef 20]に適用される）
 run.fwd      = 4.6,0       ;前方に走る速度（Ｘ軸,Ｙ軸・[Statedef 100]に適用される）
 run.back     = -4.5,-3.8   ;後方に走る速度（Ｘ軸,Ｙ軸・[Statedef 105]に適用される）
 jump.neu = 0,-10     ;垂直ジャンプの速度（Ｘ軸,Ｙ軸・[Statedef 40]に適用される）
 jump.back = -2.67      ;後方ジャンプの速度（Ｘ軸・[Statedef 40]に適用される）
 jump.fwd = 2.97        ;前方ジャンプの速度（Ｘ軸・[Statedef 40]に適用される）
-runjump.back = -4.5,-11	;後ダッシュしながらのジャンプ速度(オプション)
-runjump.fwd = 4.5,-11	;前ダッシュしながらのジャンプ速度(オプション)
+runjump.back = -3,-12	;後ダッシュしながらのジャンプ速度(オプション)
+runjump.fwd = 3,-12	;前ダッシュしながらのジャンプ速度(オプション)
 airjump.neu  = 0,-8.1      ;空中垂直ジャンプ速度（Ｘ軸,Ｙ軸・[Statedef 45]に適用される）
 airjump.back = -2.55       ;空中後方ジャンプ速度（Ｘ軸・[Statedef 45]に適用される）
 airjump.fwd  = 2.5         ;空中前方ジャンプ速度（Ｘ軸・[Statedef 45]に適用される）
@@ -1853,7 +1853,7 @@ trigger1 = time = 0
 attr = S, NA
 sprpriority = 2
 animtype  = Medium
-damage    = 30*root,fvar(3)
+damage    = 20*root,fvar(3)
 guardflag = MA
 pausetime = 5,13
 sparkno = s830
@@ -1893,7 +1893,7 @@ trigger1 = time = 0
 attr = S, NA
 sprpriority = 2
 animtype  = up
-damage    = 40*fvar(1)
+damage    = 20*fvar(1)
 guardflag = MA
 pausetime = 5,13
 getpower = ifelse(helper(8500),fvar(8)=0,70,70*1.1)
@@ -2012,7 +2012,7 @@ trigger1 = time = 0
 attr = S, NA
 sprpriority = 3
 animtype  = Medium
-damage    = 40*fvar(1),8
+damage    = 100*fvar(1),8
 guardflag = MA
 pausetime = 16,16
 getpower = ifelse(helper(8500),fvar(8)=0,40,40*1.1)
@@ -2137,7 +2137,7 @@ trigger1 = time = 0
 attr = S, NA
 sprpriority = 3
 animtype  = Medium
-damage    = 40*fvar(1),8
+damage    = 100*fvar(1),8
 guardflag = MA
 pausetime = 16,16
 getpower = ifelse(helper(8500),fvar(8)=0,40,40*1.1)
@@ -2262,7 +2262,7 @@ trigger1 = time = 0
 attr = S, NA
 sprpriority = 3
 animtype  = Medium
-damage    = 40*fvar(1),8
+damage    = 100*fvar(1),8
 guardflag = M
 pausetime = 16,16
 getpower = ifelse(helper(8500),fvar(8)=0,40,40*1.1)
@@ -2433,8 +2433,8 @@ ground.type = High
 air.type = High
 ground.slidetime = 18
 ground.hittime = 18
-guard.slidetime = 12
-guard.hittime = 12
+guard.slidetime = 8
+guard.hittime = 8
 air.hittime = 14
 ground.velocity = -6
 guard.velocity = -5.5
@@ -2501,8 +2501,8 @@ ground.type = High
 air.type = High
 ground.slidetime = 18
 ground.hittime = 18
-guard.slidetime = 12
-guard.hittime = 12
+guard.slidetime = 8
+guard.hittime = 8
 air.hittime = 14
 ground.velocity = -6
 guard.velocity = -5.5
@@ -2545,8 +2545,8 @@ guardsound = s1,5
 ground.type = High
 ground.slidetime = 24
 ground.hittime = 24
-guard.slidetime = 16
-guard.hittime = 16
+guard.slidetime = 10
+guard.hittime = 10
 ground.velocity = -5
 air.velocity = -3.5,-4
 fall = 0
@@ -2665,7 +2665,7 @@ attr = A, NA
 hitflag = MAF
 guardflag = HA
 animtype = Light
-damage    = 10*fvar(1)
+damage    = 25*fvar(1)
 priority = 3
 pausetime = 11,11
 getpower = ifelse(helper(8500),fvar(8)=0,20,20*1.1)
@@ -2712,7 +2712,7 @@ attr = A, NA
 hitflag = MAF
 guardflag = HA
 animtype = Light
-damage    = 20*fvar(1)
+damage    = 40*fvar(1)
 priority = 3
 pausetime = 13,13
 getpower = ifelse(helper(8500),fvar(8)=0,35,35*1.1)
@@ -2768,7 +2768,7 @@ type = HitDef
 trigger1 = time = 0
 attr = A, NA
 animtype  = Medium
-damage    = 40*fvar(1)
+damage    = 80*fvar(1)
 guardflag = HA
 pausetime = 15,15
 getpower = ifelse(helper(8500),fvar(8)=0,50,50*1.1)
@@ -6182,7 +6182,7 @@ trigger1 = time = 15
 helpertype = normal
 name = "ab"
 id = 3102
-pos = 15,-70
+pos = 15,-55
 postype = p1
 keyctrl = 0
 sprpriority = 3
@@ -6482,7 +6482,7 @@ trigger1 = time = 15
 helpertype = normal
 name = "ab"
 id = 3102
-pos = 15,-70
+pos = 15,-55
 postype = p1
 keyctrl = 0
 sprpriority = 3
@@ -6694,7 +6694,7 @@ trigger1 = time = 15
 helpertype = normal
 name = "ab"
 id = 3102
-pos = 15,-70
+pos = 15,-55
 postype = p1
 keyctrl = 0
 sprpriority = 3
@@ -7009,7 +7009,7 @@ trigger1 = time = 15
 helpertype = normal
 name = "ab"
 id = 3102
-pos = 15,-70
+pos = 15,-55
 postype = p1
 keyctrl = 0
 sprpriority = 3
@@ -7060,6 +7060,11 @@ anim = 1022
 ctrl = 0
 sprpriority = 3
 
+[State 901, Throw]
+type = attackdist
+trigger1 = 1
+value = 40
+
 [State 301,]
 type = NotHitBy
 trigger1 = 1   
@@ -7084,7 +7089,7 @@ animtype  = hard
 hitflag = MAFD
 guardflag = MA
 priority = 2, Hit
-pausetime = 0,9
+pausetime = 0,4
 getpower = ifelse(helper(8500),fvar(8)=0,100,100*1.1)
 givepower = 40
 sparkno = s36400
@@ -7093,10 +7098,10 @@ sparkxy = -10,-77
 hitsound = s1, 3
 guardsound = s1,5
 ground.type = High
-ground.slidetime = 11
-ground.hittime  = 11
-ground.velocity = -8,-4
-air.velocity = -6,-2
+ground.slidetime = 8
+ground.hittime  = 8
+ground.velocity = -4,-4
+air.velocity = -3,-2
 p2facing = 1
 ground.cornerpush.veloff = 0
 air.hittime = 15
@@ -8963,7 +8968,7 @@ ignorehitpause = 1
 type = HitDef
 trigger1 = time = 0
 attr = S, NA
-damage = 55*root,fvar(1), 0
+damage = 100*root,fvar(1), 0
 animtype = Light
 guardflag = H
 hitflag = MAFD
@@ -9630,7 +9635,7 @@ trigger1 = time = 15
 helpertype = normal
 name = "ab"
 id = 3102
-pos = 15,-70
+pos = 15,-55
 postype = p1
 keyctrl = 0
 sprpriority = 3
@@ -10452,7 +10457,7 @@ trigger1 = time = 15
 helpertype = normal
 name = "ab"
 id = 3102
-pos = 15,-70
+pos = 15,-55
 postype = p1
 keyctrl = 0
 sprpriority = 3
@@ -10718,7 +10723,7 @@ trigger1 = time = 15
 helpertype = normal
 name = "ab"
 id = 3102
-pos = 15,-70
+pos = 15,-55
 postype = p1
 keyctrl = 0
 sprpriority = 3
@@ -10756,6 +10761,11 @@ velset = 0,0
 anim = 1022
 ctrl = 0
 sprpriority = 3
+
+[State 901, Throw]
+type = attackdist
+trigger1 = 1
+value = 40
 
 [State 301,]
 type = NotHitBy
@@ -15124,7 +15134,7 @@ trigger1 = time = 55
 helpertype = normal
 name = "ab"
 id = 3102
-pos = 15,-70
+pos = 15,-55
 postype = p1
 keyctrl = 0
 sprpriority = 3
@@ -16047,7 +16057,7 @@ trigger1 = animelem = 8
 helpertype = normal
 name = "ab"
 id = 3102
-pos = 15,-70
+pos = 15,-55
 postype = p1
 keyctrl = 0
 sprpriority = 3
@@ -19143,7 +19153,7 @@ value = 0, 0
 type = hitdef
 trigger1 = !time
 attr = S, NA
-damage = 15*fvar(1),0
+damage = 25*fvar(1),0
 priority = 3,Hit
 hitflag = MAF
 guardflag = M
@@ -19226,7 +19236,7 @@ type = HitDef
 trigger1 = time = 0
 attr = S, NA
 animtype  = Medium
-damage    = 25*fvar(1)
+damage    = 45*fvar(1)
 guardflag = MA
 pausetime = 2,10
 getpower = ifelse(helper(8500),fvar(8)=0,35,35*1.1)
@@ -19301,7 +19311,7 @@ type = HitDef
 trigger1 = animelem = 5
 attr = S, NA
 animtype  = hard
-damage    = 20*fvar(1)
+damage    = 30*fvar(1)
 guardflag = MA
 pausetime = 11,11
 getpower = ifelse(helper(8500),fvar(8)=0,30,30*1.1)
@@ -19311,8 +19321,8 @@ sparkxy = -20,-80
 hitsound = s1, 2
 guardsound = s1,5
 ground.type = High
-ground.slidetime = 22
-ground.hittime  = 22
+ground.slidetime = 28
+ground.hittime  = 28
 guard.slidetime = 16
 ground.hittime  = 16
 ground.velocity = 0
@@ -19327,7 +19337,7 @@ type = HitDef
 trigger1 = animelem = 10
 attr = S, NA
 animtype  = hard
-damage    = 30*fvar(1)
+damage    = 40*fvar(1)
 guardflag = MA
 getpower = ifelse(helper(8500),fvar(8)=0,30,30*1.1)
 givepower = 15
@@ -19337,8 +19347,8 @@ sparkxy = -20,-90
 hitsound = s1, 2
 guardsound = s1,5
 ground.type = High
-ground.slidetime = 22
-ground.hittime  = 22
+ground.slidetime = 28
+ground.hittime  = 28
 guard.slidetime = 16
 ground.hittime  = 16
 ground.velocity = -4
@@ -19776,7 +19786,7 @@ animtype = Light
 air.animtype = back
 fall.animtype = back
 priority = 3,Hit
-damage = 15*fvar(1)
+damage = 25*fvar(1)
 pausetime = 8,7
 getpower = ifelse(helper(8500),fvar(8)=0,20,20*1.1)
 givepower = 20
@@ -19835,7 +19845,7 @@ type = HitDef
 trigger1 = time = 0
 attr = S, NA
 animtype  = Medium
-damage    = 20*fvar(1)
+damage    = 40*fvar(1)
 guardflag = L
 pausetime = 10,10
 getpower = ifelse(helper(8500),fvar(8)=0,35,35*1.1)
@@ -19877,7 +19887,7 @@ type = HitDef
 trigger1 = time = 0
 attr = S, NA
 animtype = hard
-damage    = 40*fvar(1)
+damage    = 90*fvar(1)
 guardflag = L
 pausetime = 15,15
 getpower = ifelse(helper(8500),fvar(8)=0,50,50*1.1)

@@ -712,7 +712,7 @@ ctrl = 1
 type    = S
 movetype= A
 physics = S
-juggle  = 4
+
 poweradd= 65
 ctrl = 0
 velset = 0,0
@@ -964,9 +964,8 @@ value = 5100
 type    = S
 movetype = A
 physics = S
-juggle = 8
 ctrl = 0
-poweradd = 70
+poweradd = 0
 velset = 0,0
 
 [State 3001, Width]
@@ -1055,7 +1054,7 @@ attr = S, SA
 animtype  = Heavy
 air.animtype  = Back
 damage = 50
-priority  = 7, Hit
+;priority  = 7, Hit
 hitflag = MAF
 guardflag = M
 pausetime = 13
@@ -1135,9 +1134,8 @@ ctrl = 1
 type    = S
 movetype = A
 physics = S
-juggle = 8
 ctrl = 0
-poweradd = 70
+poweradd = 0
 velset = 0,0
 
 [State 3001, Width]
@@ -1269,7 +1267,6 @@ value = 1402
 type    = S
 movetype = A
 physics = S
-juggle = 8
 ctrl = 0
 poweradd = -1500
 velset = 0,0
@@ -3897,7 +3894,7 @@ trigger2 = parent,stateno != 385
 type    = S
 movetype= A
 physics = S
-juggle  = 4
+
 poweradd= 0
 anim = 387
 ctrl = 0
@@ -4871,7 +4868,7 @@ value = 1
 type    = A
 movetype= A
 physics = A
-juggle  = 4
+
 poweradd= 65
 ctrl = 0
 anim = 610
@@ -4973,17 +4970,18 @@ sparkxy = -10,-10
 hitsound = s1,4
 guardsound = s1,6
 ground.type = High
-ground.slidetime = 32
-ground.hittime  = 32
+ground.slidetime = 36
+ground.hittime  = 36
 guard.slidetime = 16
 ground.velocity = -4
 air.velocity = -4,-3
 ;p2facing = 1
 ;p2stateno = 25070
+id = 1450
 
 [State 0, target];永久防止
 type = targetstate
-trigger1 = var(40) > 3
+trigger1 = var(21)
 trigger1 = movehit
 value = 25070
 
@@ -5006,6 +5004,7 @@ sprpriority = 2
 [State 1010, 移動速度]
 type = VelSet
 trigger1 = time = 0
+x = 0
 y = -6
 
 [State 1010, 移動速度]
@@ -5057,17 +5056,18 @@ sparkxy = -10,-10
 hitsound = s1,4
 guardsound = s1,6
 ground.type = High
-ground.slidetime = 32
-ground.hittime  = 32
+ground.slidetime = 36
+ground.hittime  = 36
 guard.slidetime = 16
 ground.velocity = -8
 air.velocity = -4,-3
 ;p2facing = 1
 ;p2stateno = 25070
+id = 1450
 
 [State 0, target];永久防止
 type = targetstate
-trigger1 = var(40) > 3
+trigger1 = var(21)
 trigger1 = movehit
 value = 25070
 
@@ -5082,6 +5082,201 @@ type    = S
 physics = S
 ctrl = 0
 anim = 1451
+velset = 0,0
+
+[State 810, var];永久防止
+type = VarSet
+trigger1 = time = 0
+trigger1 = numtarget(1450)
+var(21) = 1
+
+[State 1000, Spark]
+type = null;Explod
+trigger1 = Time = 0
+Anim = 8030
+pos = 0, 0
+postype = p1
+ownpal = 1
+sprpriority = -3
+;pausemovetime = -1
+supermovetime = -1
+scale = .5,.5
+
+[State 52, 2]
+type = PosSet
+trigger1 = Time = 0
+y = 0
+
+[State 52, Effect]
+type = PlaySnd
+trigger1 = Time = 0
+value = 6, 4
+channel = 20
+
+[State 52, 4]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+;------------------------------------------------------------------------------------------
+;水平ボスキック
+[Statedef 1600]
+type    = S
+movetype = A
+physics = S
+ctrl = 0
+poweradd = 0
+velset = 0,0
+
+[State 3001, Width]
+type = Width
+trigger1 = 1
+edge = 5,0
+
+[State 0, explod]
+type = explod
+trigger1 = AnimElemTime(4) = 0
+anim = 875
+id = 875
+facing = 1
+postype = p1
+pos = 0,0
+sprpriority = 2
+ownpal = 1
+bindtime = 1
+removeongethit = 1
+scale = 1,1
+
+[State 902, 1]
+type = ChangeAnim
+Trigger1 = Time = 0
+value = 1600
+
+[State 220, Position]
+type = PosSet
+trigger1 = Time = 0
+y = 0
+
+[State 1100, Effect]
+type = PlaySnd
+trigger1 = AnimElem = 1
+value = 0,2
+
+[State 1100, Effect]
+type = PlaySnd
+trigger1 = time = 6
+value = 2,8
+channel = 0
+
+[State 1100, StateType]
+type = null;StateTypeSet
+trigger1 = time >= 9
+StateType = A
+physics = N
+
+[State 1100, Velocity]
+type = VelSet
+trigger1 = time >= 9
+x = 10
+
+[State 1100, HitDef]
+type = HitDef
+trigger1 = time = 0
+attr = S, SA
+animtype  = Heavy
+air.animtype  = Back
+damage = 50
+priority  = 7, Hit
+hitflag = MAF
+guardflag = M
+pausetime = 11,13
+sparkno = s830
+guard.sparkno = s840
+sparkxy = -10, -30
+hitsound = s1,8
+guardsound = S1,0
+ground.type = Low
+ground.slidetime = 17
+ground.hittime  = 17
+guard.ctrltime = 17
+ground.velocity = -4.5,-8
+guard.velocity = -8
+air.velocity = -4.5,-3
+airguard.velocity = -6.67,-1
+ground.cornerpush.veloff = 0
+guard.cornerpush.veloff = -20
+air.cornerpush.veloff = 0
+airguard.cornerpush.veloff = 0
+envshake.time = 10
+envshake.ampl = 3
+fall = 1
+fall.recover = 0
+air.fall = 1
+yaccel = .5
+persistent = 0
+getpower = 70
+givepower = 35, 35
+forcestand = 1
+
+[State 1100, ChangeState]
+type = ChangeState
+trigger1 = movecontact
+value = 1601
+ignorehitpause
+
+[State 1100, ChangeState]
+type = ChangeState
+trigger1 = time = 24
+value = 1602
+;------------------------------------------------------------------------------------------
+;水平ボスキック　バウンド
+[Statedef 1601]
+type    = S
+movetype = A
+physics = S
+ctrl = 0
+poweradd = 0
+velset = 0,0
+
+[State 3001, Width]
+type = Width
+trigger1 = 1
+edge = 5,0
+
+[State 902, 1]
+type = ChangeAnim
+Trigger1 = Time = 0
+value = 1601
+
+[State 1100, StateType]
+type = StateTypeSet
+trigger1 = time >= 1
+StateType = A
+physics = N
+
+[State 1100, Velocity]
+type = VelSet
+trigger1 = time = 0
+x = -2
+y = -8
+
+[State 1100, Velocity]
+type = VelAdd
+trigger1 = time > 10
+y = 0.8
+
+[State 1100, ChangeState]
+type = ChangeState
+triggerall = Pos Y >= 0 && Vel Y > 0
+trigger1 = time >= 1
+value = 1602
+;---------------------------------------------------------------------------
+;ボス昇龍（着地）
+[Statedef 1602]
+type    = S
+physics = S
+ctrl = 0
+anim = 1402
 velset = 0,0
 
 [State 1000, Spark]
@@ -5112,6 +5307,116 @@ type = ChangeState
 trigger1 = AnimTime = 0
 value = 0
 ctrl = 1
+;------------------------------------------------------------------------------------------
+;水平ボスキック 強
+[Statedef 1610]
+type    = S
+movetype = A
+physics = S
+ctrl = 0
+poweradd = 0
+velset = 0,0
+
+[State 3001, Width]
+type = Width
+trigger1 = 1
+edge = 5,0
+
+[State 0, explod]
+type = explod
+trigger1 = AnimElemTime(4) = 0
+anim = 875
+id = 875
+facing = 1
+postype = p1
+pos = 0,0
+sprpriority = 2
+ownpal = 1
+bindtime = 1
+removeongethit = 1
+scale = 1,1
+
+[State 902, 1]
+type = ChangeAnim
+Trigger1 = Time = 0
+value = 1610
+
+[State 220, Position]
+type = PosSet
+trigger1 = Time = 0
+y = 0
+
+[State 1100, Effect]
+type = PlaySnd
+trigger1 = AnimElem = 1
+value = 0,2
+
+[State 1100, Effect]
+type = PlaySnd
+trigger1 = time = 6
+value = 2,8
+channel = 0
+
+[State 1100, StateType]
+type = null;StateTypeSet
+trigger1 = time >= 13
+StateType = A
+physics = N
+
+[State 1100, Velocity]
+type = VelSet
+trigger1 = time >= 13
+x = 12
+
+[State 1100, HitDef]
+type = HitDef
+trigger1 = time = 0
+attr = S, SA
+animtype  = Heavy
+air.animtype  = Back
+damage = 50
+priority  = 7, Hit
+hitflag = MAF
+guardflag = M
+pausetime = 11,13
+sparkno = s830
+guard.sparkno = s840
+sparkxy = -10, -45
+hitsound = s1,8
+guardsound = S1,0
+ground.type = Low
+ground.slidetime = 17
+ground.hittime  = 17
+guard.ctrltime = 17
+ground.velocity = -4.5,-8
+guard.velocity = -8
+air.velocity = -4.5,-3
+airguard.velocity = -6.67,-1
+ground.cornerpush.veloff = 0
+guard.cornerpush.veloff = -20
+air.cornerpush.veloff = 0
+airguard.cornerpush.veloff = 0
+envshake.time = 10
+envshake.ampl = 3
+fall = 1
+fall.recover = 0
+air.fall = 1
+yaccel = .5
+persistent = 0
+getpower = 70
+givepower = 35, 35
+forcestand = 1
+
+[State 1100, ChangeState]
+type = ChangeState
+trigger1 = movecontact
+value = 1601
+ignorehitpause
+
+[State 1100, ChangeState]
+type = ChangeState
+trigger1 = time = 30
+value = 1602
 ;---------------------------------------------------------------------------
 ;シルチャリ　通常攻撃
 [Statedef 700]
@@ -7355,7 +7660,7 @@ value = 5100
 type    = S
 movetype= A
 physics = S
-juggle  = 4
+
 poweradd= 110
 velset = 0,0
 anim = 1000
@@ -7460,7 +7765,7 @@ trigger2 = pos x <= -240 || pos x >= 240
 type    = S
 movetype= A
 physics = S
-juggle  = 4
+
 poweradd= 0
 velset = 0,0
 anim = 1011
@@ -7490,7 +7795,7 @@ ctrl = 1
 type    = S
 movetype= I
 physics = S
-juggle  = 4
+
 poweradd= 110
 velset = 0,0
 anim = 1500
@@ -7567,7 +7872,7 @@ ctrl = 1
 type    = S
 movetype= I
 physics = S
-juggle  = 4
+
 poweradd= 110
 velset = 0,0
 anim = 1500
@@ -7627,7 +7932,7 @@ ctrl = 1
 type    = S
 movetype= I
 physics = S
-juggle  = 4
+
 poweradd= 110
 velset = 0,0
 anim = 1500
@@ -7686,7 +7991,7 @@ ctrl = 1
 type    = S
 movetype= A
 physics = S
-juggle  = 4
+
 poweradd= 100
 velset = 0,0
 anim = 1510
@@ -7735,7 +8040,7 @@ ctrl = 1
 type    = S
 movetype= A
 physics = S
-juggle  = 4
+
 poweradd= 110
 velset = 0,0
 anim = 1520
@@ -7902,7 +8207,7 @@ trigger1 = animtime = 0
 type    = S
 movetype= A
 physics = S
-juggle  = 4
+
 poweradd= 110
 velset = 0,0
 anim = 1007
@@ -8388,7 +8693,7 @@ trigger1 = AnimTime = 0
 type    = S
 movetype= I
 physics = S
-juggle  = 4
+
 poweradd= 0
 velset = 0,0
 anim = 3320
@@ -8456,7 +8761,7 @@ value = 3321
 type    = S
 movetype= A
 physics = S
-juggle  = 4
+
 poweradd= 0
 velset = 0,0
 anim = 3322
@@ -8479,7 +8784,7 @@ ctrl = 1
 type    = A
 movetype= I
 physics = N
-juggle  = 4
+
 poweradd= 0
 velset = 0,0
 anim = 3320
@@ -8547,7 +8852,7 @@ value = 3323
 type    = S
 movetype= I
 physics = S
-juggle  = 4
+
 poweradd= 0
 velset = 0,0
 anim = 3323
@@ -8588,7 +8893,7 @@ value = 3321
 type    = A
 movetype= A
 physics = N
-juggle  = 4
+
 poweradd= 0
 velset = 0,0
 anim = 3322
@@ -8611,7 +8916,7 @@ ctrl = 1
 type    = S
 movetype= A
 physics = S
-juggle  = 4
+
 poweradd= 110
 velset = 0,0
 anim = 3325
@@ -8741,7 +9046,7 @@ trigger1 = Time = 250
 type    = S
 movetype= A
 physics = S
-juggle  = 4
+
 poweradd= 0
 velset = 0,0
 anim = 3330
@@ -9261,7 +9566,7 @@ value = 3331
 type    = S
 movetype= A
 physics = S
-juggle  = 4
+
 poweradd= 0
 velset = 0,0
 anim = 3340
@@ -9386,7 +9691,7 @@ trigger1 = Time = 50
 type    = S
 movetype= A
 physics = S
-juggle  = 4
+
 poweradd= 0
 velset = 0,0
 anim = 3350
@@ -9498,7 +9803,7 @@ y = -150
 type    = S
 movetype= A
 physics = S
-juggle  = 4
+
 poweradd= 0
 velset = 0,0
 anim = 3360
@@ -9542,7 +9847,7 @@ ctrl = 1
 type    = S
 movetype= A
 physics = S
-juggle  = 4
+
 poweradd= 0
 velset = 0,0
 anim = 3365
@@ -9707,7 +10012,7 @@ trigger2 = root,stateno != 3365
 type    = S
 movetype= A
 physics = S
-juggle  = 4
+
 poweradd= 0
 velset = 0,0
 anim = 3370
@@ -9801,7 +10106,7 @@ trigger1 = Time = 30
 type    = S
 movetype= A
 physics = S
-juggle  = 4
+
 poweradd= 0
 velset = 0,0
 anim = 3375
@@ -10093,7 +10398,7 @@ trigger2 = root,movetype = H
 type    = S
 movetype= A
 physics = S
-juggle  = 4
+
 poweradd= 0
 velset = 0,0
 anim = 3380
@@ -10149,7 +10454,7 @@ ctrl = 1
 type    = S
 movetype= A
 physics = S
-juggle  = 4
+
 poweradd= 0
 velset = 0,0
 anim = 3385
@@ -10305,7 +10610,7 @@ value = 3388
 type    = S
 movetype= A
 physics = S
-juggle  = 4
+
 poweradd= 0
 anim = 3389
 ctrl = 0
@@ -10551,7 +10856,7 @@ trigger1 = enemynear,stateno != 3392
 type    = S
 movetype= A
 physics = S
-juggle  = 4
+
 poweradd= 90
 velset = 0,0
 anim = 1013
@@ -11014,7 +11319,7 @@ value = 1026
 type    = S
 movetype= A
 physics = S
-juggle  = 4
+
 poweradd= 30
 velset = 0,0
 anim = 900
@@ -11075,7 +11380,7 @@ ctrl = 1
 type    = S
 movetype= A
 physics = S
-juggle  = 4
+
 poweradd= 0
 velset = 0,0
 anim = 901
@@ -11127,7 +11432,7 @@ trigger3 = NumHelper(902) = 0
 type    = S
 movetype= A
 physics = S
-juggle  = 4
+
 poweradd= 0
 velset = 0,0
 anim = 901
@@ -11180,7 +11485,7 @@ trigger3 = NumHelper(901) = 0
 type    = S
 movetype= A
 physics = S
-juggle  = 4
+
 poweradd= 30
 velset = 0,0
 anim = 910
@@ -11223,7 +11528,7 @@ ctrl = 1
 type    = S
 movetype= I
 physics = S
-juggle  = 4
+
 poweradd= 0
 velset = 0,0
 anim = 911
@@ -11266,7 +11571,7 @@ trigger2 = parent,stateno != 1910
 type    = S
 movetype= A
 physics = S
-juggle  = 4
+
 poweradd= 0
 anim = 912
 ctrl = 0
@@ -11317,7 +11622,7 @@ trigger2 = MoveContact
 type    = S
 movetype= A
 physics = S
-juggle  = 4
+
 poweradd= 30
 velset = 0,0
 anim = 910
@@ -11360,7 +11665,7 @@ ctrl = 1
 type    = S
 movetype= I
 physics = S
-juggle  = 4
+
 poweradd= 0
 velset = 0,0
 anim = 921
@@ -11403,7 +11708,7 @@ trigger2 = parent,stateno != 1920
 type    = S
 movetype= A
 physics = S
-juggle  = 4
+
 poweradd= 0
 anim = 922
 ctrl = 0
@@ -11588,7 +11893,7 @@ value = 5110
 type    = S
 movetype= A
 physics = S
-juggle  = 4
+
 poweradd= 30
 velset = 0,0
 anim = 930
@@ -11631,7 +11936,7 @@ ctrl = 1
 type    = S
 movetype= A
 physics = S
-juggle  = 4
+
 poweradd= 0
 anim = 931
 ctrl = 0
@@ -11681,7 +11986,7 @@ trigger1 = pos x <= -240 || pos x >= 240
 type    = S
 movetype= A
 physics = S
-juggle  = 4
+
 poweradd= 30
 velset = 0,0
 anim = 940
@@ -11724,7 +12029,7 @@ ctrl = 1
 type    = S
 movetype= I
 physics = S
-juggle  = 4
+
 poweradd= 0
 velset = 0,0
 anim = 941
@@ -11767,7 +12072,7 @@ trigger2 = parent,stateno != 1940
 type    = S
 movetype= A
 physics = S
-juggle  = 4
+
 poweradd= 0
 anim = 942
 ctrl = 0
@@ -11891,7 +12196,7 @@ trigger1 = enemynear,stateno != 943
 type    = A
 movetype= A
 physics = A
-juggle  = 4
+
 poweradd= 30
 anim = 1900
 ctrl = 0
@@ -11955,7 +12260,7 @@ channel = 0
 type    = A
 movetype= A
 physics = A
-juggle  = 4
+
 poweradd= 30
 anim = 1910
 ctrl = 0
@@ -12001,7 +12306,7 @@ channel = 0
 type    = A
 movetype= A
 physics = A
-juggle  = 4
+
 poweradd= 30
 anim = 1920
 ctrl = 0
@@ -12047,7 +12352,7 @@ channel = 0
 type    = A
 movetype= A
 physics = A
-juggle  = 4
+
 poweradd= 30
 anim = 1930
 ctrl = 0
@@ -12093,7 +12398,7 @@ channel = 0
 type    = A
 movetype= A
 physics = A
-juggle  = 4
+
 poweradd= 30
 anim = 1940
 ctrl = 0
@@ -12147,7 +12452,7 @@ channel = 0
 type    = S
 movetype= A
 physics = S
-juggle  = 4
+
 velset = 0,0
 anim = 3000
 ctrl = 0
@@ -12300,7 +12605,7 @@ ctrl = 1
 type    = S
 movetype= A
 physics = S
-juggle  = 4
+
 velset = 0,0
 anim = 3050
 ctrl = 0
@@ -13409,6 +13714,7 @@ var(19) = root,var(19)
 ;コンボ補正
 [State -2, 補正リセット]
 type = varset
+trigger1 = var(40)
 trigger1=!numtarget
 var(40)=0
 
@@ -13420,6 +13726,13 @@ triggerall=enemynear,gethitvar(hitcount)>var(40)
 trigger1=movehit
 trigger2=projhittime(0)=0
 var(40)=1
+;-----------------------------------
+;急降下ボスキック 永久防止 リセット
+[State -2, reset]
+type = varset
+trigger1 = var(21)
+trigger1 = !numtarget || target,statetype = A
+var(21)=0
 ;-----------------------------------
 ;無敵
 [State -2]
