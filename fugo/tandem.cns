@@ -1,0 +1,1812 @@
+;-----------------------------------------------------------------------------
+;タンデム
+;-----------------------------------------------------------------------------
+
+;入力中、(スーパーポーズ)
+[Statedef 3900]
+type = S
+movetype = A
+physics = S
+ctrl = 0 
+anim = 3900
+velset = 0,0
+
+[State 230, 3]
+type = varset
+trigger1 = time = 0
+v = 24
+value = 40
+
+[State 230, 3]
+type = varset
+trigger1 = var(24) <= 0
+v = 24
+value = 0
+
+[state 3000]
+type = nothitby
+trigger1 = time = 0
+value = SCA
+time = 55
+
+[State 10822, 0]
+type = PosAdd
+trigger1 = time = 0
+trigger1 = var(49) = 10000
+x = -10
+
+[State 3900 a];スタンドoffにする
+type = VarSet
+trigger1 = time = 0
+var(49) = 0
+
+[State 3900 b];タンデム中は1
+type = VarSet
+trigger1 = time = 0
+var(20) = 1
+
+[State 3900 c]
+type = NotHitBy
+trigger1 = time <= 124
+value = SCA
+time = 1
+
+[State 0];けむり
+type = Helper
+trigger1 = time = 4
+stateno = 3902;ここの1番下です
+pos = 0,0
+postype = p1
+pausemovetime = 999999
+supermovetime = 999999
+
+[State 3900 d]
+type = SuperPause
+trigger1 = time = 4
+time = 120
+anim = s3102
+pos = 0, -85
+movetime = 120
+darken = 0 ;暗転しない
+poweradd = -1000
+
+[State 0];顔のカットイン
+type = Explod
+trigger1 = time = 4
+anim = 20060
+pos = 10, 185;240
+postype = back
+sprpriority = -3
+removetime = 120
+bindtime = -1
+pausemovetime = 999999
+supermovetime = 999999
+removeongethit = 1
+scale = 1,1
+ownpal = 1
+
+[State 0];背景
+type = Explod
+trigger1 = time = 4
+anim = 20061
+pos = -40,0
+postype = left
+sprpriority = -4
+removetime = 120
+bindtime = -1
+supermovetime = 9999999
+pausemovetime = 9999999
+removeongethit = 1
+ownpal = 1
+scale = 1.08,1.08
+
+[State 0, ]
+type = PlaySnd
+trigger1 = time = 4
+value = 3, 7
+channel = 0   
+
+[State 0, ]
+type = PlaySnd
+trigger1 = time = 4
+value = 4, 0
+
+[State 3900 e];入力を記憶させるﾍﾙﾊﾟｰ
+type = Helper
+trigger1 = time = 4
+helpertype = normal
+stateno = 3910
+id = 3910
+pos = 0,0
+postype = p1
+ownpal = 1
+keyctrl = 1;1にした場合、プレイヤーの-1ステートを参照する
+supermovetime = 9999999999999
+pausemovetime = 9999999999999
+
+;延長
+[State 3900 f];SuperPauseおわたらスタンドゲージ減らす。
+type = VarAdd
+trigger1 = time >= 124
+fv = 1 ;スタンドゲージ
+value = -1.6
+
+[State 3900 g]
+type = VarSet
+trigger1 = fvar(1) < 0
+fv = 1
+value = 0
+
+[State 3900 h]
+type = ChangeState
+trigger1 = time >= 124 ;ポーズ終了後Aボタン放したら発動
+trigger1 = command != "holda" ;
+trigger2 = fvar(1) <= 0 ;ゲージなくなったら発動
+value = 3901
+;---------------------------------------------------------------------------
+;入力時間が終わって行動可能
+[Statedef 3901]
+type = S
+movetype = I
+physics = S
+ctrl = 0
+anim = 3901
+
+[State 3901]
+type = NotHitBy
+trigger1 = time = 0
+value = SCA
+time = 50
+
+[State 3901]
+type = Helper
+trigger1 = time = 0
+helpertype = normal
+stateno = 4000
+id = 11011
+pos = 0,-10
+postype = p1
+ownpal = 1
+keyctrl = 0
+
+[State 3900 e];無敵
+type = Helper
+trigger1 = time = 0
+helpertype = normal
+stateno = 4667
+id = 4667
+pos = 0,0
+postype = p1
+ownpal = 1
+supermovetime = 9999999999999
+pausemovetime = 9999999999999
+
+[State 3901]
+type = ChangeState
+trigger1 = animtime = 0
+value = 0
+ctrl = 1
+;---------------------------------------------------------------------------
+;dem管理helper コマンド記憶中
+[Statedef 3910]
+type = S
+movetype = I
+physics = N
+ctrl = 0     
+anim = 29999
+
+;helper3910のvarなので注意!!!!
+;ﾍﾙﾊﾟｰ3910のvar(0)～var(59)に0を代入します。0ならﾃﾞﾑ終了にしてるからne
+[State 3910]
+type = VarRangeSet
+trigger1 = time = 0
+value = 0
+first = 0
+last = 59
+;--------------------------------------
+;以下のVarSetによって、Helper3910のvarに代入しまくってゆく
+;
+;Helper3910
+; Var(0) = まずここに代入される。次に↓のVaradd入力回数で+1されて
+; Var(1) = ここに。
+; Var(2) = 記述は上から読み込まれるので、順番が大事です！
+;  ・
+;  ・
+;--------------------------------------
+[State 3910];たち弱。
+type = VarSet
+trigger1 = parent,command = "x"
+trigger1 = parent,command != "holddown"
+trigger2 = parent,command = "b"
+trigger2 = parent,command != "holddown"
+v = 0+ceil(fvar(1));切り上げ整数化
+value = 1
+;--------------------------------------
+[State 3910];たち中。
+type = VarSet
+trigger1 = parent,command = "y"
+trigger1 = parent,command != "holddown"
+v = 0+ceil(fvar(1));切り上げ整数化
+value = 2
+;--------------------------------------
+[State 3910];たち強。
+type = VarSet
+trigger1 = parent,command = "z"
+trigger1 = parent,command != "holddown"
+v = 0+ceil(fvar(1));切り上げ整数化
+value = 3
+;--------------------------------------
+[State 3910];しゃがみ弱
+type = VarSet
+trigger1 = parent,command = "x"
+trigger1 = parent,command = "holddown"
+trigger2 = parent,command = "b"
+trigger2 = parent,command = "holddown"
+v = 0+ceil(fvar(1))
+value = 11
+;--------------------------------------
+[State 3910];しゃがみ中
+type = VarSet
+trigger1 = parent,command = "y"
+trigger1 = parent,command = "holddown"
+v = 0+ceil(fvar(1))
+value = 12
+;--------------------------------------
+[State 3910];しゃがみ強
+type = VarSet
+trigger1 = parent,command = "z"
+trigger1 = parent,command = "holddown"
+v = 0+ceil(fvar(1))
+value = 13
+;--------------------------------------
+[State 3910];違うね！弱
+type = VarSet
+trigger1 = command = "sp1"
+v = 0+ceil(fvar(1))
+value = 900
+;--------------------------------------
+[State 3910];違うね！中
+type = VarSet
+trigger1 = command = "sp2"
+v = 0+ceil(fvar(1))
+value = 901
+;--------------------------------------
+[State 3910];違うね！強
+type = VarSet
+trigger1 = command = "sp3"
+v = 0+ceil(fvar(1))
+value = 902
+;--------------------------------------
+[State 3910,入力回数];コマンド入力するとﾍﾙﾊﾟｰのfvar(1)を増やしていく
+type = VarAdd
+triggerall = fvar(1) < 59
+trigger1 = parent,command = "b"
+trigger2 = parent,command = "x"
+trigger3 = parent,command = "y"
+trigger4 = parent,command = "z"
+fv = 1
+value = 1
+
+[State 3910,入力回数(残り)];同じく親(本体)のvar21も増やしていく
+type = ParentVarAdd
+triggerall = fvar(1) < 59
+trigger1 = parent,command = "b"
+trigger2 = parent,command = "x"
+trigger3 = parent,command = "y"
+trigger4 = parent,command = "z"
+v = 21
+value = 1
+
+;--------------------------------------
+[State 3910]
+type = PlaySnd
+trigger1 = parent,command = "b"
+value = 200,0
+channel = ceil(fvar(1));ﾁｬﾝﾈﾙ変えないとだめなのか？
+
+[State 3910]
+type = PlaySnd
+trigger1 = parent,command = "x"
+value = 200,0
+channel = ceil(fvar(1));ﾁｬﾝﾈﾙ変えないとだめなのか？
+
+[State 3910]
+type = PlaySnd
+trigger1 = parent,command = "y"
+value = 200,1
+channel = ceil(fvar(1))
+
+[State 3910]
+type = PlaySnd
+trigger1 = parent,command = "z"
+value = 200,2
+channel = ceil(fvar(1))
+
+[State 3910]
+type = ChangeState
+trigger1 = parent,stateno = 3901;入力時間が終わって行動可能
+value = 3911;dem管理ﾍﾙﾊﾟｰ ﾃﾞﾑ中
+
+[State 3910]
+type = ChangeState
+trigger1 = parent,movetype = H
+value = 3912;dem管理ﾍﾙﾊﾟｰ 消滅
+
+;---------------------------------------------------------------------------
+;dem管理helper デム中
+[Statedef 3911]
+;入力時間が終わったのでこっちに移行しておく。
+;そのままやとｺﾏﾝﾄﾞ入力すると記憶されつづけるので
+type = S
+movetype = I
+physics = N
+ctrl = 0
+anim = 29999
+
+[State 3911]
+type = ChangeState
+trigger1 = helper(11011),stateno = 4999;普通にﾀﾝﾃﾞﾑ終了でｽﾀﾝﾄﾞ消滅
+trigger2 = helper(11011),movetype = H  ;ｽﾀﾝﾄﾞ被ﾀﾞﾒ
+trigger3 = numhelper(11011) = 0        ;なんらかの理由でGEが消滅
+value = 3912
+;---------------------------------------------------------------------------
+;dem管理helper  消滅
+[Statedef 3912]
+type = S
+movetype = I
+physics = N
+ctrl = 0
+anim = 29999
+
+[State 3912];タンデム中なら1、ちがう0
+type = ParentVarSet
+trigger1 = time = 0
+v = 20
+value = 0
+
+[State 3912];タンデム残り攻撃回数
+type = ParentVarSet
+trigger1 = time = 0
+v = 21
+value = 0
+
+[State 3912];タンデム攻撃回数
+type = ParentVarSet
+trigger1 = time = 0
+v = 22
+value = 0
+
+[State 3912]
+type = DestroySelf
+trigger1 = time >= 120;すぐ消すのではなくて？
+;---------------------------------------------------------------------------
+;ここからスタンドの挙動
+
+[Statedef 4999];普通にﾀﾝﾃﾞﾑ終了で消滅
+type = S
+movetype = I
+physics = N
+ctrl = 0
+anim = 29999
+
+[State 4999]
+type = DestroySelf
+trigger1 = time >= 1
+
+[state 301, ]
+type=parentvarset
+trigger1 = time >= 1
+var(43) = 1
+;---------------------------------------------------------------------------
+[Statedef 4000];突撃していくスタンド。
+type = S
+movetype = A
+physics = N
+ctrl = 0
+velset = 11,0
+anim = 4000
+sprpriority = 0
+
+[State 0, 1]
+type = Offset
+trigger1 = 1
+y = 10
+
+[State 3901]
+type = NotHitBy
+trigger1 = time = 0
+value = SCA
+time = 50
+
+[State 4000];カメラが追います
+type = ScreenBound
+trigger1 = 1
+value = 1
+
+[State 4000]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+ignorehitpause = 1
+
+[State 4000]
+type = PlayerPush
+trigger1 = 1
+value = 1
+ignorehitpause = 1
+
+[State 4000]
+type = ChangeState
+trigger1 = helper(3910),var(0) = 0  
+trigger1 = p2bodydist x <= 20
+trigger1 = time >= 0
+trigger2 = parent,command = "a"  ;a押したら
+value = 4999;普通にﾀﾝﾃﾞﾑ終了でSF消滅
+
+[State 4000]
+type = ChangeState
+trigger1 = helper(3910),var(0) >= 1 ;ﾀﾝﾃﾞﾑ入力あり
+trigger1 = p2bodydist x <= 40
+trigger1 = time >= 0
+value = 4000+helper(3910),var(0)  
+
+[State 0, Override]
+type = HitOverride
+trigger1 = 1
+attr = SCA,AP,AT,AA
+stateno = 9500;スタンドが攻撃受けてスタンド消滅
+time = -1
+ignorehitpause = 1
+
+[State 19300]
+type = ChangeState
+trigger1 = root,movetype = H
+trigger1 = root,stateno != [0,155];立ち～ガード以外。
+value = 1010;本体が攻撃受けてスタンド消滅
+;---------------------------------------------------------------------------
+;立弱
+[Statedef 4001]
+type = S
+movetype = A
+physics = S
+velset = 4,0
+ctrl = 0
+anim = 4001
+poweradd = 0
+sprpriority = 3
+
+[State 1027, Sound]
+type = PlaySnd
+trigger1 = Time = 0
+value = 0,0
+
+[State 0, 1]
+type = Offset
+trigger1 = 1
+y = 10
+
+[State 10000];補正
+Type = AttackMulSet
+TriggerAll = NumEnemy 
+TriggerAll = Alive
+Trigger1 = Enemy,GetHitVar(HitCount) < 20
+Value = 0.50+(0.50-(Enemy,GetHitVar(HitCount)*0.01))
+
+[State 10000]
+Type = AttackMulSet
+TriggerAll = NumEnemy
+TriggerAll = Alive
+Trigger1 = Enemy,GetHitVar(HitCount) >= 20
+Value = 0.50
+
+[State 10000]
+type = ScreenBound
+trigger1 = 1
+value = 1
+
+[State -3]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+ignorehitpause = 1
+
+[State 10000]
+type = PlayerPush
+trigger1 = 1
+value = 1
+ignorehitpause = 1
+
+[State 200, 音を鳴らす]
+type = PlaySnd
+trigger1 = animelem = 4
+value = 0, 2
+
+[State 220, ヒット定義]
+type = HitDef
+trigger1 = AnimElem = 1
+attr = S, NA
+animtype = Light
+guardflag = M
+damage    = 8*parent,fVar(25),1
+pausetime = 9, 10
+sparkno = s810
+guard.sparkno = s840
+sparkxy = -10, ceil(-91*const(size.yscale))
+hitsound = s1,0
+guardsound = s1,6
+getpower = 0,0
+givepower = 0,0
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 13
+ground.velocity = -2.5
+air.velocity = -3.5,8  
+air.fall = 1 
+p2facing = 1          
+
+[State 10000]
+type = ParentVarAdd
+trigger1 = parent,var(21) > 0;タンデム残り攻撃回数
+trigger1 = time = 0
+v = 21
+value = -1
+ignorehitpause = 1
+
+[State 10000]
+type = ParentVarAdd;タンデム攻撃回数
+trigger1 = parent,var(22) < helper(3910),fvar(1)
+trigger1 = time = 0
+v = 22
+value = 1
+ignorehitpause = 1
+
+[State 10000];次の入力へ
+type = ChangeState
+triggerall = parent,var(21) != 0
+triggerall = roundstate = 2      ;バトル中
+trigger1 = animtime = 0
+trigger2 = movecontact
+trigger2 = animelem = 4
+value = 4000+helper(3910),var(0+ceil(parent,var(22)))
+
+[State 10000]
+type = ChangeState
+trigger1 = parent,var(21) = 0;タンデム残り攻撃回数0なら
+trigger1 = animtime = 0
+trigger2 = parent,command = "a"
+trigger3 = roundstate >= 3
+trigger3 = animtime = 0
+value = 4999;普通にﾀﾝﾃﾞﾑ終了でスタンド消滅
+
+[State 10000]
+type = ChangeState
+triggerall = parent,var(21) != 0
+triggerall = roundstate = 2
+triggerall = prevstateno = 4001 
+triggerall = helper(3910),var(0+ceil(parent,var(22))) = 1 
+trigger1 = animtime = 0
+trigger2 = movecontact
+value = 4003 
+
+[State 3901]
+type = NotHitBy
+trigger1 = numhelper(4667) = 1
+value = SCA
+
+[State 0, Override]
+type = HitOverride
+trigger1 = 1
+attr = SCA,AP,AT,AA
+stateno = 9500;スタンドが攻撃受けてスタンド消滅
+time = -1
+ignorehitpause = 1
+
+[State 19300]
+type = ChangeState
+trigger1 = root,movetype = H
+trigger1 = root,stateno != [0,155];立ち～ガード以外。
+value = 1010;本体が攻撃受けてスタンド消滅
+;---------------------------------------------------------------------------
+;立中
+[Statedef 4002]
+type = S
+movetype = A
+physics = S
+velset = 4,0
+ctrl = 0
+anim = 4002
+poweradd = 0
+sprpriority = 3
+
+[State 1027, Sound]
+type = PlaySnd
+trigger1 = Time = 0
+value = 0,0
+
+[State 0, 1]
+type = Offset
+trigger1 = 1
+y = 10
+
+[State 10000];補正
+Type = AttackMulSet
+TriggerAll = NumEnemy 
+TriggerAll = Alive
+Trigger1 = Enemy,GetHitVar(HitCount) < 20
+Value = 0.50+(0.50-(Enemy,GetHitVar(HitCount)*0.01))
+
+[State 10000]
+Type = AttackMulSet
+TriggerAll = NumEnemy
+TriggerAll = Alive
+Trigger1 = Enemy,GetHitVar(HitCount) >= 20
+Value = 0.50
+
+[State 10000]
+type = ScreenBound
+trigger1 = 1
+value = 1
+
+[State -3]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+ignorehitpause = 1
+
+[State 10000]
+type = PlayerPush
+trigger1 = 1
+value = 1
+ignorehitpause = 1
+
+[State 200, 音を鳴らす]
+type = PlaySnd
+trigger1 = animelem = 4
+value = 0, 2
+
+[State 1027, Sound]
+type = PlaySnd
+trigger1 = Time = 0
+value = 7,0
+
+[State 200, 1]
+type = HitDef
+trigger1 = AnimElem = 4
+attr = S, NA
+damage = 11*parent,fVar(25), 0
+animtype = middle
+guardflag = M
+hitflag = MAF
+priority = 2, Hit
+pausetime = 8, 12
+sparkno = s820
+guard.sparkno = s840
+sparkxy = -10, -96
+hitsound = s1, 1
+guardsound = s1,6
+ground.type = High
+ground.slidetime = 5
+ground.hittime  = 12
+guard.hittime  = 12
+ground.velocity = -5*const(size.xscale)
+air.type = High
+air.velocity = -2.5*const(size.xscale),0
+air.hittime = 12
+
+[State 10000]
+type = ParentVarAdd
+trigger1 = parent,var(21) > 0;タンデム残り攻撃回数
+trigger1 = time = 0
+v = 21
+value = -1
+ignorehitpause = 1
+
+[State 10000]
+type = ParentVarAdd;タンデム攻撃回数
+trigger1 = parent,var(22) < helper(3910),fvar(1)
+trigger1 = time = 0
+v = 22
+value = 1
+ignorehitpause = 1
+
+[State 10000];次の入力へ
+type = ChangeState
+triggerall = parent,var(21) != 0
+triggerall = roundstate = 2      ;バトル中
+trigger1 = animtime = 0
+trigger2 = movecontact
+trigger2 = time >= 15
+value = 4000+helper(3910),var(0+ceil(parent,var(22)))
+
+[State 10000]
+type = ChangeState
+trigger1 = parent,var(21) = 0;タンデム残り攻撃回数0なら
+trigger1 = animtime = 0
+trigger2 = parent,command = "a"
+trigger3 = roundstate >= 3
+trigger3 = animtime = 0
+value = 4999;普通にﾀﾝﾃﾞﾑ終了でスタンド消滅
+
+[State 3901]
+type = NotHitBy
+trigger1 = numhelper(4667) = 1
+value = SCA
+
+[State 0, Override]
+type = HitOverride
+trigger1 = 1
+attr = SCA,AP,AT,AA
+stateno = 9500;スタンドが攻撃受けてスタンド消滅
+time = -1
+ignorehitpause = 1
+
+[State 19300]
+type = ChangeState
+trigger1 = root,movetype = H
+trigger1 = root,stateno != [0,155];立ち～ガード以外。
+value = 1010;本体が攻撃受けてスタンド消滅
+
+;---------------------------------------------------------------------------
+;立強
+[Statedef 4003]
+type = S
+movetype = A
+physics = S
+velset = 4,0
+ctrl = 0
+anim = 4003
+poweradd = 0
+sprpriority = 3
+
+[State 0, 1]
+type = Offset
+trigger1 = 1
+y = 10
+
+[State 10000];補正
+Type = AttackMulSet
+TriggerAll = NumEnemy 
+TriggerAll = Alive
+Trigger1 = Enemy,GetHitVar(HitCount) < 20
+Value = 0.50+(0.50-(Enemy,GetHitVar(HitCount)*0.01))
+
+[State 10000]
+Type = AttackMulSet
+TriggerAll = NumEnemy
+TriggerAll = Alive
+Trigger1 = Enemy,GetHitVar(HitCount) >= 20
+Value = 0.50
+
+[State 1027, Sound]
+type = PlaySnd
+trigger1 = Time = 0
+value = 7,3
+
+[State 10000]
+type = ScreenBound
+trigger1 = 1
+value = 1
+
+[State -3]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+ignorehitpause = 1
+
+[State 10000]
+type = PlayerPush
+trigger1 = 1
+value = 1
+ignorehitpause = 1
+
+[State 200, 音を鳴らす]
+type = PlaySnd
+trigger1 = animelem = 4
+value = 0, 2
+
+[State 220, ヒット定義]
+type = HitDef
+trigger1 = AnimElem = 4
+attr = S, NA
+animtype  = hard
+guardflag = MA
+damage    = 16*parent,fVar(25),1
+pausetime = 14,13
+sparkno = s830
+guard.sparkno = s840
+sparkxy = -10,-70
+hitsound = s1,3
+guardsound = s1,6
+getpower = 0,0
+givepower = 20,0
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 13
+ground.velocity = -5.5
+air.velocity = -3.5,8  
+air.fall = 1           
+
+[State 0, 画面を揺らします]
+type = EnvShake
+trigger1 = movehit          ;攻撃が相手にヒットしたとき
+trigger1 = hitpausetime = 4 ;hitpauseが終了するまでの残り時間。0ならhitpauseが終わった時
+time = 5
+ampl = 3
+ignorehitpause = 1
+
+[State 10000]
+type = ParentVarAdd
+trigger1 = parent,var(21) > 0;タンデム残り攻撃回数
+trigger1 = time = 0
+v = 21
+value = -1
+ignorehitpause = 1
+
+[State 10000]
+type = ParentVarAdd;タンデム攻撃回数
+trigger1 = parent,var(22) < helper(3910),fvar(1)
+trigger1 = time = 0
+v = 22
+value = 1
+ignorehitpause = 1
+
+[State 10000];次の入力へ
+type = ChangeState
+triggerall = parent,var(21) != 0
+triggerall = roundstate = 2      ;バトル中
+trigger1 = animtime = 0
+trigger2 = movecontact
+trigger2 = animelem = 11
+value = 4000+helper(3910),var(0+ceil(parent,var(22)))
+
+[State 10000]
+type = ChangeState
+trigger1 = parent,var(21) = 0;タンデム残り攻撃回数0なら
+trigger1 = animtime = 0
+trigger2 = parent,command = "a"
+trigger3 = roundstate >= 3
+trigger3 = animtime = 0
+value = 4999;普通にﾀﾝﾃﾞﾑ終了でスタンド消滅
+
+[State 3901]
+type = NotHitBy
+trigger1 = numhelper(4667) = 1
+value = SCA
+
+[State 0, Override]
+type = HitOverride
+trigger1 = 1
+attr = SCA,AP,AT,AA
+stateno = 9500;スタンドが攻撃受けてスタンド消滅
+time = -1
+ignorehitpause = 1
+
+[State 19300]
+type = ChangeState
+trigger1 = root,movetype = H
+trigger1 = root,stateno != [0,155];立ち～ガード以外。
+value = 1010;本体が攻撃受けてスタンド消滅
+;---------------------------------------------------------------------------
+;しゃがみ弱
+[Statedef 4011]
+type = C
+movetype = A
+physics = S
+velset = 4,0
+ctrl = 0
+anim = 4011
+poweradd = 0
+sprpriority = 3
+
+[State 10000]
+type = ScreenBound
+trigger1 = 1
+value = 1
+
+[State 10000];補正
+Type = AttackMulSet
+TriggerAll = NumEnemy 
+TriggerAll = Alive
+Trigger1 = Enemy,GetHitVar(HitCount) < 20
+Value = 0.50+(0.50-(Enemy,GetHitVar(HitCount)*0.01))
+
+[State 10000]
+Type = AttackMulSet
+TriggerAll = NumEnemy
+TriggerAll = Alive
+Trigger1 = Enemy,GetHitVar(HitCount) >= 20
+Value = 0.50
+
+[State -3]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+ignorehitpause = 1
+
+[State 10000]
+type = PlayerPush
+trigger1 = 1
+value = 1
+ignorehitpause = 1
+
+[State 400, 1]
+type = PlaySnd
+trigger1 = Time = 1
+value = 0, 0
+
+[State 200, 1]
+type = HitDef
+trigger1 = AnimElem = 2
+attr = C, NA
+damage = 8*parent,fVar(25), 0
+animtype = Light
+guardflag = L
+hitflag = MAF
+priority = 2, Hit
+pausetime = 8, 8
+sparkno = s810
+guard.sparkno = s840
+sparkxy = -10, -46
+hitsound = s1, 0
+guardsound = s1,6
+ground.type = High
+ground.slidetime = 5
+ground.hittime  = 12
+guard.hittime  = 12
+ground.velocity = -5*const(size.xscale)
+air.type = High
+air.velocity = -2.5*const(size.xscale),0
+air.hittime = 12
+
+[State 10000]
+type = ParentVarAdd
+trigger1 = parent,var(21) > 0;タンデム残り攻撃回数
+trigger1 = time = 0
+v = 21
+value = -1
+ignorehitpause = 1
+
+[State 10000]
+type = ParentVarAdd;タンデム攻撃回数
+trigger1 = parent,var(22) < helper(3910),fvar(1)
+trigger1 = time = 0
+v = 22
+value = 1
+ignorehitpause = 1
+
+[State 10000];次の入力へ
+type = ChangeState
+triggerall = parent,var(21) != 0
+triggerall = roundstate = 2      ;バトル中
+trigger1 = animtime = 0
+trigger2 = movecontact
+value = 4000+helper(3910),var(0+ceil(parent,var(22)))
+
+[State 10000]
+type = ChangeState
+trigger1 = parent,var(21) = 0;タンデム残り攻撃回数0なら
+trigger1 = animtime = 0
+trigger2 = parent,command = "a"  ;a押したら
+trigger3 = roundstate >= 3
+trigger3 = animtime = 0
+value = 4999;普通にﾀﾝﾃﾞﾑ終了でスタンド消滅
+
+[State 3901]
+type = NotHitBy
+trigger1 = numhelper(4667) = 1
+value = SCA
+
+[State 0, Override]
+type = HitOverride
+trigger1 = 1
+attr = SCA,AP,AT,AA
+stateno = 9500;スタンドが攻撃受けてスタンド消滅
+time = -1
+ignorehitpause = 1
+
+[State 19300]
+type = ChangeState
+trigger1 = root,movetype = H
+trigger1 = root,stateno != [0,155];立ち～ガード以外。
+value = 1010;本体が攻撃受けてスタンド消滅
+;---------------------------------------------------------------------------
+;しゃがみ中
+[Statedef 4012]
+type = C
+movetype = A
+physics = S
+velset = 4,0
+ctrl = 0
+anim = 4012
+poweradd = 0
+sprpriority = 3
+
+[State 10000]
+type = ScreenBound
+trigger1 = 1
+value = 1
+
+[state 3000]
+type = playsnd
+trigger1 = time = 0
+value = 7,0
+
+[State 10000];補正
+Type = AttackMulSet
+TriggerAll = NumEnemy 
+TriggerAll = Alive
+Trigger1 = Enemy,GetHitVar(HitCount) < 20
+Value = 0.50+(0.50-(Enemy,GetHitVar(HitCount)*0.01))
+
+[State 10000]
+Type = AttackMulSet
+TriggerAll = NumEnemy
+TriggerAll = Alive
+Trigger1 = Enemy,GetHitVar(HitCount) >= 20
+Value = 0.50
+
+[State -3]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+ignorehitpause = 1
+
+[State 10000]
+type = PlayerPush
+trigger1 = 1
+value = 1
+ignorehitpause = 1
+
+[State 400, 1]
+type = PlaySnd
+trigger1 = Time = 1
+value = 0, 1
+
+[State 200, 1]
+type = HitDef
+trigger1 = AnimElem = 2
+attr = C, NA
+damage = 15*parent,fVar(25), 6
+animtype  = Medium
+guardflag = M
+hitflag = MAF
+priority = 2, Hit
+pausetime = 8, 8
+sparkno = s820
+guard.sparkno = s840
+sparkxy = -10, -96
+hitsound = s1, 1
+guardsound = s1,6
+ground.type = High
+ground.slidetime = 5
+ground.hittime  = 12
+guard.hittime  = 12
+ground.velocity = -2*const(size.xscale),0
+air.type = High
+air.velocity = -2.5*const(size.xscale),-2.5
+air.hittime = 12
+
+[State 10000]
+type = ParentVarAdd
+trigger1 = parent,var(21) > 0;タンデム残り攻撃回数
+trigger1 = time = 0
+v = 21
+value = -1
+ignorehitpause = 1
+
+[State 10000]
+type = ParentVarAdd;タンデム攻撃回数
+trigger1 = parent,var(22) < helper(3910),fvar(1)
+trigger1 = time = 0
+v = 22
+value = 1
+ignorehitpause = 1
+
+[State 10000];次の入力へ
+type = ChangeState
+triggerall = parent,var(21) != 0
+triggerall = roundstate = 2      ;バトル中
+trigger1 = animtime = 0
+trigger2 = movecontact
+trigger2 = time > 11
+value = 4000+helper(3910),var(0+ceil(parent,var(22)))
+
+[State 10000]
+type = ChangeState
+trigger1 = parent,var(21) = 0;タンデム残り攻撃回数0なら
+trigger1 = animtime = 0
+trigger2 = parent,command = "a"  ;a押したら
+trigger3 = roundstate >= 3
+trigger3 = animtime = 0
+value = 4999;普通にﾀﾝﾃﾞﾑ終了でスタンド消滅
+
+[State 3901]
+type = NotHitBy
+trigger1 = numhelper(4667) = 1
+value = SCA
+
+[State 0, Override]
+type = HitOverride
+trigger1 = 1
+attr = SCA,AP,AT,AA
+stateno = 9500;スタンドが攻撃受けてスタンド消滅
+time = -1
+ignorehitpause = 1
+
+[State 19300]
+type = ChangeState
+trigger1 = root,movetype = H
+trigger1 = root,stateno != [0,155];立ち～ガード以外。
+value = 1010;本体が攻撃受けてスタンド消滅
+;---------------------------------------------------------------------------
+;しゃがみ強
+[Statedef 4013]
+type = C
+movetype = A
+physics = S
+velset = 4,0
+ctrl = 0
+anim = 4013
+poweradd = 0
+sprpriority = 3
+
+[State 10000]
+type = ScreenBound
+trigger1 = 1
+value = 1
+
+[State 10000];補正
+Type = AttackMulSet
+TriggerAll = NumEnemy 
+TriggerAll = Alive
+Trigger1 = Enemy,GetHitVar(HitCount) < 20
+Value = 0.50+(0.50-(Enemy,GetHitVar(HitCount)*0.01))
+
+[State 10000]
+Type = AttackMulSet
+TriggerAll = NumEnemy
+TriggerAll = Alive
+Trigger1 = Enemy,GetHitVar(HitCount) >= 20
+Value = 0.50
+
+[State -3]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+ignorehitpause = 1
+
+[State 10000]
+type = PlayerPush
+trigger1 = 1
+value = 1
+ignorehitpause = 1
+
+[state 3000]
+type = playsnd
+trigger1 = time = 0
+value = 7,3
+
+[State 400, 1]
+type = PlaySnd
+trigger1 = Time = 1
+value = 0, 2
+
+[State 200, 1]
+type = HitDef
+trigger1 = AnimElem = 2
+attr = C, NA
+damage = 20*parent,fVar(25), 10
+animtype = hard
+guardflag = MA
+hitflag = MAF
+priority = 2, Hit
+pausetime = 10, 10
+sparkno = s830
+guard.sparkno = s840
+sparkxy = -10, -96
+hitsound = s1, 2
+guardsound = s1,6
+ground.type = High
+ground.slidetime = 10
+ground.hittime  = 15
+guard.hittime  = 15
+ground.velocity = -11*const(size.xscale),0
+air.type = High
+air.velocity = -3.5,8  
+air.fall = 1           
+fall.recover = 0
+air.hittime = 15
+
+[State 10000]
+type = ParentVarAdd
+trigger1 = parent,var(21) > 0;タンデム残り攻撃回数
+trigger1 = time = 0
+v = 21
+value = -1
+ignorehitpause = 1
+
+[State 10000]
+type = ParentVarAdd;タンデム攻撃回数
+trigger1 = parent,var(22) < helper(3910),fvar(1)
+trigger1 = time = 0
+v = 22
+value = 1
+ignorehitpause = 1
+
+[State 10000];次の入力へ
+type = ChangeState
+triggerall = parent,var(21) != 0
+triggerall = roundstate = 2      ;バトル中
+trigger1 = animtime = 0
+value = 4000+helper(3910),var(0+ceil(parent,var(22)))
+
+[State 10000]
+type = ChangeState
+trigger1 = parent,var(21) = 0;タンデム残り攻撃回数0なら
+trigger1 = animtime = 0
+trigger2 = parent,command = "a"  ;a押したら
+trigger3 = roundstate >= 3
+trigger3 = animtime = 0
+value = 4999;普通にﾀﾝﾃﾞﾑ終了でスタンド消滅
+
+[State 3901]
+type = NotHitBy
+trigger1 = numhelper(4667) = 1
+value = SCA
+
+[State 0, Override]
+type = HitOverride
+trigger1 = 1
+attr = SCA,AP,AT,AA
+stateno = 9500;スタンドが攻撃受けてスタンド消滅
+time = -1
+ignorehitpause = 1
+
+[State 19300]
+type = ChangeState
+trigger1 = root,movetype = H
+trigger1 = root,stateno != [0,155];立ち～ガード以外。
+value = 1010;本体が攻撃受けてスタンド消滅
+;---------------------------------------------------------------------------
+;違うね！
+[Statedef 4900]
+type    = S
+movetype= A
+physics = S
+juggle  = 4
+poweradd= 0
+ctrl = 0
+velset = 0,0
+anim = 4900
+hitcountpersist = 1
+
+[State 191, Wood 1]
+type = ScreenBound
+trigger1 = 1
+value = 1
+
+[state 3000]
+type = playsnd
+trigger1 = time = 0
+value = 7,3
+
+[State 181, 押し判定]
+type = PlayerPush
+trigger1 = 1
+value = 1
+
+[State 0, 1]
+type = Offset
+trigger1 = 1
+y = 10
+
+[State 810, Turn 12]
+type = Turn
+trigger1 = time = 0
+
+[State 215]
+type = VelSet
+trigger1 = animelem = 1
+x = -20
+
+[State 215]
+type = VelSet
+trigger1 = animelem = 2
+x = 0 
+
+[State 215]
+type = VelSet
+trigger1 = animelem = 5
+x = 6
+
+[State 191, Wood 1]
+type = Explod
+trigger1 = animelem = 1
+anim = 875
+id = 870
+postype = p1
+pos = 0,0
+sprpriority = 1
+bindtime = 1
+ownpal = 1
+removeongethit = 1
+scale = const(size.xscale),const(size.yscale)
+facing = -1
+
+[State 220, ヒット定義]
+type = HitDef
+trigger1 = AnimElem = 4
+attr = S, NA
+animtype  = hard
+guardflag = MA
+damage    = 26*parent,fVar(25),2
+pausetime = 5,19
+sparkno = s830
+guard.sparkno = s840
+sparkxy = -10,-70
+hitsound = s1,3
+guardsound = s1,6
+getpower = 0,0
+givepower = 0,0
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 13
+ground.velocity = -7.5
+air.velocity = -3.5,8  
+air.fall = 1     
+
+[State 10000];補正
+Type = AttackMulSet
+TriggerAll = NumEnemy 
+TriggerAll = Alive
+Trigger1 = Enemy,GetHitVar(HitCount) < 20
+Value = 0.30+(0.50-(Enemy,GetHitVar(HitCount)*0.01))
+
+[State 10000]
+Type = AttackMulSet
+TriggerAll = NumEnemy
+TriggerAll = Alive
+Trigger1 = Enemy,GetHitVar(HitCount) >= 20
+Value = 0.30
+
+[State 0, push]
+type = playerpush
+trigger1 = 1
+value = 0
+ignorehitpause = 1      
+
+[State 10000]
+type = ParentVarAdd
+trigger1 = parent,var(21) > 0;タンデム残り攻撃回数
+trigger1 = time = 0
+v = 21
+value = -1
+ignorehitpause = 1
+
+[State 10000]
+type = ParentVarAdd;タンデム攻撃回数
+trigger1 = parent,var(22) < helper(3910),fvar(1)
+trigger1 = time = 0
+v = 22
+value = 1
+ignorehitpause = 1
+
+[State 10000];次の入力へ
+type = ChangeState
+triggerall = parent,var(21) != 0
+triggerall = roundstate = 2      ;バトル中
+trigger1 = animtime = 0
+trigger2 = movecontact
+value = 4000+helper(3910),var(0+ceil(parent,var(22)))
+
+[State 10000]
+type = ChangeState
+trigger1 = parent,var(21) = 0;タンデム残り攻撃回数0なら
+trigger1 = animtime = 0
+trigger2 = parent,command = "a"
+trigger3 = roundstate >= 3
+trigger3 = animtime = 0
+value = 4999;普通にﾀﾝﾃﾞﾑ終了でスタンド消滅
+
+[State 3901]
+type = NotHitBy
+trigger1 = numhelper(4667) = 1
+value = SCA
+
+[State 0, Override]
+type = HitOverride
+trigger1 = 1
+attr = SCA,AP,AT,AA
+stateno = 9500;スタンドが攻撃受けてスタンド消滅
+time = -1
+ignorehitpause = 1
+
+[State 19300]
+type = ChangeState
+trigger1 = root,movetype = H
+trigger1 = root,stateno != [0,155];立ち～ガード以外。
+value = 1010;本体が攻撃受けてスタンド消滅
+;---------------------------------------------------------------------------
+;違うね！中
+[Statedef 4901]
+type    = S
+movetype= A
+physics = S
+juggle  = 4
+poweradd= 0
+ctrl = 0
+velset = 0,0
+anim = 4900
+hitcountpersist = 1
+
+[State 191, Wood 1]
+type = ScreenBound
+trigger1 = 1
+value = 1
+
+[state 3000]
+type = playsnd
+trigger1 = time = 0
+value = 7,3
+
+[State 181, 押し判定]
+type = PlayerPush
+trigger1 = 1
+value = 1
+
+[State 0, 1]
+type = Offset
+trigger1 = 1
+y = 10
+
+[State 810, Turn 12]
+type = Turn
+trigger1 = time = 0
+
+[State 215]
+type = VelSet
+trigger1 = animelem = 1
+x = -25
+
+[State 215]
+type = VelSet
+trigger1 = animelem = 2
+x = 0 
+
+[State 215]
+type = VelSet
+trigger1 = animelem = 5
+x = 6
+
+[State 191, Wood 1]
+type = Explod
+trigger1 = animelem = 1
+anim = 875
+id = 870
+postype = p1
+pos = 0,0
+sprpriority = 1
+bindtime = 1
+ownpal = 1
+removeongethit = 1
+scale = const(size.xscale),const(size.yscale)
+facing = -1
+
+[State 220, ヒット定義]
+type = HitDef
+trigger1 = AnimElem = 4
+attr = S, NA
+animtype  = hard
+guardflag = MA
+damage    = 27*parent,fVar(25),2
+pausetime = 6,19
+sparkno = s830
+guard.sparkno = s840
+sparkxy = -10,-70
+hitsound = s1,3
+guardsound = s1,6
+getpower = 0,0
+givepower = 0,0
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 13
+ground.velocity = -7.5
+air.velocity = -3.5,8  
+air.fall = 1     
+
+[State 10000];補正
+Type = AttackMulSet
+TriggerAll = NumEnemy 
+TriggerAll = Alive
+Trigger1 = Enemy,GetHitVar(HitCount) < 20
+Value = 0.30+(0.50-(Enemy,GetHitVar(HitCount)*0.01))
+
+[State 10000]
+Type = AttackMulSet
+TriggerAll = NumEnemy
+TriggerAll = Alive
+Trigger1 = Enemy,GetHitVar(HitCount) >= 20
+Value = 0.30
+
+[State 0, push]
+type = playerpush
+trigger1 = 1
+value = 0
+ignorehitpause = 1      
+
+[State 10000]
+type = ParentVarAdd
+trigger1 = parent,var(21) > 0;タンデム残り攻撃回数
+trigger1 = time = 0
+v = 21
+value = -1
+ignorehitpause = 1
+
+[State 10000]
+type = ParentVarAdd;タンデム攻撃回数
+trigger1 = parent,var(22) < helper(3910),fvar(1)
+trigger1 = time = 0
+v = 22
+value = 1
+ignorehitpause = 1
+
+[State 10000];次の入力へ
+type = ChangeState
+triggerall = parent,var(21) != 0
+triggerall = roundstate = 2      ;バトル中
+trigger1 = animtime = 0
+trigger2 = movecontact
+value = 4000+helper(3910),var(0+ceil(parent,var(22)))
+
+[State 10000]
+type = ChangeState
+trigger1 = parent,var(21) = 0;タンデム残り攻撃回数0なら
+trigger1 = animtime = 0
+trigger2 = parent,command = "a"
+trigger3 = roundstate >= 3
+trigger3 = animtime = 0
+value = 4999;普通にﾀﾝﾃﾞﾑ終了でスタンド消滅
+
+[State 3901]
+type = NotHitBy
+trigger1 = numhelper(4667) = 1
+value = SCA
+
+[State 0, Override]
+type = HitOverride
+trigger1 = 1
+attr = SCA,AP,AT,AA
+stateno = 9500;スタンドが攻撃受けてスタンド消滅
+time = -1
+ignorehitpause = 1
+
+[State 19300]
+type = ChangeState
+trigger1 = root,movetype = H
+trigger1 = root,stateno != [0,155];立ち～ガード以外。
+value = 1010;本体が攻撃受けてスタンド消滅
+;---------------------------------------------------------------------------
+;違うね！強
+[Statedef 4902]
+type    = S
+movetype= A
+physics = S
+juggle  = 4
+poweradd= 0
+ctrl = 0
+velset = 0,0
+anim = 4900
+hitcountpersist = 1
+
+[State 191, Wood 1]
+type = ScreenBound
+trigger1 = 1
+value = 1
+
+[state 3000]
+type = playsnd
+trigger1 = time = 0
+value = 7,3
+
+[State 181, 押し判定]
+type = PlayerPush
+trigger1 = 1
+value = 1
+
+[State 0, 1]
+type = Offset
+trigger1 = 1
+y = 10
+
+[State 810, Turn 12]
+type = Turn
+trigger1 = time = 0
+
+[State 215]
+type = VelSet
+trigger1 = animelem = 1
+x = -30
+
+[State 215]
+type = VelSet
+trigger1 = animelem = 2
+x = 0 
+
+[State 215]
+type = VelSet
+trigger1 = animelem = 5
+x = 6
+
+[State 191, Wood 1]
+type = Explod
+trigger1 = animelem = 1
+anim = 875
+id = 870
+postype = p1
+pos = 0,0
+sprpriority = 1
+bindtime = 1
+ownpal = 1
+removeongethit = 1
+scale = const(size.xscale),const(size.yscale)
+facing = -1
+
+[State 220, ヒット定義]
+type = HitDef
+trigger1 = AnimElem = 4
+attr = S, NA
+animtype  = hard
+guardflag = MA
+damage    = 26*parent,fVar(25),2
+pausetime = 7,19
+sparkno = s830
+guard.sparkno = s840
+sparkxy = -10,-70
+hitsound = s1,3
+guardsound = s1,6
+getpower = 0,0
+givepower = 0,0
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 13
+ground.velocity = -7.5
+air.velocity = -3.5,8  
+air.fall = 1     
+
+[State 10000];補正
+Type = AttackMulSet
+TriggerAll = NumEnemy 
+TriggerAll = Alive
+Trigger1 = Enemy,GetHitVar(HitCount) < 20
+Value = 0.30+(0.50-(Enemy,GetHitVar(HitCount)*0.01))
+
+[State 10000]
+Type = AttackMulSet
+TriggerAll = NumEnemy
+TriggerAll = Alive
+Trigger1 = Enemy,GetHitVar(HitCount) >= 20
+Value = 0.30
+
+[State 0, push]
+type = playerpush
+trigger1 = 1
+value = 0
+ignorehitpause = 1      
+
+[State 10000]
+type = ParentVarAdd
+trigger1 = parent,var(21) > 0;タンデム残り攻撃回数
+trigger1 = time = 0
+v = 21
+value = -1
+ignorehitpause = 1
+
+[State 10000]
+type = ParentVarAdd;タンデム攻撃回数
+trigger1 = parent,var(22) < helper(3910),fvar(1)
+trigger1 = time = 0
+v = 22
+value = 1
+ignorehitpause = 1
+
+[State 10000];次の入力へ
+type = ChangeState
+triggerall = parent,var(21) != 0
+triggerall = roundstate = 2      ;バトル中
+trigger1 = animtime = 0
+trigger2 = movecontact
+value = 4000+helper(3910),var(0+ceil(parent,var(22)))
+
+[State 10000]
+type = ChangeState
+trigger1 = parent,var(21) = 0;タンデム残り攻撃回数0なら
+trigger1 = animtime = 0
+trigger2 = parent,command = "a"
+trigger3 = roundstate >= 3
+trigger3 = animtime = 0
+value = 4999;普通にﾀﾝﾃﾞﾑ終了でスタンド消滅
+
+[State 3901]
+type = NotHitBy
+trigger1 = numhelper(4667) = 1
+value = SCA
+
+[State 0, Override]
+type = HitOverride
+trigger1 = 1
+attr = SCA,AP,AT,AA
+stateno = 9500;スタンドが攻撃受けてスタンド消滅
+time = -1
+ignorehitpause = 1
+
+[State 19300]
+type = ChangeState
+trigger1 = root,movetype = H
+trigger1 = root,stateno != [0,155];立ち～ガード以外。
+value = 1010;本体が攻撃受けてスタンド消滅
+;---------------------------------------------------------------------------
+
+[Statedef 3902];ﾀﾝﾃﾞﾑの煙helper
+type = S
+movetype = I
+physics = N
+ctrl = 0
+anim = 20062
+sprpriority = 5
+
+[State 0]
+type = BindToParent
+trigger1 = 1
+pos = 10,10
+time = 1
+
+[State 0]
+type = ChangeState
+trigger1 = parent,stateno = 3901 ;スーパーポーズ終わって行動可能になったら
+trigger2 = parent,movetype = H   ;被ダメ
+value = 3903
+;---------------------------------------------------------------------------
+
+[Statedef 3903];けむりの最後のぶわっ
+type = S
+movetype = I
+physics = N
+ctrl = 0
+anim = 20063
+sprpriority = 5
+
+[State 10000]
+type = BindToParent
+trigger1 = 1
+pos = 10,10
+time = 1
+
+[State 3000]
+type = DestroySelf
+trigger1 = animtime = 0
+;---------------------------------------------------------------------------
+
+[Statedef 4657];デム禁止
+type = S
+movetype = I
+physics = N
+ctrl = 0
+anim = 29999
+sprpriority = -5
+
+[State 3000]
+type = DestroySelf
+trigger1 = time = 400
+;---------------------------------------------------------------------------
+[Statedef 4667];無敵
+type = S
+movetype = I
+physics = N
+ctrl = 0
+anim = 29999
+sprpriority = -5
+
+[State 3000]
+type = DestroySelf
+trigger1 = time = 10
+;---------------------------------------------------------------------------

@@ -1,0 +1,39 @@
+; Definition file for Kung Fu Man
+; Contains all the filenames needed for the character
+
+; Player information
+[Info]
+name = "Fugo"        ;Name of character
+displayname = "Fugo" ;Name of character to display
+versiondate = 2,16,2013    ;Version date of character (MM-DD-YYYY)
+mugenversion = 04,14,2002   ;Version of M.U.G.E.N character works on
+author = "amarimono"         ;Character author name
+pal.defaults = 5,3,4,2      ;Default palettes in order of preference
+
+; Files for the player
+[Files]
+cmd     = fugo.cmd   ;Command set
+cns     = fugo.cns   ;Constants
+st      = fugo.cns   ;States
+st1      = tandem.cns   ;ÉLÉÉÉâÇÃÉvÉçÉOÉâÉÄ
+stcommon = fugocommon.cns ;Common states
+sprite  = fugo.sff   ;Sprite
+anim    = fugo.air   ;Animation
+sound   = fugo.snd   ;Sound
+pal1    = fugo.act  ;Palettes (can have up to 12);Ç`
+pal2    = fugo8.act;B
+pal3    = fugo10.act;C
+pal4    = fugo.act;X
+pal5    = fugo2.act;Y
+pal6    = fugo3.act;Z
+pal7    = fugo4.act;SA
+pal8    = fugo5.act;B
+pal9    = fugo6.act;C
+pal10   = fugo7.act;X
+pal11   = fugo9.act;Y
+pal12   = fugo11.act;Z
+
+; Arcade mode
+[Arcade]
+intro.storyboard = intro.def
+ending.storyboard = ending.def

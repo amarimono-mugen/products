@@ -1,0 +1,31 @@
+; ここにキャラ情報を書いてください
+[Info]
+name = "Requiem Giorno"        ;キャラの名前
+displayname = "Requiem Giorno" ;表示されるキャラの名前
+versiondate = 02,16,2013    ;キャラの更新情報
+mugenversion = 11,22,2000   ;キャラが動くmugenのバージョン
+author = "あまりもの"         ;キャラの製作者名
+pal.defaults = 6,8,4,2      ;敵としてでるキャラのパレット
+
+; Files for the player
+[Files]
+cmd     = Giorno.cmd   ;キャラのコマンド
+cns     = Giorno.cns   ;キャラのプログラム
+st      = Giorno.cns   ;キャラのプログラム
+st1      = tandem.cns   ;キャラのプログラム
+stcommon = giogiocommon.cns 
+sprite  = Giorno.sff   ;キャラの絵
+anim    = Giorno.air   ;キャラの動き
+sound   = Giorno.snd   ;キャラの音
+pal1    = Giorno.act  ;キャラの色（最大１２個）
+pal2    = Giornobr.act
+pal3    = Giornok.act
+pal4    = Giornomg.act
+pal5    = Giornov.act
+pal6    = Giornog.act
+pal7    = Giornobw.act
+pal8    = Giornogl.act
+pal9    = Giornodb.act
+pal10    = Giornodp.act
+pal11   = Giornodg.act
+pal12   = Giornoo.act
