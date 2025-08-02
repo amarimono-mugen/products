@@ -1,0 +1,27 @@
+; ここにキャラ情報を書いてください
+[Info]
+name = "trish una"        ;キャラの名前
+displayname = "trish una" ;表示されるキャラの名前
+VersionDate  = 06,03,2013     ;キャラクターの最終更新日（変えなくてもＯＫ）
+MugenVersion = 04,14,2002    ;キャラクターが動作出来るM.U.G.E.Nの改訂版
+author = "あまりもの"         ;キャラの製作者名
+pal.defaults = 1,2,7,8      ;敵としてでるキャラのパレット
+
+; Files for the player
+[Files]
+cmd     = amaAI/tr.cmd   ;キャラのコマンド
+cns     = amaAI/tr.cns   ;キャラのプログラム
+st      = amaAI/tr.cns   ;キャラのプログラム
+st1      = amaAI/tandem.cns   ;キャラのプログラム
+stcommon = amaAI/trcommon.cns 
+sprite  = tr.sff   ;キャラの絵
+anim    = tr.air   ;キャラの動き
+sound   = tr.snd   ;キャラの音
+pal1    = tr.act  ;キャラの色（最大１２個）
+pal2    = tr2.act
+pal3    = tr3.act
+pal4    = tr4.act
+pal5    = tr5.act
+pal6    = tr6.act
+pal7    = tr7.act
+pal8    = tr8.act

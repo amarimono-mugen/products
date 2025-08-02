@@ -1,0 +1,32 @@
+; ここにキャラ情報を書いてください
+[Info]
+name = "Giorno"        ;キャラの名前
+displayname = "Giorno Giovanna" ;表示されるキャラの名前
+VersionDate  = 06,03,2013     ;キャラクターの最終更新日（変えなくてもＯＫ）
+MugenVersion = 04,14,2002    ;キャラクターが動作出来るM.U.G.E.Nの改訂版
+author = "amarimono"         ;キャラの製作者名
+pal.defaults = 6,3,4,2      ;敵としてでるキャラのパレット
+
+; Files for the player
+[Files]
+cmd     = Giorno.cmd   ;キャラのコマンド
+cns     = Giorno.cns   ;キャラのプログラム
+st      = Giorno.cns   ;キャラのプログラム
+st1      = tandem.cns   ;キャラのプログラム
+stcommon = giogiocommon.cns 
+sprite  = Giorno.sff   ;キャラの絵
+anim    = Giorno.air   ;キャラの動き
+sound   = Giorno.snd   ;キャラの音
+pal1    = Giorno.act  ;キャラの色（最大１２個）
+pal2    = Giorno2.act
+pal3    = Giorno3.act
+pal4    = Giorno.act
+pal5    = Giorno4.act
+pal6    = Giorno5.act
+
+pal7    = Giorno6.act
+pal8    = Giorno7.act
+pal9    = Giorno8.act
+pal10    = Giorno9.act
+pal11    = Giorno.act
+pal12    = Giorno.act
