@@ -652,7 +652,7 @@ juggle  = 1
 velset = 0,0
 ctrl = 0
 anim = 200
-poweradd = 20
+poweradd = 0
 sprpriority = 2
 facep2 = 1
 
@@ -671,7 +671,7 @@ value = 0, 0
 type = HitDef
 trigger1 = AnimElem = 3
 attr = S, NA ;立ち通常打撃（Standing, Normal Attack）
-damage = 23, 0
+damage = 23*fvar(1), 0
 animtype = Light
 guardflag = MA
 hitflag = MAF
@@ -690,6 +690,8 @@ airguard.velocity = -1.9,-.8
 air.type = High
 air.velocity = -1.4,-3
 air.hittime = 12
+getpower = 30
+givepower = 15, 10
 
 [State 200, ステート変更]
 type = ChangeState
@@ -718,12 +720,17 @@ ctrl = 1
 type    = S
 movetype= A
 physics = S
-
-poweradd= 65
+poweradd= 0
 ctrl = 0
 velset = 0,0
 anim = 210
 sprpriority = -1
+poweradd = 0
+
+[State 1100, Velocity]
+type = VelSet
+trigger1 = AnimElem = 3
+x = 2
 
 [State 210, 音を鳴らす]
 type = PlaySnd
@@ -741,7 +748,7 @@ type = HitDef
 trigger1 = AnimElem = 3
 attr = S, NA
 animtype  = Medium
-damage = 38, 0
+damage = 38*fvar(1), 0
 guardflag = MA
 pausetime = 12,12
 sparkno = s820
@@ -754,6 +761,8 @@ ground.slidetime = 20
 ground.hittime  = 20
 ground.velocity = -5.5
 air.velocity = -2.5,-4
+getpower = 40
+givepower = 20, 10
 
 [State 210, ステート変更]
 type = ChangeState
@@ -1059,7 +1068,7 @@ trigger1 = AnimElem = 4
 attr = S, SA
 animtype  = Heavy
 air.animtype  = Back
-damage = 50
+damage = 50*fvar(1)
 ;priority  = 7, Hit
 hitflag = MAF
 guardflag = M
@@ -1229,7 +1238,7 @@ trigger1 = AnimElem = 4
 attr = S, SA
 animtype  = Heavy
 air.animtype  = Back
-damage = 50
+damage = 50*fvar(1)
 priority  = 7, Hit
 hitflag = MAF
 guardflag = M
@@ -1727,7 +1736,7 @@ type    = S
 movetype= A
 physics = S
 juggle  = 5
-poweradd= 65
+poweradd= 0
 ctrl = 0
 velset = 0,0
 anim = 301
@@ -1743,7 +1752,7 @@ channel = 0
 type = HitDef
 trigger1 = animelem = 3
 attr = A, NA
-damage    = 40,5
+damage    = 40*fvar(1),5
 animtype  = hard
 guardflag = MA
 priority = 2, Hit
@@ -1759,8 +1768,8 @@ ground.hittime  = 14
 ground.velocity = -3
 air.velocity = -1.4,-3
 p2facing = 1
-getpower = 20 
-givepower = 10
+getpower = 65
+givepower = 15
 ;ground.cornerpush.veloff = 0
 guard.kill = 0
 
@@ -1784,8 +1793,8 @@ ground.hittime  = 16
 ground.velocity = -8
 air.velocity = -1.4,-3
 p2facing = 1
-getpower = 20 
-givepower = 10
+getpower = 65 
+givepower = 15
 ;ground.cornerpush.veloff = 0
 guard.kill = 0
 
@@ -1849,7 +1858,7 @@ type    = S
 movetype= A
 physics = S
 juggle  = 5
-poweradd= 80
+poweradd= 0
 ctrl = 0
 velset = 0,0
 anim = 305
@@ -1877,7 +1886,7 @@ type = HitDef
 trigger1 = var(14) != 0 
 trigger1 = animelem = 3
 attr = S, NA
-damage    = 90,10
+damage    = 90*fvar(1),10
 animtype  = hard
 guardflag = MA
 priority = 2, Hit
@@ -1893,7 +1902,7 @@ ground.hittime  = 19
 ground.velocity = -8
 air.velocity = -6.3,-2
 p2facing = 1
-getpower = 30 
+getpower = 85
 givepower = 13
 ground.cornerpush.veloff = 0
 guard.kill = 0
@@ -1919,7 +1928,7 @@ ground.hittime  = 16
 ground.velocity = -12
 air.velocity = -8.3,-2
 p2facing = 1
-getpower = 30 
+getpower = 95 
 givepower = 13
 ground.cornerpush.veloff = 0
 guard.kill = 0
@@ -1997,7 +2006,7 @@ type    = S
 movetype= A
 physics = S
 juggle  = 5
-poweradd= 65
+poweradd= 0
 ctrl = 0
 velset = 0,0
 anim = 310
@@ -2030,7 +2039,7 @@ trigger10 = p2name = "Ghiaccio" || p4name = "Ghiaccio"
 trigger11 = p2name = "Formaggio" || p4name = "Formaggio"
 trigger12 = p2name = "Kimorati" || p4name = "Kimorati"
 attr = S, NA
-damage    = 220,30
+damage    = 220*fvar(1),30
 animtype  = hard
 guardflag = MA
 priority = 2, Hit
@@ -2046,7 +2055,7 @@ ground.hittime  = 20
 ground.velocity = -10
 air.velocity = -8,-3
 p2facing = 1
-getpower = 20 
+getpower = 85
 givepower = 10
 ;ground.cornerpush.veloff = 0
 guard.kill = 0
@@ -2070,7 +2079,7 @@ trigger1 = p2name != "Ghiaccio" && p4name != "Ghiaccio"
 trigger1 = p2name != "Formaggio" && p4name != "Formaggio"
 trigger1 = p2name != "Kimorati" && p4name != "Kimorati"
 attr = S, NA
-damage    = 110,15
+damage    = 110*fvar(1),15
 animtype  = hard
 guardflag = MA
 priority = 2, Hit
@@ -2086,7 +2095,7 @@ ground.hittime  = 18
 ground.velocity = -10
 air.velocity = -8,-3
 p2facing = 1
-getpower = 20 
+getpower = 85
 givepower = 10
 ;ground.cornerpush.veloff = 0
 guard.kill = 0
@@ -2145,7 +2154,7 @@ type    = S
 movetype= A
 physics = S
 juggle  = 5
-poweradd= 80
+poweradd= 0
 ctrl = 0
 velset = 0,0
 anim = 315
@@ -2179,7 +2188,7 @@ channel = 0
 type = HitDef
 trigger1 = animelem = 3
 attr = S, NA
-damage    = 65,5
+damage    = 65*fvar(1),5
 animtype  = hard
 guardflag = MA
 priority = 2, Hit
@@ -2195,7 +2204,7 @@ ground.hittime  = 16
 ground.velocity = -6
 air.velocity = -4.7,-2
 p2facing = 1
-getpower = 30 
+getpower = 85 
 givepower = 13
 ground.cornerpush.veloff = 0
 guard.kill = 0
@@ -2310,7 +2319,7 @@ type    = S
 movetype= A
 physics = S
 juggle  = 5
-poweradd= 65
+poweradd= 0
 ctrl = 0
 velset = 0,0
 anim = 320
@@ -2331,7 +2340,7 @@ channel = 0
 type = HitDef
 trigger1 = time = 0
 attr = S, NA
-damage    = 70
+damage    = 70*fvar(1)
 animtype  = hard
 guardflag = MA
 priority = 2, Hit
@@ -2347,7 +2356,7 @@ ground.hittime  = 18
 ground.velocity = -6
 air.velocity = -5,-3
 p2facing = 1
-getpower = 30 
+getpower = 85 
 givepower = 15
 ground.cornerpush.veloff = 0
 guard.kill = 0
@@ -2406,7 +2415,7 @@ type    = S
 movetype= A
 physics = S
 juggle  = 5
-poweradd= 65
+poweradd= 0
 ctrl = 0
 velset = 0,0
 anim = 325
@@ -2443,7 +2452,7 @@ trigger14 = p2name = "Elizabeth Joestar" || p4name = "Elizabeth Joestar"
 trigger15 = p2name = "johnny" || p4name = "johnny"
 trigger16 = p2name = "Star Platinum" || p4name = "Star Platinum"
 attr = S, NA
-damage    = 200,25
+damage    = 200*fvar(1),25
 animtype  = hard
 guardflag = MA
 priority = 2, Hit
@@ -2459,7 +2468,7 @@ ground.hittime  = 20
 ground.velocity = -16
 air.velocity = -10.5,-3
 p2facing = 1
-getpower = 20 
+getpower = 85
 givepower = 10
 ;ground.cornerpush.veloff = 0
 guard.kill = 0
@@ -2487,7 +2496,7 @@ trigger1 = p2name != "Elizabeth Joestar" || p4name != "Elizabeth Joestar"
 trigger1 = p2name != "johnny" || p4name != "johnny"
 trigger1 = p2name != "Star Platinum" || p4name != "Star Platinum"
 attr = S, NA
-damage    = 100,11
+damage    = 100*fvar(1),11
 animtype  = hard
 guardflag = MA
 priority = 2, Hit
@@ -2503,7 +2512,7 @@ ground.hittime  = 16
 ground.velocity = -13
 air.velocity = -8.5,-3
 p2facing = 1
-getpower = 20 
+getpower = 85
 givepower = 10
 ;ground.cornerpush.veloff = 0
 guard.kill = 0
@@ -2562,7 +2571,7 @@ type    = S
 movetype= A
 physics = S
 juggle  = 5
-poweradd= 65
+poweradd= 0
 ctrl = 0
 velset = 0,0
 anim = 330
@@ -2595,7 +2604,7 @@ trigger10 = p2name = "hirose koiti" || p4name = "hirose koiti"
 trigger11 = p2name = "ASB_JOSUKE" || p4name = "ASB_JOSUKE"
 trigger12 = p2name = "Yoshikage Killa" || p4name = "Yoshikage Killa"
 attr = S, NA
-damage    = 160,20
+damage    = 160*fvar(1),20
 animtype  = hard
 guardflag = MA
 priority = 2, Hit
@@ -2611,7 +2620,7 @@ ground.hittime  = 18
 ground.velocity = -7
 air.velocity = -5.5,-3
 p2facing = 1
-getpower = 20 
+getpower = 85
 givepower = 10
 ;ground.cornerpush.veloff = 0
 guard.kill = 0
@@ -2635,7 +2644,7 @@ trigger1 = p2name != "hirose koiti" && p4name != "hirose koiti"
 trigger1 = p2name != "ASB_JOSUKE" && p4name != "ASB_JOSUKE"
 trigger1 = p2name != "Yoshikage Killa" && p4name != "Yoshikage Killa"
 attr = S, NA
-damage    = 80,10
+damage    = 80*fvar(1),10
 animtype  = hard
 guardflag = MA
 priority = 2, Hit
@@ -2651,7 +2660,7 @@ ground.hittime  = 16
 ground.velocity = -7
 air.velocity = -5.5,-3
 p2facing = 1
-getpower = 20 
+getpower = 85
 givepower = 10
 ;ground.cornerpush.veloff = 0
 guard.kill = 0
@@ -2710,7 +2719,7 @@ type    = S
 movetype= A
 physics = S
 juggle  = 5
-poweradd= 65
+poweradd= 0
 ctrl = 0
 velset = 0,0
 anim = 336
@@ -2731,7 +2740,7 @@ channel = 0
 type = HitDef
 trigger1 = animelem = 3
 attr = S, NA
-damage    = 60,6
+damage    = 60*fvar(1),6
 animtype  = hard
 guardflag = MA
 priority = 2, Hit
@@ -2747,7 +2756,7 @@ ground.hittime  = 16
 ground.velocity = -6
 air.velocity = -4.5,-3
 p2facing = 1
-getpower = 20 
+getpower = 85
 givepower = 10
 ;ground.cornerpush.veloff = 0
 guard.kill = 0
@@ -2882,7 +2891,7 @@ type    = S
 movetype= A
 physics = S
 juggle  = 5
-poweradd= 65
+poweradd= 0
 ctrl = 0
 velset = 0,0
 anim = 340
@@ -2927,7 +2936,7 @@ ground.velocity = -7
 air.velocity = -5.5,-3
 p2facing = 1
 p2stateno = 923
-getpower = 20 
+getpower = 85
 givepower = 10
 ;ground.cornerpush.veloff = 0
 guard.kill = 0
@@ -2937,7 +2946,7 @@ type = HitDef
 trigger1 = var(11) = 1 || var(11) = 2
 trigger1 = animelem = 3
 attr = S, NA
-damage    = 60,8
+damage    = 60*fvar(1),8
 animtype  = hard
 guardflag = MA
 priority = 2, Hit
@@ -2953,7 +2962,7 @@ ground.hittime  = 16
 ground.velocity = -7
 air.velocity = -5.5,-3
 p2facing = 1
-getpower = 20 
+getpower = 85
 givepower = 10
 ;ground.cornerpush.veloff = 0
 guard.kill = 0
@@ -3012,7 +3021,7 @@ type    = S
 movetype= A
 physics = S
 juggle  = 5
-poweradd= 65
+poweradd= 0
 ctrl = 0
 velset = 0,0
 anim = 350
@@ -3042,7 +3051,7 @@ trigger7 = p2name = "vanillaice" || p4name = "vanillaice"
 trigger8 = p2name = "nukesaku" || p4name = "nukesaku"
 trigger9 = p2name = "Kars" || p4name = "Kars"
 attr = S, NA
-damage    = 120,13
+damage    = 120*fvar(1),13
 animtype  = hard
 guardflag = MA
 priority = 2, Hit
@@ -3058,7 +3067,7 @@ ground.hittime  = 16
 ground.velocity = -7
 air.velocity = -5.5,-3
 p2facing = 1
-getpower = 20 
+getpower = 85
 givepower = 10
 ;ground.cornerpush.veloff = 0
 guard.kill = 0
@@ -3079,7 +3088,7 @@ trigger1 = p2name != "vanillaice" && p4name != "vanillaice"
 trigger1 = p2name != "nukesaku" && p4name != "nukesaku"
 trigger1 = p2name != "Kars" && p4name != "Kars"
 attr = S, NA
-damage    = 60,6
+damage    = 60*fvar(1),6
 animtype  = hard
 guardflag = MA
 priority = 2, Hit
@@ -3095,7 +3104,7 @@ ground.hittime  = 16
 ground.velocity = -7
 air.velocity = -5.5,-3
 p2facing = 1
-getpower = 20 
+getpower = 85
 givepower = 10
 ;ground.cornerpush.veloff = 0
 guard.kill = 0
@@ -3154,7 +3163,7 @@ type    = S
 movetype= A
 physics = S
 juggle  = 5
-poweradd= 65
+poweradd= 0
 ctrl = 0
 velset = 0,0
 anim = 360
@@ -3175,7 +3184,7 @@ channel = 0
 type = HitDef
 trigger1 = animelem = 3
 attr = S, NA
-damage    = 65,9
+damage    = 65*fvar(1),9
 animtype  = hard
 guardflag = MA
 priority = 2, Hit
@@ -3191,7 +3200,7 @@ ground.hittime  = 16
 ground.velocity = -7
 air.velocity = -5.5,-3
 p2facing = 1
-getpower = 20 
+getpower = 85 
 givepower = 10
 ;ground.cornerpush.veloff = 0
 guard.kill = 0
@@ -3256,7 +3265,7 @@ type    = S
 movetype= A
 physics = S
 juggle  = 5
-poweradd= 65
+poweradd= 0
 ctrl = 0
 velset = 0,0
 anim = 360
@@ -3281,7 +3290,7 @@ channel = 0
 type = HitDef
 trigger1 = animelem = 3
 attr = S, NA
-damage    = 65,9
+damage    = 65*fvar(1),9
 animtype  = hard
 guardflag = MA
 priority = 2, Hit
@@ -3297,7 +3306,7 @@ ground.hittime  = 16
 ground.velocity = -7
 air.velocity = -5.5,-3
 p2facing = 1
-getpower = 20 
+getpower = 85 
 givepower = 10
 ;ground.cornerpush.veloff = 0
 guard.kill = 0
@@ -3356,7 +3365,7 @@ type    = S
 movetype= A
 physics = S
 juggle  = 5
-poweradd= 80
+poweradd= 0
 ctrl = 0
 velset = 0,0
 anim = 365
@@ -3384,7 +3393,7 @@ type = HitDef
 trigger1 = var(14) != 0 
 trigger1 = animelem = 3
 attr = S, NA
-damage    = 100,30
+damage    = 100*fvar(1),30
 animtype  = hard
 guardflag = MA
 priority = 2, Hit
@@ -3400,7 +3409,7 @@ ground.hittime  = 18
 ground.velocity = -6
 air.velocity = -4.7,-2
 p2facing = 1
-getpower = 30 
+getpower = 100 
 givepower = 13
 ground.cornerpush.veloff = 0
 guard.kill = 0
@@ -3410,7 +3419,7 @@ type = HitDef
 trigger1 = var(14) = 0 
 trigger1 = animelem = 3
 attr = S, NA
-damage    = 300,60
+damage    = 300*fvar(1),60
 animtype  = hard
 guardflag = 
 priority = 2, Hit
@@ -3426,7 +3435,7 @@ ground.hittime  = 16
 ground.velocity = -8,-4
 air.velocity = -6,-4
 p2facing = 1
-getpower = 30 
+getpower = 100
 givepower = 13
 ground.cornerpush.veloff = 0
 guard.kill = 0
@@ -3575,7 +3584,7 @@ type    = S
 movetype= A
 physics = S
 juggle  = 5
-poweradd= 80
+poweradd= 0
 ctrl = 0
 velset = 0,0
 anim = 375
@@ -3674,6 +3683,8 @@ air.type = High
 air.velocity = 0*const(size.xscale),-2
 air.hittime = 12
 guard.kill = 0
+getpower = 85
+givepower = 15
 
 [State 200, 音を鳴らす]
 type = PlaySnd
@@ -3691,7 +3702,7 @@ type    = S
 movetype= A
 physics = S
 juggle  = 5
-poweradd= 80
+poweradd= 0
 ctrl = 0
 velset = 0,0
 anim = 380
@@ -3712,7 +3723,7 @@ channel = 0
 type = HitDef
 trigger1 = animelem = 3
 attr = S, NA
-damage    = 200,30
+damage    = 200*fvar(1),30
 animtype  = hard
 guardflag = MA
 priority = 2, Hit
@@ -3728,7 +3739,7 @@ ground.hittime  = 22
 ground.velocity = -13
 air.velocity = -12.5,-4
 p2facing = 1
-getpower = 50 
+getpower = 120 
 givepower = 40
 ground.cornerpush.veloff = 0
 guard.kill = 0
@@ -3790,7 +3801,7 @@ type    = S
 movetype= A
 physics = S
 juggle  = 5
-poweradd= 65
+poweradd= 0
 ctrl = 0
 velset = 0,0
 anim = 385
@@ -3811,7 +3822,7 @@ channel = 0
 type = HitDef
 trigger1 = animelem = 3
 attr = S, NA
-damage    = 80,8
+damage    = 80*fvar(1),8
 animtype  = hard
 guardflag = MA
 priority = 2, Hit
@@ -3827,7 +3838,7 @@ ground.hittime  = 19
 ground.velocity = -6
 air.velocity = -4.5,-3
 p2facing = 1
-getpower = 20 
+getpower = 85 
 givepower = 10
 ;ground.cornerpush.veloff = 0
 guard.kill = 0
@@ -3900,7 +3911,6 @@ trigger2 = parent,stateno != 385
 type    = S
 movetype= A
 physics = S
-
 poweradd= 0
 anim = 387
 ctrl = 0
@@ -3945,6 +3955,8 @@ palfx.time = 30
 palfx.add = 128,24,0
 palfx.mul = 124,108,90
 palfx.sinadd = 90,90,90,4
+getpower = 40
+givepower = 20
 
 [State 0, explod]
 type = explod
@@ -3972,7 +3984,7 @@ type    = S
 movetype= A
 physics = S
 juggle  = 5
-poweradd= 80
+poweradd= 0
 ctrl = 0
 velset = 0,0
 anim = 390
@@ -4000,7 +4012,7 @@ type = HitDef
 trigger1 = var(13) != 0 
 trigger1 = animelem = 3
 attr = S, NA
-damage    = 60,3
+damage    = 60*fvar(1),3
 animtype  = hard
 guardflag = MA
 priority = 2, Hit
@@ -4016,7 +4028,7 @@ ground.hittime  = 16
 ground.velocity = -3
 air.velocity = -3.3,-2
 p2facing = 1
-getpower = 30 
+getpower = 85 
 givepower = 13
 ground.cornerpush.veloff = 0
 guard.kill = 0
@@ -4043,7 +4055,7 @@ ground.velocity = -0
 air.velocity = -0,-0
 p2facing = 1
 p2stateno = 3392
-getpower = 30 
+getpower = 85
 givepower = 13
 ground.cornerpush.veloff = 0
 guard.kill = 0
@@ -4119,7 +4131,7 @@ type    = S
 movetype= A
 physics = S
 juggle  = 5
-poweradd= 80
+poweradd= 0
 ctrl = 0
 velset = 0,0
 anim = 390
@@ -4147,7 +4159,7 @@ type = HitDef
 trigger1 = var(13) != 0 
 trigger1 = animelem = 3
 attr = S, NA
-damage    = 33,3
+damage    = 33*fvar(1),3
 animtype  = hard
 guardflag = MA
 priority = 2, Hit
@@ -4163,7 +4175,7 @@ ground.hittime  = 16
 ground.velocity = -3
 air.velocity = -3.3,-2
 p2facing = 1
-getpower = 30 
+getpower = 85
 givepower = 13
 ground.cornerpush.veloff = 0
 guard.kill = 0
@@ -4190,7 +4202,7 @@ ground.velocity = -0
 air.velocity = -0,-0
 p2facing = 1
 p2stateno = 3392
-getpower = 30 
+getpower = 85
 givepower = 13
 ground.cornerpush.veloff = 0
 guard.kill = 0
@@ -4274,7 +4286,7 @@ type    = C
 movetype= A
 physics = C
 juggle  = 5
-poweradd= 15
+poweradd= 0
 ctrl = 0
 anim = 400
 sprpriority = 2
@@ -4295,7 +4307,7 @@ value = 0, 0
 type = HitDef
 trigger1 = Time = 0
 attr = C, NA ;しゃがみ通常打撃（Crouching, Normal Attack）
-damage    = 23
+damage    = 23*fvar(1)
 priority  = 3
 animtype  = Light
 hitflag = MAF
@@ -4311,6 +4323,8 @@ ground.slidetime = 13
 ground.hittime  = 13
 ground.velocity = -4
 air.velocity = -1.5,-3
+getpower = 15
+givepower = 10, 5
 
 [State 400, コントロール]
 type = null;CtrlSet
@@ -4334,7 +4348,7 @@ type    = C
 movetype= A
 physics = C
 juggle  = 6
-poweradd= 50
+poweradd= 0
 ctrl = 0
 anim = 410
 sprpriority = 2
@@ -4354,7 +4368,7 @@ channel = 0
 type = HitDef
 trigger1 = AnimElem = 3
 attr = C, NA
-damage    = 37
+damage    = 37*fvar(1)
 animtype  = Medium
 hitflag = MAF
 guardflag = M
@@ -4370,6 +4384,8 @@ ground.slidetime = 12
 ground.hittime  = 15
 ground.velocity = -7
 air.velocity = -3,-4
+getpower = 25
+givepower = 15, 10
 
 [State 410, ステート変更]
 type = ChangeState
@@ -4918,7 +4934,7 @@ type    = A
 movetype= A
 physics = S
 juggle  = 2
-poweradd= 11
+poweradd= 0
 ctrl = 0
 anim = 1450
 sprpriority = 2
@@ -4967,7 +4983,7 @@ type = HitDef
 trigger1 = Time = 0
 attr = A, NA ;空中通常打撃（Air, Normal Attack）
 animtype  = hard
-damage    = 50
+damage    = 50*fvar(1)
 guardflag = HA ;相手はしゃがみガードが出来ない
 priority = 3
 pausetime = 22,22
@@ -4982,9 +4998,12 @@ ground.hittime  = 36
 guard.slidetime = 16
 ground.velocity = -4
 air.velocity = -4,-3
+fall.recover = 0
 ;p2facing = 1
 ;p2stateno = 25070
 id = 1450
+getpower = 70
+givepower = 35, 20
 
 [State 0, target];永久防止
 type = targetstate
@@ -5003,7 +5022,7 @@ type    = A
 movetype= A
 physics = S
 juggle  = 2
-poweradd= 11
+poweradd= 0
 ctrl = 0
 anim = 1450
 sprpriority = 2
@@ -5053,7 +5072,7 @@ type = HitDef
 trigger1 = Time = 0
 attr = A, NA ;空中通常打撃（Air, Normal Attack）
 animtype  = hard
-damage    = 50
+damage    = 50*fvar(1)
 guardflag = HA ;相手はしゃがみガードが出来ない
 priority = 3
 pausetime = 22,22
@@ -5071,6 +5090,9 @@ air.velocity = -4,-3
 ;p2facing = 1
 ;p2stateno = 25070
 id = 1450
+fall.recover = 0
+getpower = 70
+givepower = 35, 20
 
 [State 0, target];永久防止
 type = targetstate
@@ -5192,7 +5214,7 @@ trigger1 = time = 0
 attr = S, SA
 animtype  = Heavy
 air.animtype  = Back
-damage = 50
+damage = 50*fvar(1)
 priority  = 7, Hit
 hitflag = MAF
 guardflag = M
@@ -5217,7 +5239,8 @@ airguard.cornerpush.veloff = 0
 envshake.time = 10
 envshake.ampl = 3
 fall = 1
-fall.recover = 0
+fall.recover = 1
+fall.recovertime = 40
 air.fall = 1
 yaccel = .5
 persistent = 0
@@ -5265,7 +5288,7 @@ physics = N
 type = VelSet
 trigger1 = time = 0
 x = -2
-y = -8
+y = -6
 
 [State 1100, Velocity]
 type = VelAdd
@@ -5381,7 +5404,7 @@ trigger1 = time = 0
 attr = S, SA
 animtype  = Heavy
 air.animtype  = Back
-damage = 50
+damage = 50*fvar(1)
 priority  = 7, Hit
 hitflag = MAF
 guardflag = M
@@ -5406,7 +5429,8 @@ airguard.cornerpush.veloff = 0
 envshake.time = 10
 envshake.ampl = 3
 fall = 1
-fall.recover = 0
+fall.recover = 1
+fall.recovertime = 40
 air.fall = 1
 yaccel = .5
 persistent = 0
@@ -5417,12 +5441,54 @@ forcestand = 1
 [State 1100, ChangeState]
 type = ChangeState
 trigger1 = movecontact
-value = 1601
+value = 1611
 ignorehitpause
 
 [State 1100, ChangeState]
 type = ChangeState
 trigger1 = time = 30
+value = 1602
+;------------------------------------------------------------------------------------------
+;水平ボスキック　バウンド 強
+[Statedef 1611]
+type    = S
+movetype = A
+physics = S
+ctrl = 0
+poweradd = 0
+velset = 0,0
+
+[State 3001, Width]
+type = Width
+trigger1 = 1
+edge = 5,0
+
+[State 902, 1]
+type = ChangeAnim
+Trigger1 = Time = 0
+value = 1601
+
+[State 1100, StateType]
+type = StateTypeSet
+trigger1 = time >= 1
+StateType = A
+physics = N
+
+[State 1100, Velocity]
+type = VelSet
+trigger1 = time = 0
+x = -2
+y = -8
+
+[State 1100, Velocity]
+type = VelAdd
+trigger1 = time > 10
+y = 0.8
+
+[State 1100, ChangeState]
+type = ChangeState
+triggerall = Pos Y >= 0 && Vel Y > 0
+trigger1 = time >= 1
 value = 1602
 ;---------------------------------------------------------------------------
 ;シルチャリ　通常攻撃
@@ -13741,6 +13807,67 @@ triggerall=enemynear,gethitvar(hitcount)>var(40)
 trigger1=movehit
 trigger2=projhittime(0)=0
 var(40)=1
+
+;補正値
+[State -2, 補正レベル1]
+type=varset
+trigger1= var(40) = 0
+fvar(1) = 1
+
+[State -2, 補正レベル2]
+type=varset
+trigger1= var(40) >= 3
+fvar(1) = 0.75
+
+[State -2, 補正レベル2]
+type=varset
+trigger1= var(40) >= 5
+fvar(1) = 0.68
+
+[State -2, 補正レベル3]
+type=varset
+trigger1= var(40) >= 8
+fvar(1) = 0.60
+
+[State -2, 補正レベル4]
+type=varset
+trigger1= var(40) >= 11
+fvar(1) = 0.55
+
+[State -2, 補正レベル5]
+type=varset
+trigger1= var(40) >= 14
+fvar(1) = 0.50
+
+[State -2, 補正レベル6]
+type=varset
+trigger1= var(40) >= 17
+fvar(1) = 0.45
+
+[State -2, 補正レベル7]
+type=varset
+trigger1= var(40) >= 20
+fvar(1) = 0.40
+
+[State -2, 補正レベル8]
+type=varset
+trigger1= var(40) >= 25
+fvar(1) = 0.35
+
+[State -2, 補正レベル9]
+type=varset
+trigger1= var(40) >= 30
+fvar(1) = 0.30
+
+[State -2, 補正レベル8]
+type=varset
+trigger1= var(40) >= 35
+fvar(1) = 0.25
+
+[State -2, 補正レベル9]
+type=varset
+trigger1= var(40) >= 40
+fvar(1) = 0.2
 ;-----------------------------------
 ;急降下ボスキック 永久防止 リセット
 [State -2, reset]
@@ -13958,7 +14085,7 @@ value = 40, 0
 ;-----------------------------------
 [State -3, 仲間呼び出し]
 type=helper
-TriggerAll = PalNo != [7, 12]
+TriggerAll = PalNo = [7, 12]
 trigger1=!NumHelper(4000)
 trigger1 = var(55) > -200
 trigger1=stateno = 191 || stateno = 0 || stateno = 5900
@@ -13976,8 +14103,8 @@ ownpal = 1
 [State -3, デバック(変数確認)]
 Type = DisplayToClipBoard
 Trigger1 = 1
-Text = "var(16)=%d,var(17)=%d,helper(4000),var(39)=%d\n"
-Params = var(16),var(17),helper(4000),var(39)
+Text = "var(40)=%d,var(17)=%d,helper(4000),var(39)=%d\n"
+Params = var(40),var(17),helper(4000),var(39)
 IgnoreHitPause = 1
 
 

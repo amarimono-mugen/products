@@ -924,8 +924,8 @@ trigger2 = stateno = 600 && time >= 6
 trigger3 = stateno = 610 && time >= 7
 trigger4 = stateno = [700, 795]
 trigger4 = time >= 7
-trigger5 = stateno = 1601
-trigger5 = time >= 4
+trigger5 = stateno = 1601 || stateno = 1611
+trigger5 = time >= 10
 
 [State -1, 急降下キック]
 type = ChangeState
@@ -937,8 +937,8 @@ trigger2 = stateno = 600 && time >= 6
 trigger3 = stateno = 610 && time >= 7
 trigger4 = stateno = [700, 795]
 trigger4 = time >= 7
-trigger5 = stateno = 1601
-trigger5 = time >= 4
+trigger5 = stateno = 1601 || stateno = 1611
+trigger5 = time >= 10
 ;------------------------------------------------------------------------------
 [State -1, 水平ボスキック 弱]
 type = ChangeState
