@@ -3578,3 +3578,46 @@ type = changestate
 trigger1 = vel y > 0
 trigger1 = pos y >= 15
 value = 5110
+
+;---------------------------------------------------------------------------
+; AI用待機ステート
+[Statedef 47000]
+type = S
+physics = S
+sprpriority = 0
+ctrl = 0
+
+[State 5210, 4]
+type = CtrlSet
+trigger1 = 1
+value = 0
+
+[State 0,バグったとき用]
+type = destroyself
+trigger1 = time = 0
+
+[State 0, 1]
+type = ChangeAnim
+trigger1 = Anim != 0+var(49) && Anim != 5+var(49)
+trigger2 = Anim = 5+var(49) && AnimTime = 0 ;Turn anim over
+value = 0+var(49)
+
+[State 0, 2]
+type = VelSet
+trigger1 = Time = 0
+y = 0
+
+[State 0, 3] ;Stop moving if low velocity or 4 ticks pass
+type = VelSet
+trigger1 = abs(vel x) < 2
+trigger2 = Time = 4
+x = 0
+
+[State 0, 4]
+type = ChangeState
+Trigger1 = time = 9999
+;Trigger2 = !numtarget
+;Trigger3 = inguarddist
+;Trigger4 = target,statetype = L
+value = 0
+ctrl = 1

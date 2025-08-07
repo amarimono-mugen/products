@@ -1279,8 +1279,36 @@ triggerall = var(49) = 10000
 triggerall = roundstate = 2
 triggerall = statetype != A
 triggerall = !inguarddist
+triggerall = !var(36)
 triggerall = !var(37)
-trigger1 = ctrl
+triggerall = var(29) = 0
+triggerall = life > 300
+triggerall = !numtarget
+trigger1 = ctrl || (stateno = [120,131]) || stateno = 21
+trigger1 = random < 180
+trigger1 = p2bodydist x > 120 || enemynear,statetype = L
+ignorehitpause = 0
+
+;スタンド発現（立ち）
+[State -1, Taunt]
+type = ChangeState
+value = 16000
+TriggerAll = var(59)
+triggerall = roundstate = 2
+;triggerall = var(40) = 9999
+triggerall = numhelper(1001) = 0 
+triggerall = !var(49)
+triggerall = roundstate = 2
+triggerall = statetype != A
+triggerall = !inguarddist
+triggerall = var(29) >= 2
+triggerall = life > 300
+triggerall = !var(36)
+triggerall = !var(37)
+triggerall = !numtarget
+trigger1 = ctrl || (stateno = [120,131]) || stateno = 21
+trigger1 = random < 180
+trigger1 = p2bodydist x > 120 || enemynear,statetype = L
 ignorehitpause = 0
 
 ;==============================================================================
@@ -1374,8 +1402,97 @@ trigger4 = pos y <= -25
 trigger4 = P2bodydist X = [-10,50]
 trigger4 = P2bodydist Y = [-5,55]
 trigger4 = random < 50
-
 value = 620
+
+
+;Son ためらうな、とにかく殴れ
+[State -1, 11400]
+type = ChangeState
+TriggerAll = var(59)
+triggerall = roundstate = 2
+triggerall = statetype != A
+triggerall = var(49)
+triggerall = !var(37)
+triggerall = !var(36)
+triggerall = P2StateType != L
+triggerall = P2stateno != 5120
+triggerall = P2stateno != 5201
+
+trigger1 = enemynear,vel x >= 0 && enemynear,vel y <= 0
+trigger1 = P2StateType = A
+trigger1 = ctrl || (stateno = [120,131]) || stateno = 21
+trigger1 = p2bodydist x = [60,140]
+trigger1 = p2bodydist y = [-110,0]
+trigger1 = random < 150
+
+trigger2 = enemynear,vel x <= 0
+trigger2 = P2StateType = A
+trigger2 = ctrl || (stateno = [120,131]) || stateno = 21
+trigger2 = p2bodydist x = [20,110]
+trigger2 = p2bodydist y = [-110,0]
+trigger2 = random < 150
+
+trigger3 = P2StateType = A
+trigger3 = stateno = 10220 && movecontact
+trigger3 = p2bodydist x = [-20,100]
+trigger3 = p2bodydist y = [-120,0]
+
+trigger4 = movecontact
+trigger4 = P2StateType = A
+trigger4 = stateno = 10200 || stateno = 10400 || stateno = 10210 || stateno = 10410
+trigger4 = p2bodydist x = [-20,120]
+trigger4 = p2bodydist y = [-120,0]
+value = 11400
+
+;Son GHA
+[State -1, 10210]
+type = ChangeState
+TriggerAll = var(59)
+triggerall = roundstate = 2
+triggerall = statetype != A
+triggerall = var(49)
+triggerall = !var(37)
+triggerall = !var(36)
+triggerall = P2StateType != L
+triggerall = P2stateno != 5120
+triggerall = P2stateno != 5201
+triggerall = power >= 2000
+triggerall = p2bodydist y > -40
+
+trigger1 = stateno = 11005 && movehit
+trigger1 = p2bodydist x = [-20,140]
+
+trigger2 = enemyNear,animtime < -30 && (enemynear,life < 300 || life < 400 || power >= 3000)
+trigger2 = enemynear,movetype = A
+trigger2 = ctrl || (stateno = [120,131]) || stateno = 21
+trigger2 = random < 120
+trigger2 = p2bodydist x = [20,180]
+value = 3300
+
+;Son HHA
+[State -1, 10210]
+type = ChangeState
+TriggerAll = var(59)
+triggerall = roundstate = 2
+triggerall = statetype != A
+triggerall = var(49)
+triggerall = !var(37)
+triggerall = !var(36)
+triggerall = P2StateType != L
+triggerall = P2stateno != 5120
+triggerall = P2stateno != 5201
+triggerall = power >= 1000
+triggerall = p2bodydist y >-60
+
+trigger1 = stateno = 11005 && movehit
+trigger1 = p2bodydist x = [-20,140]
+
+trigger2 = enemyNear,animtime < -30 && (enemynear,life < 300 || life < 400 || power >= 3000)
+trigger2 = enemynear,movetype = A
+trigger2 = ctrl || (stateno = [120,131]) || stateno = 21
+trigger2 = random < 120
+trigger2 = p2bodydist x = [40,160]
+value = 13000
 
 ;==============================================================================
 ;AIガード
@@ -1432,6 +1549,342 @@ trigger1 = !(p2movetype = H)
 trigger1 = p2bodydist x < 120
 trigger1 = random < 15+(life<700)*5+(life<500)*8+(life<p2life)*5
 value = 4105
+
+;==============================================================================
+;AI立ち回り技振り(Son)
+;==============================================================================
+
+[State -1, 投げ]
+type = ChangeState
+value = 10800
+triggerall = var(59)
+triggerall = roundstate = 2
+triggerall = var(49)
+triggerall = !var(37)
+triggerall = statetype != A
+triggerall = P2StateType != A
+triggerall = P2StateType != L
+triggerall = P2stateno != 5120
+triggerall = P2stateno != 5201
+triggerall = !inguarddist
+triggerall = ctrl || stateno = 100 || (stateno = [120,131]) || stateno = 21 || (stateno = 52 && time >= 1)
+trigger1 = P2bodydist X = [-20,20]
+trigger1 = random < 200
+trigger1 = p2movetype != H
+
+;Son立弱
+[State -1, 10200]
+type = ChangeState
+TriggerAll = var(59)
+triggerall = roundstate = 2
+triggerall = statetype != A
+triggerall = var(49)
+triggerall = !var(37)
+triggerall = !var(36)
+triggerall = P2StateType != L
+triggerall = P2stateno != 5120
+triggerall = P2stateno != 5201
+
+trigger1 = ctrl || (stateno = [120,131]) || stateno = 21
+trigger1 = p2bodydist x = [-20,50]
+trigger1 = p2bodydist y = [-100, 0]
+trigger1 = enemynear,vel y >= 0
+trigger1 = random < 100
+
+trigger2 = ctrl || (stateno = [120,131]) || stateno = 21
+trigger2 = p2bodydist x = [-20,50]
+trigger2 = p2bodydist y = [-60, 0]
+trigger2 = enemynear,vel y < 0
+trigger2 = random < 100
+value = 10200
+
+;Son中
+[State -1, 10210]
+type = ChangeState
+TriggerAll = var(59)
+triggerall = roundstate = 2
+triggerall = statetype != A
+triggerall = var(49)
+triggerall = !var(37)
+triggerall = !var(36)
+triggerall = P2StateType != L
+triggerall = P2stateno != 5120
+triggerall = P2stateno != 5201
+triggerall = !inguarddist
+
+trigger1 = P2StateType != A
+trigger1 = ctrl || (stateno = [120,131]) || stateno = 21
+trigger1 = p2bodydist x = [40,80]
+trigger1 = random < 30
+;trigger1 = random < 47-(Inguarddist)*8+(stateno=100)*35+(var(9))*70
+value = 10210
+
+;Son強
+[State -1, 10220]
+type = ChangeState
+TriggerAll = var(59)
+triggerall = roundstate = 2
+triggerall = statetype != A
+triggerall = var(49)
+triggerall = !var(37)
+triggerall = !var(36)
+triggerall = P2StateType != L
+triggerall = P2stateno != 5120
+triggerall = P2stateno != 5201
+triggerall = !inguarddist
+
+trigger1 = P2StateType = S
+trigger1 = ctrl || (stateno = [120,131]) || stateno = 21
+trigger1 = p2bodydist x = [60,90]
+trigger1 = random < 10
+
+trigger2 = enemynear,vel y >= -2
+trigger2 = P2StateType = A
+trigger2 = ctrl || (stateno = [120,131]) || stateno = 21
+trigger2 = p2bodydist x = [20,110]
+trigger2 = p2bodydist y = [-100,-20]
+trigger2 = random < 120
+value = 10220
+
+;Son屈弱
+[State -1, 10400]
+type = ChangeState
+TriggerAll = var(59)
+triggerall = roundstate = 2
+triggerall = statetype != A
+triggerall = var(49)
+triggerall = !var(37)
+triggerall = !var(36)
+triggerall = P2StateType != A
+triggerall = P2BodyDist Y = 0
+triggerall = P2StateType != L
+triggerall = P2stateno != 5120
+triggerall = P2stateno != 5201
+
+trigger1 = ctrl || (stateno = [120,131]) || stateno = 21
+trigger1 = p2bodydist x = [-20,50]
+trigger1 = random < 100
+;trigger1 = random < 106-(Inguarddist)*6-(stateno=100)*30+(p2stateno=52)*40+(var(9))*200
+
+trigger2 = !inguarddist
+trigger2 = ctrl || (stateno = [120,131]) || stateno = 21
+trigger2 = p2bodydist x = [-20,50]
+
+trigger3 = p2bodydist x = [-20,40]
+trigger3 = moveguarded
+trigger3 = stateno = 400 && time >= 5
+value = 10400
+
+;Son屈中
+[State -1, 10400]
+type = ChangeState
+TriggerAll = var(59)
+triggerall = roundstate = 2
+triggerall = statetype != A
+triggerall = var(49)
+triggerall = !var(37)
+triggerall = !var(36)
+triggerall = P2StateType != A
+triggerall = P2BodyDist Y = 0
+triggerall = P2StateType != L
+triggerall = P2stateno != 5120
+triggerall = P2stateno != 5201
+
+trigger1 = ctrl || (stateno = [120,131]) || stateno = 21
+trigger1 = p2bodydist x = [40,90]
+trigger1 = random < 80
+value = 10410
+
+;Son屈強
+[State -1, 10420]
+type = ChangeState
+TriggerAll = var(59)
+triggerall = roundstate = 2
+triggerall = statetype != A
+triggerall = var(49)
+triggerall = !var(37)
+triggerall = !var(36)
+triggerall = P2StateType != A
+triggerall = P2BodyDist Y = 0
+triggerall = P2StateType != L
+triggerall = P2stateno != 5120
+triggerall = P2stateno != 5201
+
+trigger1 = ctrl || (stateno = [120,131]) || stateno = 21
+trigger1 = p2bodydist x = [90,130]
+trigger1 = random < 20
+value = 10420
+
+[State -1, Sonジャンプ弱]
+type = ChangeState
+triggerall = var(59)
+triggerall = var(49)
+triggerall = !var(37)
+triggerall = roundstate = 2
+triggerall = statetype = A
+
+triggerall = P2StateType != L
+;triggerall = enemynear(var(48)),prevstateno != [5120,5210]
+;triggerall = !enemynear(var(48)),numproj
+triggerall = ctrl || (stateno = [120,132])
+
+trigger1 = P2StateType != A
+trigger1 = pos y <= -60
+trigger1 = Vel Y > -2
+trigger1 = P2StateType = S
+trigger1 = P2bodydist X = [-5,25]
+trigger1 = (P2bodydist Y = [-20,90])
+
+trigger2 = P2StateType != A
+trigger2 = pos y <= -60
+trigger2 = Vel Y > -2
+trigger2 = P2StateType = C
+trigger2 = P2bodydist X = [-5,25]
+trigger2 = (P2bodydist Y = [-20,75])
+
+;昇りAH。糸ゲージ残ってる場合のみ。
+;trigger3 = P2StateType != A
+trigger3 = var(29) < 3
+trigger3 = Vel Y <= 2
+;trigger3 = P2StateType = S
+trigger3 = P2bodydist X = [-5,25]
+trigger3 = (P2bodydist Y = [-20,90])
+
+;空対空
+trigger4 = P2StateType = A
+trigger4 = pos y <= -25
+trigger4 = P2bodydist X = [-10,10]
+trigger4 = P2bodydist Y = [-5,55]
+trigger4 = random < 50
+value = 10610
+
+
+[State -1, Sonジャンプ中]
+type = ChangeState
+triggerall = var(59)
+triggerall = var(49)
+triggerall = !var(37)
+triggerall = roundstate = 2
+triggerall = statetype = A
+
+triggerall = P2StateType != L
+;triggerall = enemynear(var(48)),prevstateno != [5120,5210]
+;triggerall = !enemynear(var(48)),numproj
+triggerall = ctrl || (stateno = [120,132])
+
+trigger1 = P2StateType != A
+trigger1 = pos y <= -60
+trigger1 = Vel Y > -2
+trigger1 = P2StateType = S
+trigger1 = P2bodydist X = [-5,65]
+trigger1 = (P2bodydist Y = [-20,90])
+
+trigger2 = P2StateType != A
+trigger2 = pos y <= -60
+trigger2 = Vel Y > -2
+trigger2 = P2StateType = C
+trigger2 = P2bodydist X = [-5,65]
+trigger2 = (P2bodydist Y = [-20,75])
+
+;昇りAH。糸ゲージ残ってる場合のみ。
+;trigger3 = P2StateType != A
+trigger3 = var(29) < 3
+trigger3 = Vel Y <= 2
+;trigger3 = P2StateType = S
+trigger3 = P2bodydist X = [-5,65]
+trigger3 = (P2bodydist Y = [-20,90])
+
+;空対空
+trigger4 = P2StateType = A
+trigger4 = pos y <= -25
+trigger4 = P2bodydist X = [-10,40]
+trigger4 = P2bodydist Y = [-5,55]
+trigger4 = random < 50
+value = 10610
+
+[State -1, Sonジャンプ強]
+type = ChangeState
+triggerall = var(59)
+triggerall = var(49)
+triggerall = !var(37)
+triggerall = roundstate = 2
+triggerall = statetype = A
+
+triggerall = P2StateType != L
+;triggerall = enemynear(var(48)),prevstateno != [5120,5210]
+;triggerall = !enemynear(var(48)),numproj
+triggerall = ctrl || (stateno = [120,132])
+
+trigger1 = P2StateType != A
+trigger1 = pos y <= -60
+trigger1 = Vel Y > -2
+trigger1 = P2StateType = S
+trigger1 = P2bodydist X = [-5,45]
+trigger1 = (P2bodydist Y = [-20,90])
+
+trigger2 = P2StateType != A
+trigger2 = pos y <= -60
+trigger2 = Vel Y > -2
+trigger2 = P2StateType = C
+trigger2 = P2bodydist X = [-5,45]
+trigger2 = (P2bodydist Y = [-20,75])
+
+;昇りAH。糸ゲージ残ってる場合のみ。
+;trigger3 = P2StateType != A
+trigger3 = var(29) < 3
+trigger3 = Vel Y <= 2
+;trigger3 = P2StateType = S
+trigger3 = P2bodydist X = [-5,45]
+trigger3 = (P2bodydist Y = [-20,90])
+
+;空対空
+trigger4 = P2StateType = A
+trigger4 = pos y <= -25
+trigger4 = P2bodydist X = [-10,30]
+trigger4 = P2bodydist Y = [-5,55]
+trigger4 = random < 50
+value = 10620
+
+;Son 地上オラオラ
+[State -1, 10210]
+type = ChangeState
+TriggerAll = var(59)
+triggerall = roundstate = 2
+triggerall = statetype != A
+triggerall = var(49)
+triggerall = !var(37)
+triggerall = !var(36)
+triggerall = P2StateType != L
+triggerall = P2stateno != 5120
+triggerall = P2stateno != 5201
+triggerall = !inguarddist
+
+trigger1 = P2StateType != A
+trigger1 = ctrl || (stateno = [120,131]) || stateno = 21
+trigger1 = p2bodydist x = [70,110]
+trigger1 = random < 50
+;trigger1 = random < 47-(Inguarddist)*8+(stateno=100)*35+(var(9))*70
+
+trigger2 = P2StateType != A
+trigger2 = stateno = 10220 && movecontact
+trigger2 = p2bodydist x = [-20,120]
+value = 11000
+
+[State -1, つまり敵でいいんだな]
+type = ChangeState
+triggerall = var(59)
+triggerall = var(49)
+triggerall = !var(37)
+triggerall = roundstate = 2
+triggerall = statetype = A
+triggerall = P2StateType != L
+triggerall = ctrl
+triggerall = !inguarddist
+
+trigger1 = pos y <= -20
+trigger1 = P2bodydist X = [40,80]
+trigger1 = (P2bodydist Y = [-20,90])
+value = 11500
 
 ;==============================================================================
 ;AI立ち回り技振り(Soff)
@@ -2345,7 +2798,6 @@ IgnoreHitPause = 1
 ;==============================================================================
 ;AIコンボ3(Soff クイックSonコンボ)
 ;==============================================================================
-
 [State -1, クイックスタンドon]
 type = ChangeState
 value = 10901
@@ -2627,6 +3079,227 @@ trigger1 = stateno = 200
 var(36) = 2
 IgnoreHitPause = 1
 
+;==============================================================================
+;AIコンボ4(Son 弱攻撃始動 相手地上時)
+;==============================================================================
+
+[State -1, コンボルート分岐]
+Type = VarSet
+triggerall = var(59)
+triggerall = RoundState = 2
+triggerall = var(37) = 0
+triggerall = var(36) = 0
+triggerall = stateno = 10200 || stateno = 10400
+trigger1 = movecontact && enemynear,statetype != A
+var(36) = 100
+IgnoreHitPause = 1
+
+;Son立中
+[State -1, 400]
+type = ChangeState
+triggerall = var(59)
+triggerall = var(49)
+triggerall = var(37) = 0
+triggerall = var(36) = 100
+triggerall = roundstate = 2
+triggerall = statetype != A
+;triggerall = P2StateType != A
+triggerall = P2BodyDist Y = 0
+triggerall = P2StateType != L
+triggerall = P2stateno != 5120
+triggerall = P2stateno != 5201
+trigger1 = stateno = 10200 || stateno = 10400
+trigger1 = p2bodydist x < 60
+value = 10210
+
+;Son立強
+[State -1, 400]
+type = ChangeState
+triggerall = var(59)
+triggerall = var(49)
+triggerall = var(37) = 0
+triggerall = var(36) = 100
+triggerall = roundstate = 2
+triggerall = statetype != A
+;triggerall = P2StateType != A
+triggerall = P2StateType != L
+triggerall = P2stateno != 5120
+triggerall = P2stateno != 5201
+trigger1 = enemynear,statetype != C
+trigger1 = stateno = 10210 && movecontact
+trigger1 = p2bodydist x < 120
+trigger1 = P2BodyDist Y > -80
+value = 10220
+
+;GHA
+[State -1, 400]
+type = ChangeState
+triggerall = var(59)
+triggerall = var(49)
+triggerall = var(37) = 0
+triggerall = var(36) = 100
+triggerall = roundstate = 2
+triggerall = statetype != A
+triggerall = P2StateType != L
+triggerall = P2stateno != 5120
+triggerall = P2stateno != 5201
+triggerall = power >= 2000
+trigger1 = stateno = 10220 && movehit
+trigger1 = p2bodydist x < 140
+trigger1 = P2BodyDist Y > -60
+
+trigger2 = stateno = 10210 && movehit
+trigger2 = p2bodydist x < 140
+trigger2 = P2BodyDist Y > -60
+value = 3300
+
+;Sonオラオラ
+[State -1, 400]
+type = ChangeState
+triggerall = var(59)
+triggerall = var(49)
+triggerall = var(37) = 0
+triggerall = var(36) = 100
+triggerall = roundstate = 2
+triggerall = statetype != A
+;triggerall = P2StateType != A
+triggerall = P2StateType != L
+triggerall = P2stateno != 5120
+triggerall = P2stateno != 5201
+trigger1 = stateno = 10220 && movecontact
+trigger1 = p2bodydist x < 140
+trigger1 = P2BodyDist Y > -80
+
+trigger2 = stateno = 10210 && movecontact
+trigger2 = p2bodydist x < 140
+trigger2 = P2BodyDist Y > -80
+value = 11000
+
+;Sonオラオラ
+[State -1, 400]
+type = ChangeState
+triggerall = var(59)
+triggerall = var(49)
+triggerall = var(37) = 0
+triggerall = var(36) = 100
+triggerall = roundstate = 2
+triggerall = statetype != A
+;triggerall = P2StateType != A
+triggerall = P2StateType != L
+triggerall = P2stateno != 5120
+triggerall = P2stateno != 5201
+triggerall = power >= 1000
+trigger1 = stateno = 11005 && movehit
+trigger1 = p2bodydist x < 160
+trigger1 = P2BodyDist Y > -80
+value = 13000
+
+;==============================================================================
+;AIコンボ5(Son ためらうな始動)
+;==============================================================================
+
+[State -1, コンボルート分岐]
+Type = VarSet
+triggerall = var(59)
+triggerall = RoundState = 2
+triggerall = var(37) = 0
+triggerall = var(36) = 0
+triggerall = stateno = 11400
+trigger1 = movehit && numtarget
+var(36) = 110
+IgnoreHitPause = 1
+
+[State -1, ダッシュで距離詰め]
+type = ChangeState
+value = 100
+TriggerAll = var(59)
+triggerall = RoundState = 2
+triggerall = var(49)
+triggerall = statetype != A
+triggerall = var(37) = 0
+triggerall = var(36) = 110
+triggerall = numtarget && target,statetype != L
+triggerall = stateno = 11400 && animtime = 0
+;trigger1 = p2bodydist x  > 30
+trigger1 = stateno != 100
+
+[State -1, 停止]
+type = ChangeState
+value = 47000
+TriggerAll = var(59)
+triggerall = RoundState = 2
+triggerall = var(49)
+triggerall = statetype != A
+triggerall = var(37) = 0
+triggerall = var(36) = 110
+triggerall = numtarget && target,statetype != L
+trigger1 = p2bodydist x < 30
+trigger1 = stateno = 100
+
+[State -1, Son立中]
+type = ChangeState
+value = 10210
+TriggerAll = var(59)
+triggerall = RoundState = 2
+triggerall = var(49)
+triggerall = statetype != A
+triggerall = var(37) = 0
+triggerall = var(36) = 110
+triggerall = numtarget && target,statetype != L
+trigger1 = ctrl || stateno = 21 || stateno = 100 || stateno = 47000
+trigger1 = p2bodydist x = [-20,110]
+trigger1 = p2bodydist y = [-60,0]
+
+[State -1, コンボルート分岐]
+Type = VarSet
+triggerall = var(59)
+triggerall = RoundState = 2
+triggerall = var(37) = 0
+triggerall = var(36) = 110
+trigger1 = stateno = 10210 && movecontact && target,statetype != L
+var(36) = 100
+IgnoreHitPause = 1
+
+;==============================================================================
+;AIコンボ6(Son 弱攻撃始動 相手空中時)
+;==============================================================================
+
+[State -1, コンボルート分岐]
+Type = VarSet
+triggerall = var(59)
+triggerall = RoundState = 2
+triggerall = var(37) = 0
+triggerall = var(36) = 0
+triggerall = stateno = 10200 || stateno = 10400
+trigger1 = movecontact && enemynear,statetype = A
+var(36) = 120
+IgnoreHitPause = 1
+
+;ためらうな
+[State -1, 400]
+type = ChangeState
+triggerall = var(59)
+triggerall = var(49)
+triggerall = var(37) = 0
+triggerall = var(36) = 120
+triggerall = roundstate = 2
+triggerall = statetype != A
+triggerall = P2StateType != L
+trigger1 = stateno = 10200 || stateno = 10400
+trigger1 = p2bodydist x < 100
+trigger1 = p2bodydist y = [-120, -20]
+value = 11400
+
+[State -1, コンボルート分岐]
+Type = VarSet
+triggerall = var(59)
+triggerall = RoundState = 2
+triggerall = var(37) = 0
+triggerall = var(36) = 120
+triggerall = stateno = 11400
+trigger1 = movehit && numtarget
+var(36) = 110
+IgnoreHitPause = 1
 
 ;======AI用コマンド記述ここまで=======
 

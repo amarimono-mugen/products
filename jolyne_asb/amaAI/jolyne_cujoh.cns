@@ -9331,7 +9331,7 @@ trigger1 = AnimElem = 4
 trigger2 = AnimElem = 10
 trigger3 = AnimElem = 15
 attr = S, NA
-damage = ifelse(root,var(40) > 14,1,3*root,fvar(1)*root,fvar(8)), 0
+damage = ifelse(root,var(40) > 14,2,4*root,fvar(1)*root,fvar(8)), 2
 animtype = Light
 guardflag = M
 hitflag = MAF
@@ -9359,7 +9359,7 @@ type = HitDef
 trigger1 = AnimElem = 6
 trigger2 = AnimElem = 12
 attr = S, NA
-damage = ifelse(root,var(40) > 14,1,3*root,fvar(1)*root,fvar(8)), 0
+damage = ifelse(root,var(40) > 14,2,4*root,fvar(1)*root,fvar(8)), 2
 animtype = Light
 guardflag = M
 hitflag = MAF
@@ -9387,7 +9387,7 @@ type = HitDef
 trigger1 = AnimElem = 8
 trigger2 = AnimElem = 14
 attr = S, NA
-damage = ifelse(root,var(40) > 14,1,3*root,fvar(1)*root,fvar(8)), 0
+damage = ifelse(root,var(40) > 14,2,4*root,fvar(1)*root,fvar(8)), 2
 animtype = Light
 guardflag = M
 hitflag = MAF
@@ -9471,7 +9471,7 @@ trigger1 = time = 1
 attr = S, NA
 sprpriority = 3
 animtype  = Mediumfe
-damage    = 10*root,fvar(1)
+damage    = 15*root,fvar(1)
 guardflag = MA
 pausetime = 15,15
 getpower = ifelse(helper(8500),fvar(8)=0,30,30*1.1)
@@ -9700,7 +9700,7 @@ trigger1 = AnimElem = 4
 trigger2 = AnimElem = 10
 trigger3 = AnimElem = 15
 attr = S, NA
-damage = ifelse(root,var(40) > 14,1,3*root,fvar(1)*root,fvar(8)), 0
+damage = ifelse(root,var(40) > 14,1,4*root,fvar(1)*root,fvar(8)), 2
 animtype = Light
 guardflag = M
 hitflag = MAF
@@ -9728,7 +9728,7 @@ type = HitDef
 trigger1 = AnimElem = 6
 trigger2 = AnimElem = 12
 attr = S, NA
-damage = ifelse(root,var(40) > 14,1,3*root,fvar(1)*root,fvar(8)), 0
+damage = ifelse(root,var(40) > 14,2,4*root,fvar(1)*root,fvar(8)), 2
 animtype = Light
 guardflag = M
 hitflag = MAF
@@ -9756,7 +9756,7 @@ type = HitDef
 trigger1 = AnimElem = 8
 trigger2 = AnimElem = 14
 attr = S, NA
-damage = ifelse(root,var(40) > 14,1,3*root,fvar(1)*root,fvar(8)), 0
+damage = ifelse(root,var(40) > 14,2,4*root,fvar(1)*root,fvar(8)), 2
 animtype = Light
 guardflag = M
 hitflag = MAF
@@ -9923,7 +9923,7 @@ trigger1 = time = 0
 attr = S, NA
 sprpriority = 3
 animtype  = hard
-damage    = 80*fvar(1)
+damage    = 80*fvar(1),20
 guardflag = M
 pausetime = 14,14
 getpower = ifelse(helper(8500),fvar(8)=0,30,30*1.1)
@@ -12775,6 +12775,12 @@ type = Changeanim
 trigger1 = anim = 3333
 trigger1 = time = 158
 value = 3334
+
+[State 1000, destroy]
+type = destroyself
+triggerall = root,var(49) = 10000
+trigger1 = anim = 3334
+trigger1 = time = 170
 
 [State 1000, ステート変更]
 type = ChangeState
@@ -18973,8 +18979,8 @@ trigger3 = anim = 5110 && movetype = H
 [State -2, デバッグ(変数確認)]
 Type = DisplayToClipBoard
 Trigger1 = 1
-Text = "var(55)=%d,helper(6600),var(28)=%d,var(40)=%d,fvar(8)=%f,fvar(6)=%f,3101 x=%f"
-Params = var(55),helper(6600),var(28),var(40),fvar(8),fvar(6),helper(3101),pos x
+Text = "var(29)=%d,var(37)=%d,var(40)=%d,fvar(8)=%f,fvar(6)=%f,3101 x=%f"
+Params = var(29),var(37),var(40),fvar(8),fvar(6),helper(3101),pos x
 IgnoreHitPause = 1
 
 ;[State -2, クリップボード（追加専用）]
