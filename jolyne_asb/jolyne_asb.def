@@ -12,7 +12,7 @@
 Name         = "jolyne"  ;キャラクターの名前（必要な項目なので省略不可）
 DisplayName  = "jolyne_asb"  ;M.U.G.E.Nで実際に表示される名前（省略可能）
 VersionDate  = 08,01,2014     ;キャラクターの最終更新日（変えなくてもＯＫ）
-MugenVersion = 03,02,2013     ;キャラクターが動作出来るM.U.G.E.Nの改訂版
+MugenVersion = 1.1     ;キャラクターが動作出来るM.U.G.E.Nの改訂版
 Author       = "あまりもの"     ;キャラクターの作成者（必要な項目なので省略不可）
 Pal.Defaults = 6,3,4,2        ;ＣＰＵで出てきた時のカラーパレットの順番
 

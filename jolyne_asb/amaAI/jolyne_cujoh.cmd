@@ -164,312 +164,6 @@ command.buffer.time = 1  ;標準のコマンド入力記憶時間。
 ; 　　　　　　「前斜め下」→「前」を入力した後、ＡとＹとＣを同時押ししたままにする
 ;
 ;------------------------------------------------------------------------------
-;-| AI起動用コマンド |-----------------------------------------------------------------
-[Command]
-name = "AI00"
-command = a,a,a,a,a,a,a,a,a,a,a,a,a,a,a,a,a,a,s
-time = 0
-
-[Command]
-name = "AI01"
-command = b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,s
-time = 0
-
-[Command]
-name = "AI02"
-command = c,c,c,c,c,c,c,c,c,c,c,c,c,c,c,c,c,c,s
-time = 0
-
-[Command]
-name = "AI03"
-command = x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,s
-time = 0
-
-[Command]
-name = "AI04"
-command = y,y,y,y,y,y,y,y,y,y,y,y,y,y,y,y,y,y,s
-time = 0
-
-[Command]
-name = "AI05"
-command = z,z,z,z,z,z,z,z,z,z,z,z,z,z,z,z,z,z,s
-time = 0
-
-[Command]
-name = "AI06"
-command = s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,a,s
-time = 0
-
-[Command]
-name = "AI07"
-command = F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,s
-time = 0
-
-[Command]
-name = "AI08"
-command = D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,s
-time = 0
-
-[Command]
-name = "AI09"
-command = B,B,B,B,B,B,B,B,B,B,B,B,B,B,B,B,B,B,s
-time = 0
-
-[Command]
-name = "AI10"
-command = U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,s
-time = 0
-
-[Command]
-name = "AI11"
-command = a,a,a,a,a,a,a,a,a,a,a,a,a,a,a,a,a,a,s
-time = 0
-
-[Command]
-name = "AI12"
-command = c,c,c,c,c,c,c,c,c,c,c,c,c,c,c,c,c,c,s
-time = 0
-
-[Command]
-name = "AI13"
-command = x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,s
-time = 0
-
-[Command]
-name = "AI14"
-command = y,y,y,y,y,y,y,y,y,y,y,y,y,y,y,y,y,y,s
-time = 0
-
-[Command]
-name = "AI15"
-command = z,z,z,z,z,z,z,z,z,z,z,z,z,z,z,z,z,z,s
-time = 0
-
-[Command]
-name = "AI16"
-command = s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,a,s
-time = 0
-
-[Command]
-name = "AI17"
-command = a,B,c,x,y,z,s,B,D,F,U,a,b,c,x,y,z,s,s
-time = 0
-
-[Command]
-name = "AI18"
-command = a,a,a,a,a,a,a,a,a,a,a,a,a,a,a,a,a,s,s
-time = 0
-
-[Command]
-name = "AI19"
-command = b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,s,s
-time = 0
-
-[Command]
-name = "AI20"
-command = c,c,c,c,c,c,c,c,c,c,c,c,c,c,c,c,c,s,s
-time = 0
-
-[Command]
-name = "AI21"
-command = x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,s,s
-time = 0
-
-[Command]
-name = "AI22"
-command = y,y,y,y,y,y,y,y,y,y,y,y,y,y,y,y,y,s,s
-time = 0
-
-[Command]
-name = "AI23"
-command = z,z,z,z,z,z,z,z,z,z,z,z,z,z,z,z,z,s,s
-time = 0
-
-[Command]
-name = "AI24"
-command = s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,b,s,s
-time = 0
-
-[Command]
-name = "AI25"
-command = F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,s,s
-time = 0
-
-[Command]
-name = "AI26"
-command = D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,s,s
-time = 0
-
-[Command]
-name = "AI27"
-command = B,B,B,B,B,B,B,B,B,B,B,B,B,B,B,B,B,s,s
-time = 0
-
-[Command]
-name = "AI28"
-command = U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,s,s
-time = 0
-
-[Command]
-name = "AI29"
-command = a,a,a,a,a,a,a,a,a,a,a,a,a,a,a,a,s,s,s
-time = 0
-
-[Command]
-name = "AI30"
-command = c,c,c,c,c,c,c,c,c,c,c,c,c,c,c,c,s,s,s
-time = 0
-
-[Command]
-name = "AI31"
-command = x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,s,s,s
-time = 0
-
-[Command]
-name = "AI32"
-command = y,y,y,y,y,y,y,y,y,y,y,y,y,y,y,y,s,s,s
-time = 0
-
-[Command]
-name = "AI33"
-command = z,z,z,z,z,z,z,z,z,z,z,z,z,z,z,z,s,s,s
-time = 0
-
-[Command]
-name = "AI34"
-command = s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,c,s,s,s
-time = 0
-
-[Command]
-name = "AI35"
-command = z,z,z,z,z,z,z,z,z,z,z,z,z,z,z,z,s,s,s
-time = 0
-
-[Command]
-name = "AI36"
-command = z,z,z,z,z,z,a,a,a,z,z,z,z,z,z,z,s,s,s
-time = 0
-
-[Command]
-name = "AI37"
-command = z,a,a,a,a,a,a,a,a,a,a,a,a,a,a,a,z,z,z,s
-time = 0
-
-[Command]
-name = "AI38"
-command = z,z,z,z,z,a,a,a,z,z,z,z,z,a,a,a,z,z,z,s
-time = 0
-
-[Command]
-name = "AI39"
-command = z,z,z,z,z,a,a,a,z,z,z,z,z,z,a,a,z,z,z,s
-time = 0
-
-[Command]
-name = "AI40"
-command = z,z,z,z,a,a,a,z,z,z,z,a,z,z,a,a,z,z,z,s
-time = 0
-
-[Command]
-name = "AI41"
-command = z,z,z,a,z,z,z,z,z,z,z,z,z,a,a,z,z,z,z,s
-time = 0
-
-[Command]
-name = "AI42"
-command = z,z,z,z,z,z,z,z,z,z,z,z,z,z,z,z,z,z,s,s
-time = 0
-
-[Command]
-name = "AI43"
-command = z,z,z,z,z,z,z,z,z,z,z,z,z,z,z,z,a,a,z,s
-time = 0
-
-[Command]
-name = "AI44"
-command = z,z,a,a,a,a,z,z,z,z,z,z,z,z,z,a,a,a,z,s
-time = 0
-
-[Command]
-name = "AI45"
-command = z,z,z,z,z,z,a,a,z,z,z,z,z,a,a,a,a,z,z,s
-time = 0
-
-[Command]
-name = "AI46"
-command = z,z,z,z,z,z,z,z,a,a,a,a,a,a,z,z,z,z,z,s
-time = 0
-
-[Command]
-name = "AI47"
-command = z,z,z,a,a,a,a,z,z,z,z,z,z,z,z,z,z,z,z,s
-time = 0
-
-[Command]
-name = "AI48"
-command = z,z,z,z,z,a,a,a,z,z,z,a,a,a,z,z,a,z,a,s
-time = 0
-
-[Command]
-name = "AI49"
-command = z,z,z,z,a,a,a,z,z,z,z,z,a,a,a,z,z,z,z,s
-time = 0
-
-[Command]
-name = "AI50"
-command = z,z,z,a,a,z,z,z,z,z,z,z,z,z,a,a,z,z,z,s
-time = 0
-
-[Command]
-name = "AI51"
-command = b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,x,s
-time = 0
-
-[Command]
-name = "AI52"
-command = c,c,c,c,c,c,c,c,c,c,c,c,c,c,c,c,c,c,c,x,s
-time = 0
-
-[Command]
-name = "AI53"
-command = x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,x,s
-time = 0
-
-[Command]
-name = "AI54"
-command = y,y,y,y,y,y,y,y,y,y,y,y,y,y,y,y,y,y,y,x,s
-time = 0
-
-[Command]
-name = "AI55"
-command = z,z,z,z,z,z,z,z,z,z,z,z,z,z,z,z,z,z,z,x,s
-time = 0
-
-[Command]
-name = "AI56"
-command = s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,x,s
-time = 0
-
-[Command]
-name = "AI57"
-command = F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,F,x,s
-time = 0
-
-[Command]
-name = "AI58"
-command = D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,D,x,s
-time = 0
-
-[Command]
-name = "AI59"
-command = B,B,B,B,B,B,B,B,B,B,B,B,B,B,B,B,B,B,B,x,s
-time = 0
-
-[Command]
-name = "AI60"
-command = U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,U,x,s
-
-;------------------------------------------------------------------------------
 ;-| 超必殺技 |-----------------------------------------------------------------
 
 ;※名前が同じならば、違うコマンドでも同じステートの技を出す事が可能。
@@ -840,30 +534,6 @@ time=1
 ;==============================================================================
 ; AI用
 ;==============================================================================
-[State -3, AIon]
-type = VarSet
-TriggerAll = !Ishelper
-TriggerAll = !var(59)
-TriggerAll = RoundState = [1,2]
-Trigger1 = Command ="AI00"||Command ="AI01"||Command ="AI02"||Command ="AI03"||Command ="AI04"
-Trigger2 = Command ="AI05"||Command ="AI06"||Command ="AI07"||Command ="AI08"||Command ="AI09"
-Trigger3 = Command ="AI10"||Command ="AI11"||Command ="AI12"||Command ="AI13"||Command ="AI14"
-Trigger4 = Command ="AI15"||Command ="AI16"||Command ="AI17"||Command ="AI18"||Command ="AI19"
-Trigger5 = Command ="AI20"||Command ="AI21"||Command ="AI22"||Command ="AI23"||Command ="AI24"
-Trigger6 = Command ="AI25"||Command ="AI26"||Command ="AI27"||Command ="AI28"||Command ="AI29"
-Trigger7 = Command ="AI30"||Command ="AI31"||Command ="AI32"||Command ="AI33"||Command ="AI34"
-Trigger8 = Command ="AI35"||Command ="AI36"||Command ="AI37"||Command ="AI38"||Command ="AI39" 
-Trigger9 = Command ="AI40"||Command ="AI41"||Command ="AI42"||Command ="AI43"||Command ="AI44"
-Trigger10= Command ="AI45"||Command ="AI46"||Command ="AI47"||Command ="AI48"||Command ="AI49"
-Trigger11= Command ="AI50"||Command ="AI51"||Command ="AI52"||Command ="AI53"||Command ="AI54"
-Trigger12= Command ="AI55"||Command ="AI56"||Command ="AI57"||Command ="AI58"||Command ="AI59"
-Trigger13= Command ="AI60"
-Trigger14= Numhelper(50000)
-trigger14= Helper(50000),var(59) = 1
-Trigger15= 0;1で常時起動
-;Trigger16= Command ="c";デバッグ用
-var(59) = 5;10
-
 [State -1, 飛び道具感知]
 type = varset
 trigger1 = var(32)
@@ -871,7 +541,7 @@ var(55) = 0
 
 [State -1, 飛び道具感知]
 type = varset
-triggerall = var(59)
+triggerall = AILevel
 TriggerAll = RoundState = 2
 TriggerAll = numhelper(51000)
 TriggerAll = !Ishelper
@@ -1000,7 +670,7 @@ var(55) = 1
 
 [State ];ガード・歩き制御
 type = AssertSpecial
-trigger1 = var(59)
+trigger1 = AILevel
 flag = nostandguard
 flag2 = nocrouchguard
 flag3 = nowalk
@@ -1032,7 +702,7 @@ IgnoreHitPause = 1
 ;暗転返しGHA
 [State -1, 3300]
 type = ChangeState
-triggerall = var(59) && RoundState = 2
+triggerall = AILevel && RoundState = 2
 triggerall = power >= 3000
 triggerall = helper(50000),var(15) >= 42
 triggerall = P2MoveType = A
@@ -1063,7 +733,7 @@ value = 3300
 ;暗転返しHHA
 [State -1, 3100]
 type = ChangeState
-triggerall = var(59) && RoundState = 2
+triggerall = AILevel && RoundState = 2
 triggerall = power >= 1000
 triggerall = helper(50000),var(15) >= 42
 triggerall = P2MoveType = A
@@ -1113,7 +783,7 @@ value = 3000
 ;対空GHA
 [State -1, 3300]
 type = ChangeState
-triggerall = var(59) && RoundState = 2
+triggerall = AILevel && RoundState = 2
 triggerall = power >= 2000
 triggerall = P2MoveType = A
 triggerall = statetype != A
@@ -1129,7 +799,7 @@ value = 3300
 [State -1, 対空親子]
 type = ChangeState
 value = 3400
-triggerall = var(59) && RoundState = 2
+triggerall = AILevel && RoundState = 2
 triggerall = !var(49)
 triggerall = roundstate = 2
 triggerall = statetype != A
@@ -1165,7 +835,7 @@ ignorehitpause = 1
 
 [State -1, 飛び道具を回り込み]
 type = ChangeState
-triggerall = var(59)
+triggerall = AILevel
 TriggerAll = RoundState = 2
 triggerall = StateType != A
 TriggerAll = !Ishelper
@@ -1181,7 +851,7 @@ value = 799
 
 [State -1, 通常回り込み]
 type = ChangeState
-triggerall = var(59)
+triggerall = AILevel
 TriggerAll = RoundState = 2
 triggerall = StateType != A
 TriggerAll = !Ishelper
@@ -1209,7 +879,7 @@ value = 799
 [State -1, Walk]
 type = ChangeState
 value = 21
-triggerall = Var(59) && roundstate = 2
+triggerall = AILevel && roundstate = 2
 triggerall = !var(37)
 triggerall = !numtarget || p2statetype = L
 triggerall = StateType != A
@@ -1229,7 +899,7 @@ trigger1 = random < 50
 [State -1, Run]
 type = ChangeState
 value = 100
-triggerall = Var(59) && roundstate = 2
+triggerall = AILevel && roundstate = 2
 triggerall = !var(37)
 triggerall = !numtarget || p2statetype = L
 triggerall = StateType != A
@@ -1252,7 +922,7 @@ trigger4 = random < 10
 [State -1, Run]
 type = ChangeState
 value = 105
-triggerall = Var(59)
+triggerall = AILevel
 triggerall = !var(37)
 triggerall = !numtarget
 triggerall = StateType != A
@@ -1272,7 +942,7 @@ trigger2 = random < 50
 [State -1, Taunt]
 type = ChangeState
 value = 830
-TriggerAll = var(59)
+triggerall = AILevel
 triggerall = roundstate = 2
 ;triggerall = var(40) = 9999
 triggerall = var(49) = 10000
@@ -1293,7 +963,7 @@ ignorehitpause = 0
 [State -1, Taunt]
 type = ChangeState
 value = 16000
-TriggerAll = var(59)
+triggerall = AILevel
 triggerall = roundstate = 2
 ;triggerall = var(40) = 9999
 triggerall = numhelper(1001) = 0 
@@ -1318,7 +988,7 @@ ignorehitpause = 0
 ;Soff屈弱
 [State -1, 400]
 type = ChangeState
-TriggerAll = var(59)
+triggerall = AILevel
 triggerall = roundstate = 2
 triggerall = statetype != A
 triggerall = !var(49)
@@ -1346,7 +1016,7 @@ value = 400
 
 [state ,soffジャンプ(近距離)]
 Type = changestate
-triggerall = var(59)
+triggerall = AILevel
 triggerall = roundstate = 2
 triggerall = statetype != A
 triggerall = !var(49)
@@ -1363,7 +1033,7 @@ value = 40
 
 [State -1, Soffジャンプ強]
 type = ChangeState
-triggerall = var(59)
+triggerall = AILevel
 triggerall = !var(49)
 triggerall = !var(37)
 triggerall = roundstate = 2
@@ -1408,7 +1078,7 @@ value = 620
 ;Son ためらうな、とにかく殴れ
 [State -1, 11400]
 type = ChangeState
-TriggerAll = var(59)
+triggerall = AILevel
 triggerall = roundstate = 2
 triggerall = statetype != A
 triggerall = var(49)
@@ -1447,7 +1117,7 @@ value = 11400
 ;Son GHA
 [State -1, 10210]
 type = ChangeState
-TriggerAll = var(59)
+triggerall = AILevel
 triggerall = roundstate = 2
 triggerall = statetype != A
 triggerall = var(49)
@@ -1472,7 +1142,7 @@ value = 3300
 ;Son HHA
 [State -1, 10210]
 type = ChangeState
-TriggerAll = var(59)
+triggerall = AILevel
 triggerall = roundstate = 2
 triggerall = statetype != A
 triggerall = var(49)
@@ -1501,20 +1171,20 @@ value = 13000
 [state -1, Guard]
 type = ChangeState
 value = 120
-triggerall = var(59)
+triggerall = AILevel
 triggerall = roundstate = 2
 triggerall = !var(9)
-triggerall = !var(36) || var(59) = 7
+triggerall = !var(36) || AILevel
 triggerall = ctrl || stateno = 1 || stateno = 21 || (stateno = [120,131]) || (stateno = 10900 || stateno = 900) || (stateno = 100 && time > 7) || (stateno = 105 && time > 8)
 ;trigger1 = numhelper(50000)
 Trigger1 = inguarddist || ((helper(50000),inguarddist = 1) || p2bodydist x >= 100&&(p2movetype=A))|| (enemynear,numproj > 0)
-Trigger1 = 1;random < 100 || var(59)>5
+Trigger1 = 1;random < 100 || AILevel
 
 ;---------------------------------------------------------------------------
 ;アドバンシング（立ち）
 [State -1, Run Back]
 type = ChangeState
-TriggerAll = var(59)
+triggerall = AILevel
 triggerall = roundstate = 2
 triggerall = !var(49)
 triggerall = var(32)
@@ -1534,7 +1204,7 @@ value = 4100
 ;アドバンシング（しゃがみ）
 [State -1, Run Back]
 type = ChangeState
-TriggerAll = var(59)
+triggerall = AILevel
 triggerall = roundstate = 2
 triggerall = !var(49)
 triggerall = var(32)
@@ -1557,7 +1227,7 @@ value = 4105
 [State -1, 投げ]
 type = ChangeState
 value = 10800
-triggerall = var(59)
+triggerall = AILevel
 triggerall = roundstate = 2
 triggerall = var(49)
 triggerall = !var(37)
@@ -1575,7 +1245,7 @@ trigger1 = p2movetype != H
 ;Son立弱
 [State -1, 10200]
 type = ChangeState
-TriggerAll = var(59)
+triggerall = AILevel
 triggerall = roundstate = 2
 triggerall = statetype != A
 triggerall = var(49)
@@ -1601,7 +1271,7 @@ value = 10200
 ;Son中
 [State -1, 10210]
 type = ChangeState
-TriggerAll = var(59)
+triggerall = AILevel
 triggerall = roundstate = 2
 triggerall = statetype != A
 triggerall = var(49)
@@ -1622,7 +1292,7 @@ value = 10210
 ;Son強
 [State -1, 10220]
 type = ChangeState
-TriggerAll = var(59)
+triggerall = AILevel
 triggerall = roundstate = 2
 triggerall = statetype != A
 triggerall = var(49)
@@ -1649,7 +1319,7 @@ value = 10220
 ;Son屈弱
 [State -1, 10400]
 type = ChangeState
-TriggerAll = var(59)
+triggerall = AILevel
 triggerall = roundstate = 2
 triggerall = statetype != A
 triggerall = var(49)
@@ -1678,7 +1348,7 @@ value = 10400
 ;Son屈中
 [State -1, 10400]
 type = ChangeState
-TriggerAll = var(59)
+triggerall = AILevel
 triggerall = roundstate = 2
 triggerall = statetype != A
 triggerall = var(49)
@@ -1698,7 +1368,7 @@ value = 10410
 ;Son屈強
 [State -1, 10420]
 type = ChangeState
-TriggerAll = var(59)
+triggerall = AILevel
 triggerall = roundstate = 2
 triggerall = statetype != A
 triggerall = var(49)
@@ -1717,7 +1387,7 @@ value = 10420
 
 [State -1, Sonジャンプ弱]
 type = ChangeState
-triggerall = var(59)
+triggerall = AILevel
 triggerall = var(49)
 triggerall = !var(37)
 triggerall = roundstate = 2
@@ -1761,7 +1431,7 @@ value = 10610
 
 [State -1, Sonジャンプ中]
 type = ChangeState
-triggerall = var(59)
+triggerall = AILevel
 triggerall = var(49)
 triggerall = !var(37)
 triggerall = roundstate = 2
@@ -1804,7 +1474,7 @@ value = 10610
 
 [State -1, Sonジャンプ強]
 type = ChangeState
-triggerall = var(59)
+triggerall = AILevel
 triggerall = var(49)
 triggerall = !var(37)
 triggerall = roundstate = 2
@@ -1848,7 +1518,7 @@ value = 10620
 ;Son 地上オラオラ
 [State -1, 10210]
 type = ChangeState
-TriggerAll = var(59)
+triggerall = AILevel
 triggerall = roundstate = 2
 triggerall = statetype != A
 triggerall = var(49)
@@ -1872,7 +1542,7 @@ value = 11000
 
 [State -1, つまり敵でいいんだな]
 type = ChangeState
-triggerall = var(59)
+triggerall = AILevel
 triggerall = var(49)
 triggerall = !var(37)
 triggerall = roundstate = 2
@@ -1893,7 +1563,7 @@ value = 11500
 ;ヒモの防御
 [State -1, 210]
 type = ChangeState
-TriggerAll = var(59)
+triggerall = AILevel
 triggerall = roundstate = 2
 triggerall = statetype != A
 triggerall = !var(49)
@@ -1933,7 +1603,7 @@ value = 1200
 ;Soff中
 [State -1, 210]
 type = ChangeState
-TriggerAll = var(59)
+triggerall = AILevel
 triggerall = roundstate = 2
 triggerall = statetype != A
 triggerall = !var(49)
@@ -1961,7 +1631,7 @@ value = 210
 ;Soff立弱
 [State -1, 200]
 type = ChangeState
-TriggerAll = var(59)
+triggerall = AILevel
 triggerall = roundstate = 2
 triggerall = statetype != A
 triggerall = !var(49)
@@ -1982,7 +1652,7 @@ value = 200
 ;Soff屈中
 [State -1, 410]
 type = ChangeState
-TriggerAll = var(59)
+triggerall = AILevel
 triggerall = roundstate = 2
 triggerall = statetype != A
 triggerall = !var(49)
@@ -2009,7 +1679,7 @@ value = 410
 
 [State -1, コンボルート分岐]
 Type = VarSet
-triggerall = var(59)
+triggerall = AILevel
 triggerall = RoundState = 2
 triggerall = var(37) = 0
 triggerall = var(36) = 0
@@ -2026,7 +1696,7 @@ IgnoreHitPause = 1
 
 [State -1, コンボルート分岐]
 Type = VarSet
-triggerall = var(59)
+triggerall = AILevel
 triggerall = RoundState = 2
 triggerall = var(37) = 1
 triggerall = var(36) = 0
@@ -2043,7 +1713,7 @@ IgnoreHitPause = 1
 
 [state ,soffジャンプ(遠距離からの飛び込み)]
 Type = null;changestate
-triggerall = var(59)
+triggerall = AILevel
 triggerall = roundstate = 2
 triggerall = statetype != A
 triggerall = !var(49)
@@ -2062,7 +1732,7 @@ value = 40
 
 [state ,バックダッシュ]
 Type = null;changestate
-triggerall = var(59)
+triggerall = AILevel
 triggerall = roundstate = 2
 triggerall = statetype != A
 triggerall = !var(49)
@@ -2081,7 +1751,7 @@ value = 105
 ;糸ダッシュ((遠距離からの飛び込み))
 [State -1, 2000]
 type = ChangeState
-TriggerAll = var(59)
+triggerall = AILevel
 triggerall = roundstate = 2
 ;triggerall = !var(49)
 triggerall = var(37) = 0
@@ -2117,7 +1787,7 @@ value = 2000
 [State -1, 投げ]
 type = ChangeState
 value = 800
-triggerall = var(59)
+triggerall = AILevel
 triggerall = roundstate = 2
 triggerall = !var(49)
 triggerall = !var(37)
@@ -2136,7 +1806,7 @@ trigger1 = p2movetype != H
 [State -1, 糸の結界 弱]
 type = ChangeState
 value = 1100
-triggerall = var(59)
+triggerall = AILevel
 triggerall = !var(49)
 triggerall = !var(37)
 triggerall = statetype != A
@@ -2162,7 +1832,7 @@ trigger4 = random < 100
 [State -1, 糸の結界 中]
 type = null;ChangeState
 value = 1110
-triggerall = var(59)
+triggerall = AILevel
 triggerall = !var(49)
 triggerall = !var(37)
 triggerall = statetype != A
@@ -2179,7 +1849,7 @@ trigger1 = p2bodydist x = [120,250]
 [State -1, 糸の結界 遠]
 type = ChangeState
 value = 1120
-triggerall = var(59)
+triggerall = AILevel
 triggerall = !var(49)
 triggerall = !var(37)
 triggerall = statetype != A
@@ -2197,7 +1867,7 @@ trigger2 = random < 150
 [State -1, 角度]
 type = ChangeState
 value = 1300
-triggerall = var(59)
+triggerall = AILevel
 triggerall = !var(49)
 triggerall = var(37) = 0
 triggerall = !var(55)
@@ -2218,7 +1888,7 @@ ignorehitpause = 1
 [State -1, ヒモの防御に]
 type = ChangeState
 value = 1200
-triggerall = var(59)
+triggerall = AILevel
 triggerall = !var(37)
 triggerall = roundstate = 2
 triggerall = !var(49)
@@ -2236,7 +1906,7 @@ trigger1 = random < 100
 ;==============================================================================
 [State -1, Soffジャンプ弱]
 type = ChangeState
-triggerall = var(59)
+triggerall = AILevel
 triggerall = !var(49)
 triggerall = !var(37)
 triggerall = roundstate = 2
@@ -2276,7 +1946,7 @@ value = 600
 ;糸ダッシュ
 [State -1, 1000]
 type = ChangeState
-TriggerAll = var(59)
+triggerall = AILevel
 triggerall = roundstate = 2
 ;triggerall = !var(49)
 triggerall = var(37) = 0
@@ -2299,7 +1969,7 @@ value = 2000
 ;後方糸ダッシュ
 [State -1, 1000]
 type = ChangeState
-TriggerAll = var(59)
+triggerall = AILevel
 triggerall = roundstate = 2
 ;triggerall = !var(49)
 triggerall = var(37) = 0
@@ -2326,7 +1996,7 @@ value = 2010
 ;空中通常攻撃ヒット確認から空ダコン
 [State -1, 1000]
 type = ChangeState
-TriggerAll = var(59)
+triggerall = AILevel
 triggerall = roundstate = 2
 ;triggerall = !var(49)
 triggerall = var(37) = 0
@@ -2347,7 +2017,7 @@ value = 2000
 
 [State -1, Soffジャンプ強]
 type = ChangeState
-triggerall = var(59)
+triggerall = AILevel
 triggerall = !var(49)
 triggerall = var(37) = 1
 triggerall = var(36) = 1
@@ -2377,7 +2047,7 @@ value = 620
 
 [State -1, コンボルート分岐]
 Type = VarSet
-triggerall = var(59)
+triggerall = AILevel
 triggerall = RoundState = 2
 triggerall = var(37) = 1
 triggerall = var(36) = 1
@@ -2389,7 +2059,7 @@ IgnoreHitPause = 1
 ;Soff屈弱
 [State -1, 400]
 type = ChangeState
-triggerall = var(59)
+triggerall = AILevel
 triggerall = !var(49)
 triggerall = var(37) = 1
 triggerall = var(36) = 2
@@ -2408,7 +2078,7 @@ value = 400
 ;Soff立弱
 [State -1, 200]
 type = ChangeState
-triggerall = var(59)
+triggerall = AILevel
 triggerall = !var(49)
 triggerall = var(37) = 1
 triggerall = var(36) = 2
@@ -2427,7 +2097,7 @@ value = 200
 ;Soff立中
 [State -1, 210]
 type = ChangeState
-triggerall = var(59)
+triggerall = AILevel
 triggerall = !var(49)
 triggerall = var(37) = 1
 triggerall = var(36) = 2
@@ -2451,7 +2121,7 @@ value = 210
 ;Soff立強
 [State -1, 220]
 type = ChangeState
-triggerall = var(59)
+triggerall = AILevel
 triggerall = !var(49)
 triggerall = var(37) = 1
 triggerall = var(36) = 2
@@ -2475,7 +2145,7 @@ value = 220
 
 [State -1, コンボルート分岐 クイックSonコンへ]
 Type = VarSet
-triggerall = var(59)
+triggerall = AILevel
 triggerall = RoundState = 2
 triggerall = var(37) = 1
 triggerall = var(36) = 2
@@ -2494,7 +2164,7 @@ IgnoreHitPause = 1
 
 [State -1, コンボルート分岐 クイックSonコンへ]
 Type = VarSet
-triggerall = var(59)
+triggerall = AILevel
 triggerall = RoundState = 2
 triggerall = var(37) = 3
 triggerall = var(36) = 2
@@ -2513,7 +2183,7 @@ IgnoreHitPause = 1
 ;Soff前立強
 [State -1, 230]
 type = ChangeState
-triggerall = var(59)
+triggerall = AILevel
 triggerall = !var(49)
 triggerall = var(37) = 1
 triggerall = var(36) = 2
@@ -2532,7 +2202,7 @@ value = 230
 
 [State -1, コンボルート分岐 引き起こしコンへ]
 Type = VarSet
-triggerall = var(59)
+triggerall = AILevel
 triggerall = RoundState = 2
 triggerall = var(37) = 1
 triggerall = var(36) = 2
@@ -2545,7 +2215,7 @@ IgnoreHitPause = 1
 
 [State -1, コンボルート分岐 引き起こしコンへ]
 Type = VarSet
-triggerall = var(59)
+triggerall = AILevel
 triggerall = RoundState = 2
 triggerall = var(37) = 2
 triggerall = var(36) = 2
@@ -2559,7 +2229,7 @@ IgnoreHitPause = 1
 [State -1, Soff親子]
 type = ChangeState
 value = 3400
-triggerall = var(59)
+triggerall = AILevel
 triggerall = !var(49)
 triggerall = var(37) = 1
 triggerall = var(36) = 2
@@ -2580,7 +2250,7 @@ ignorehitpause = 1
 [State -1, GHA]
 type = ChangeState
 value = 3300
-triggerall = var(59)
+triggerall = AILevel
 triggerall = !var(49)
 triggerall = var(37) = 1
 triggerall = var(36) = 2
@@ -2600,7 +2270,7 @@ ignorehitpause = 1
 [State -1, そのまま眠りなァ！]
 type = ChangeState
 value = 1000
-triggerall = var(59)
+triggerall = AILevel
 triggerall = !var(49)
 triggerall = var(37) = 1
 triggerall = var(36) = 2
@@ -2620,7 +2290,7 @@ ignorehitpause = 1
 [State -1, Soff千球だ]
 type = ChangeState
 value = 3000
-triggerall = var(59)
+triggerall = AILevel
 triggerall = !var(49)
 triggerall = var(37) = 1
 triggerall = var(36) = 2
@@ -2638,7 +2308,7 @@ ignorehitpause = 1
 [State -1, 角度]
 type = ChangeState
 value = 1300
-triggerall = var(59)
+triggerall = AILevel
 triggerall = !var(49)
 triggerall = var(37) = 1
 triggerall = var(36) = 2
@@ -2664,7 +2334,7 @@ ignorehitpause = 1
 [State -1, 糸の結界 弱]
 type = ChangeState
 value = 1100
-triggerall = var(59)
+triggerall = AILevel
 triggerall = !var(49)
 triggerall = var(37) = 2
 triggerall = var(36) = 1
@@ -2681,7 +2351,7 @@ trigger1 = (stateno = 230) && time >= 39
 [State -1, 挑発]
 type = ChangeState
 value = 195
-triggerall = var(59)
+triggerall = AILevel
 triggerall = !var(49)
 triggerall = var(37) = 2
 triggerall = var(36) = 1
@@ -2692,7 +2362,7 @@ trigger1 = ctrl
 
 [State -1, コンボルート分岐]
 Type = VarSet
-triggerall = var(59)
+triggerall = AILevel
 triggerall = RoundState = 2
 triggerall = var(37) = 2
 triggerall = var(36) = 1
@@ -2703,7 +2373,7 @@ IgnoreHitPause = 1
 ;糸ゲージに余裕あれば、引き起こしからジャンプコンへ移行する
 [state ,soffジャンプ(近距離)]
 Type = changestate
-triggerall = var(59)
+triggerall = AILevel
 triggerall = roundstate = 2
 triggerall = statetype != A
 triggerall = !var(49)
@@ -2718,7 +2388,7 @@ value = 40
 
 [State -1, コンボルート分岐]
 Type = VarSet
-triggerall = var(59)
+triggerall = AILevel
 triggerall = RoundState = 2
 triggerall = var(37) = 2
 triggerall = var(36) = 2
@@ -2729,7 +2399,7 @@ IgnoreHitPause = 1
 
 [State -1, コンボルート分岐]
 Type = VarSet
-triggerall = var(59)
+triggerall = AILevel
 triggerall = RoundState = 2
 triggerall = var(37) = 0
 triggerall = var(36) = 2
@@ -2743,7 +2413,7 @@ IgnoreHitPause = 1
 ;Soff立弱
 [State -1, 200]
 type = ChangeState
-triggerall = var(59)
+triggerall = AILevel
 triggerall = !var(49)
 triggerall = var(37) = 2
 triggerall = var(36) = 2
@@ -2763,7 +2433,7 @@ value = 200
 ;Soff立中
 [State -1, 210]
 type = ChangeState
-triggerall = var(59)
+triggerall = AILevel
 triggerall = !var(49)
 triggerall = var(37) = 2
 triggerall = var(36) = 2
@@ -2786,7 +2456,7 @@ value = 210
 
 [State -1, コンボルート分岐 Soff基礎コンに戻る]
 Type = VarSet
-triggerall = var(59)
+triggerall = AILevel
 triggerall = RoundState = 2
 triggerall = var(37) = 2
 triggerall = var(36) = 2
@@ -2801,7 +2471,7 @@ IgnoreHitPause = 1
 [State -1, クイックスタンドon]
 type = ChangeState
 value = 10901
-TriggerAll = var(59)
+triggerall = AILevel
 triggerall = RoundState = 2
 triggerall = P2stateno != 5120
 triggerall = P2stateno != 5201
@@ -2819,7 +2489,7 @@ trigger1 = (stateno = 220)
 [State -1, ダッシュで距離詰め]
 type = null;ChangeState
 value = 100
-TriggerAll = var(59)
+triggerall = AILevel
 triggerall = RoundState = 2
 triggerall = P2stateno != 5120
 triggerall = P2stateno != 5201
@@ -2836,7 +2506,7 @@ trigger1 = ctrl
 [State -1, Son屈弱]
 type = ChangeState
 value = 10400
-TriggerAll = var(59)
+triggerall = AILevel
 triggerall = RoundState = 2
 triggerall = var(49)
 triggerall = statetype != A
@@ -2849,7 +2519,7 @@ trigger1 = p2bodydist x = [-30,20]
 [State -1, Son立中]
 type = ChangeState
 value = 10210
-TriggerAll = var(59)
+triggerall = AILevel
 triggerall = RoundState = 2
 triggerall = P2stateno != 5120
 triggerall = P2stateno != 5201
@@ -2866,7 +2536,7 @@ trigger2 = p2bodydist x = [20,70]
 [State -1, Son立強]
 type = ChangeState
 value = 10220
-TriggerAll = var(59)
+triggerall = AILevel
 triggerall = RoundState = 2
 triggerall = P2stateno != 5120
 triggerall = P2stateno != 5201
@@ -2883,7 +2553,7 @@ trigger1 = p2bodydist x = [-20,90]
 
 [State -1, つまり敵でいいんだな]
 type = ChangeState
-TriggerAll = var(59)
+triggerall = AILevel
 triggerall = RoundState = 2
 triggerall = P2stateno != 5120
 triggerall = P2stateno != 5201
@@ -2902,7 +2572,7 @@ value = 11000
 
 [State -1, コンボルート進行]
 Type = VarSet
-triggerall = var(59)
+triggerall = AILevel
 triggerall = RoundState = 2
 triggerall = var(37) = 3
 triggerall = var(36) = 1
@@ -2913,7 +2583,7 @@ IgnoreHitPause = 1
 
 [State -1, 擬似スタンドラッシュ]
 type = ChangeState
-TriggerAll = var(59)
+triggerall = AILevel
 triggerall = roundstate = 2
 triggerall = P2stateno != 5120
 triggerall = P2stateno != 5201
@@ -2931,7 +2601,7 @@ ignorehitpause = 1
 [State -1, ダッシュで距離詰め]
 type = ChangeState
 value = 100
-TriggerAll = var(59)
+triggerall = AILevel
 triggerall = RoundState = 2
 triggerall = P2stateno != 5120
 triggerall = P2stateno != 5201
@@ -2948,7 +2618,7 @@ trigger1 = ctrl
 [State -1, Son立弱]
 type = ChangeState
 value = 200
-TriggerAll = var(59)
+triggerall = AILevel
 triggerall = RoundState = 2
 triggerall = P2stateno != 5120
 triggerall = P2stateno != 5201
@@ -2963,7 +2633,7 @@ trigger1 = p2bodydist x = [-20,30]
 
 [State -1, コンボルート進行]
 Type = VarSet
-triggerall = var(59)
+triggerall = AILevel
 triggerall = RoundState = 2
 triggerall = var(37) = 3
 triggerall = var(36) = 2
@@ -2975,7 +2645,7 @@ IgnoreHitPause = 1
 [State -1, ジャンプ]
 type = ChangeState
 value = 40
-TriggerAll = var(59)
+triggerall = AILevel
 triggerall = RoundState = 2
 triggerall = P2stateno != 5120
 triggerall = P2stateno != 5201
@@ -2991,7 +2661,7 @@ trigger1 = ctrl
 
 [State -1, コンボルート進行]
 Type = VarSet
-triggerall = var(59)
+triggerall = AILevel
 triggerall = RoundState = 2
 triggerall = var(37) = 3
 triggerall = var(36) = 3
@@ -3003,7 +2673,7 @@ IgnoreHitPause = 1
 [State -1, ジャンプ中]
 type = ChangeState
 value = 610
-TriggerAll = var(59)
+triggerall = AILevel
 triggerall = roundstate = 2
 triggerall = P2stateno != 5120
 triggerall = P2stateno != 5201
@@ -3020,7 +2690,7 @@ trigger1 = pos Y = [-75,-60]
 ;糸ゲージあれば空ダコンへ移行
 [State -1, 1000]
 type = ChangeState
-TriggerAll = var(59)
+triggerall = AILevel
 triggerall = roundstate = 2
 ;triggerall = !var(49)
 triggerall = var(37) = 3
@@ -3040,7 +2710,7 @@ value = 2000
 
 [State -1, Soff立弱]
 type = ChangeState
-triggerall = var(59)
+triggerall = AILevel
 triggerall = !var(49)
 triggerall = var(37) = 3
 triggerall = var(36) = 4
@@ -3059,7 +2729,7 @@ value = 200
 
 [State -1, コンボルート分岐 基礎コンへ戻る]
 Type = VarSet
-triggerall = var(59)
+triggerall = AILevel
 triggerall = RoundState = 2
 triggerall = var(37) = 3
 triggerall = var(36) = 4
@@ -3070,7 +2740,7 @@ IgnoreHitPause = 1
 
 [State -1, コンボルート分岐 基礎コンへ戻る]
 Type = VarSet
-triggerall = var(59)
+triggerall = AILevel
 triggerall = RoundState = 2
 triggerall = var(37) = 1
 triggerall = var(36) = 4
@@ -3085,7 +2755,7 @@ IgnoreHitPause = 1
 
 [State -1, コンボルート分岐]
 Type = VarSet
-triggerall = var(59)
+triggerall = AILevel
 triggerall = RoundState = 2
 triggerall = var(37) = 0
 triggerall = var(36) = 0
@@ -3097,7 +2767,7 @@ IgnoreHitPause = 1
 ;Son立中
 [State -1, 400]
 type = ChangeState
-triggerall = var(59)
+triggerall = AILevel
 triggerall = var(49)
 triggerall = var(37) = 0
 triggerall = var(36) = 100
@@ -3115,7 +2785,7 @@ value = 10210
 ;Son立強
 [State -1, 400]
 type = ChangeState
-triggerall = var(59)
+triggerall = AILevel
 triggerall = var(49)
 triggerall = var(37) = 0
 triggerall = var(36) = 100
@@ -3134,7 +2804,7 @@ value = 10220
 ;GHA
 [State -1, 400]
 type = ChangeState
-triggerall = var(59)
+triggerall = AILevel
 triggerall = var(49)
 triggerall = var(37) = 0
 triggerall = var(36) = 100
@@ -3156,7 +2826,7 @@ value = 3300
 ;Sonオラオラ
 [State -1, 400]
 type = ChangeState
-triggerall = var(59)
+triggerall = AILevel
 triggerall = var(49)
 triggerall = var(37) = 0
 triggerall = var(36) = 100
@@ -3178,7 +2848,7 @@ value = 11000
 ;Sonオラオラ
 [State -1, 400]
 type = ChangeState
-triggerall = var(59)
+triggerall = AILevel
 triggerall = var(49)
 triggerall = var(37) = 0
 triggerall = var(36) = 100
@@ -3200,7 +2870,7 @@ value = 13000
 
 [State -1, コンボルート分岐]
 Type = VarSet
-triggerall = var(59)
+triggerall = AILevel
 triggerall = RoundState = 2
 triggerall = var(37) = 0
 triggerall = var(36) = 0
@@ -3212,7 +2882,7 @@ IgnoreHitPause = 1
 [State -1, ダッシュで距離詰め]
 type = ChangeState
 value = 100
-TriggerAll = var(59)
+triggerall = AILevel
 triggerall = RoundState = 2
 triggerall = var(49)
 triggerall = statetype != A
@@ -3226,7 +2896,7 @@ trigger1 = stateno != 100
 [State -1, 停止]
 type = ChangeState
 value = 47000
-TriggerAll = var(59)
+triggerall = AILevel
 triggerall = RoundState = 2
 triggerall = var(49)
 triggerall = statetype != A
@@ -3239,7 +2909,7 @@ trigger1 = stateno = 100
 [State -1, Son立中]
 type = ChangeState
 value = 10210
-TriggerAll = var(59)
+triggerall = AILevel
 triggerall = RoundState = 2
 triggerall = var(49)
 triggerall = statetype != A
@@ -3252,7 +2922,7 @@ trigger1 = p2bodydist y = [-60,0]
 
 [State -1, コンボルート分岐]
 Type = VarSet
-triggerall = var(59)
+triggerall = AILevel
 triggerall = RoundState = 2
 triggerall = var(37) = 0
 triggerall = var(36) = 110
@@ -3266,7 +2936,7 @@ IgnoreHitPause = 1
 
 [State -1, コンボルート分岐]
 Type = VarSet
-triggerall = var(59)
+triggerall = AILevel
 triggerall = RoundState = 2
 triggerall = var(37) = 0
 triggerall = var(36) = 0
@@ -3278,7 +2948,7 @@ IgnoreHitPause = 1
 ;ためらうな
 [State -1, 400]
 type = ChangeState
-triggerall = var(59)
+triggerall = AILevel
 triggerall = var(49)
 triggerall = var(37) = 0
 triggerall = var(36) = 120
@@ -3292,7 +2962,7 @@ value = 11400
 
 [State -1, コンボルート分岐]
 Type = VarSet
-triggerall = var(59)
+triggerall = AILevel
 triggerall = RoundState = 2
 triggerall = var(37) = 0
 triggerall = var(36) = 120
@@ -4381,7 +4051,7 @@ type = ChangeState
 value = 2000
 TriggerAll = !var(59)
 triggerall = roundstate = 2
-triggerall = var(59)<=0&& RoundState = 2
+triggerall = AILevel<=0&& RoundState = 2
 ;triggerall = !var(49)
 triggerall = var(29) < 3
 triggerall = stateno != 2006
@@ -4400,7 +4070,7 @@ type = ChangeState
 value = 2010
 TriggerAll = !var(59)
 triggerall = roundstate = 2
-triggerall = var(59)<=0&& RoundState = 2
+triggerall = AILevel<=0&& RoundState = 2
 ;triggerall = !var(49)
 triggerall = var(29) < 3
 triggerall = command = "BB"
