@@ -11460,7 +11460,8 @@ pausemovetime = 50
 
 [state 3000]
 type = ChangeState
-triggerall = var(59) = 1 && RoundState = 2 
+triggerall = AILevel
+triggerall = roundstate = 2
 trigger1 = AnimTime = 0
 value = 702
 
@@ -16668,8 +16669,8 @@ flag = NoWalk
 
 [State 100, 1]
 type = VelSet
-trigger1 = var(59) <= 0 ; AIフラグがOFF(人操作時)
-trigger2 = var(59) > 0 ; AIフラグがON(AI操作時)
+trigger1 = AILevel <= 0 ; AIフラグがOFF(人操作時)
+trigger2 = AILevel > 0 ; AIフラグがON(AI操作時)
 x = const(velocity.run.fwd.x)
 
 [State 1000, 7]
@@ -19232,7 +19233,7 @@ pausemovetime=99999
 ;---------------------------------------------------------------------------
 [State -2, AI時、コンボ変数解除] 
 type = varset
-triggerall = var(59)
+triggerall = AILevel
 trigger1 = !numtarget
 trigger2 = target,statetype = L
 v = 50
@@ -19257,7 +19258,7 @@ value = 0
 ;---------------------------------------------------------------------------
 [State -1, WAGON];ゲージレベル１
 type = helper
-triggerall = var(59)<=0;&& RoundState = 2
+triggerall = AILevel<=0;&& RoundState = 2
 triggerall = !numhelper(7000)
 triggerall = power >= 500
 triggerall = command = "22xy"
@@ -19374,9 +19375,9 @@ value = 1
 type = VarSet
 triggerall = var(13) <= 0
 triggerall = var(7) > 4000
-trigger1 = var(59) = 0
+trigger1 = !AILevel
 trigger1 = command = "holdback"
-trigger2 = var(59) = 1
+trigger2 = AILevel
 trigger2 = var(7) > 5000
 v = 13
 value = 1
@@ -19391,18 +19392,18 @@ value = -1
 [State -2]
 type = VarSet
 trigger1 = var(13) >= 25
-trigger1 = var(59) = 0
+trigger1 = !AILevel
 trigger1 = command != "holdback"
-trigger2 = var(59) = 0
+trigger2 = !AILevel
 trigger2 = command = "holdfwd"
 trigger2 = command != "holdback"
-trigger3 = var(59) = 0
+trigger3 = !AILevel
 trigger3 = stateno = 900 && time = 1
-trigger4 = var(59) = 0
+trigger4 = !AILevel
 trigger4 = var(13) < 0
-trigger5 = var(59) = 0
+trigger5 = !AILevel
 trigger5 = stateno = [5000,5100];movetype = H && (stateno != [120,155])
-trigger6 = var(59) = 1
+trigger6 = AILevel
 trigger6 = var(7) > 5000
 v = 13
 value = 0
@@ -19833,6 +19834,13 @@ Trigger1 = StateNo != 1900 ;前動作と異なる場合。
 Channel = 2
 Ignorehitpause = 1
 ;-----------------------------------
+[state -3, AIレベル]
+type = VarSet
+trigger1 = AILevel
+trigger1 = roundstate = 2
+v = 58
+Value = 8 ;1～12の値で変更
+;-----------------------------------
 ; 飛び道具検知用ヘルパー
 [State -3,]
 type=helper
@@ -19860,7 +19868,7 @@ type=helper
 trigger1=!NumHelper(50000)
 trigger1=roundstate=2
 trigger1=alive
-;trigger1=var(59) = 0
+;trigger1!AILevel
 ;Trigger1=(PrevStateNo=[190,194])||PrevStateNo=5900||(PrevStateNo=[25195,25199])
 Trigger1=ctrl&&stateno=0
 helpertype=normal
@@ -19878,80 +19886,6 @@ type=changestate
 trigger1= ishelper(50000)
 trigger1= stateno!=50000
 value=50000
-;---------------------------------------------------------------------------
-;-AIフラグ-
-[State -3, AIフラグセット]
-type = VarSet
-triggerall = !var(58) 
-triggerall = RoundState = [1,2]
-trigger1 = Command = "AI_58"
-trigger2 = Command = "AI_01"
-trigger3 = Command = "AI_02"
-trigger4 = Command = "AI_03"
-trigger5 = Command = "AI_04"
-trigger6 = Command = "AI_05"
-trigger7 = Command = "AI_06"
-trigger8 = Command = "AI_07"
-trigger9 = Command = "AI_08"
-trigger10 = Command = "AI_09"
-trigger11 = Command = "AI_10"
-trigger12 = Command = "AI_11"
-trigger13 = Command = "AI_12"
-trigger14 = Command = "AI_13"
-trigger15 = Command = "AI_14"
-trigger16 = Command = "AI_15"
-trigger17 = Command = "AI_16"
-trigger18 = Command = "AI_17"
-trigger19 = Command = "AI_18"
-trigger20 = Command = "AI_19"
-trigger21 = Command = "AI_20"
-trigger22 = Command = "AI_21"
-trigger23 = Command = "AI_22"
-trigger24 = Command = "AI_23"
-trigger25 = Command = "AI_24"
-trigger26 = Command = "AI_25"
-trigger27 = Command = "AI_26"
-trigger28 = Command = "AI_27"
-trigger29 = Command = "AI_28"
-trigger30 = Command = "AI_29"
-trigger31 = Command = "AI_30"
-trigger32 = Command = "AI_31"
-trigger33 = Command = "AI_32"
-trigger34 = Command = "AI_33"
-trigger35 = Command = "AI_34"
-trigger36 = Command = "AI_35"
-trigger37 = Command = "AI_36"
-trigger38 = Command = "AI_37"
-trigger39 = Command = "AI_38"
-trigger40 = Command = "AI_39"
-trigger41 = Command = "AI_40"
-trigger42 = Command = "AI_41"
-trigger43 = Command = "AI_42"
-trigger44 = Command = "AI_43"
-trigger45 = Command = "AI_44"
-trigger46 = Command = "AI_45"
-trigger47 = Command = "AI_46"
-trigger48 = Command = "AI_47"
-trigger49 = Command = "AI_48"
-trigger50 = Command = "AI_49"
-trigger51 = Command = "AI_50"
-trigger52 = Command = "AI_51"
-trigger53 = Command = "AI_52"
-trigger54 = Command = "AI_53"
-trigger55 = Command = "AI_54"
-trigger56 = Command = "AI_55"
-trigger57 = Command = "AI_56"
-trigger58 = Command = "AI_57"
-Trigger59 = Helper(20000),var(59)
-;trigger60 = RoundState = 2  ;常時AI起動トリガー　
-var(59) = 1
-
-[state -3, AIレベル]
-type = VarSet
-trigger1 = var(59) = 1
-trigger1 = roundstate = 2
-v = 58
-Value = 8 ;1～12の値で変更
 ;---------------------------------------------------------------------------
 [Statedef 40005];飛び道具検出用ヘルパー
 type = A
@@ -20057,44 +19991,11 @@ type = NotHitBy
 value = SCA
 trigger1 = 1
 ;----------------------------------------------------------------------------------
-; AIフラグセット
-;----------------------------------------------------------------------------------
-[State 10000,プレイヤー判定]
-type=varset
-trigger1=command="up"&&root,command="up"
-trigger2=command="down"&&root,command="down"
-trigger3=command="back"&&root,command="back"
-trigger4=command="fwd"&&root,command="fwd"
-trigger5=command="a"&&root,command="a"
-trigger6=command="b"&&root,command="b"
-trigger7=command="c"&&root,command="c"
-trigger8=command="x"&&root,command="x"
-trigger9=command="y"&&root,command="y"
-trigger10=command="z"&&root,command="z"
-trigger11=command="start"&&root,command="start"
-var(59)=-1
-
-[State 10000,ﾌﾗｸﾞON]
-type=parentvarset
-triggerall=var(59)!=-1
-trigger1=root,command="up"
-trigger2=root,command="down"
-trigger3=root,command="back"
-trigger4=root,command="fwd"
-trigger5=root,command="a"
-trigger6=root,command="b"
-trigger7=root,command="c"
-trigger8=root,command="x"
-trigger9=root,command="y"
-trigger10=root,command="z"
-trigger11=root,command="start"
-var(59)=1
-;----------------------------------------------------------------------------------
 ; 暗転計測
 ;----------------------------------------------------------------------------------
 [State -1]
 type = VarSet
-trigger1 = root,var(59) > 0
+trigger1 = root,AILevel
 trigger1 = enemynear,time = 1
 v = 15
 value = 0
@@ -20102,7 +20003,7 @@ ignorehitpause = 1
 
 [State -1]
 type = VarAdd
-trigger1 = root,var(59)
+trigger1 = root,AILevel
 v = 15
 value = 1
 ignorehitpause = 1
@@ -20111,7 +20012,7 @@ ignorehitpause = 1
 ;----------------------------------------------------------------------------------
 [State -1]
 type = Varadd
-trigger1 = root,var(59)
+trigger1 = root,AILevel
 trigger1 = (root,stateno = [150,153]); || root,stateno = 710
 var(16) = 1
 ignorehitpause = 1
