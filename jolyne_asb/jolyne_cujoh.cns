@@ -31,7 +31,7 @@ FloatPersistIndex = 40     ;次のラウンドへ持ち越せる「FVar」のア
 ; 　「IntPersistIndex」と「FloatPersistIndex」を使う。
 ; 　そのやり方はM.U.G.E.Nの説明書にすら載ってないので、ここで例を元に解説。
 ;
-; 　①IntPersistIndex = 23　（Var(23)～Var(59)までを全て次のラウンドへ持ち越せる）
+; 　①IntPersistIndex = 23　（Var(23)～AILevelまでを全て次のラウンドへ持ち越せる）
 ; 　②FloatPersistIndex = 18（FVar(18)～FVar(39)までを全て次のラウンドへ持ち越せる）
 ;
 ; 　つまり「Var(**)（Fvar(**)）以降全ての変数を持ち越す」という命令になる。
@@ -18228,7 +18228,7 @@ value = 1
 type = VarSet
 triggerall = var(13) <= 0
 triggerall = var(7) > 4000
-trigger1 = var(59) = 0
+trigger1 = AILevel = 0
 trigger1 = command = "holdback"
 v = 13
 value = 1
@@ -18243,9 +18243,9 @@ value = -1
 [State -2]
 type = VarSet
 trigger1 = var(13) >= 25
-trigger1 = var(59) = 0
+trigger1 = AILevel = 0
 trigger1 = command != "holdback"
-trigger2 = var(59) = 0
+trigger2 = AILevel = 0
 trigger2 = command = "holdfwd"
 trigger2 = command != "holdback"
 trigger3 = stateno = 900 && time = 1

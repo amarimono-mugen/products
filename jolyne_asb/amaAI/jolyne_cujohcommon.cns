@@ -109,17 +109,17 @@ sprpriority = 0
 
 [State 20, 1]
 type = VelSet
-trigger1 = !Var(59)
+trigger1 = AILevel = 0
 trigger1 = command = "holdfwd"
-trigger2 = Var(59)
+trigger2 = AILevel
 trigger2 = p2bodydist x > 80
 x = const(velocity.walk.fwd.x)
 
 [State 20, 2]
 type = VelSet
-trigger1 = !Var(59)
+trigger1 = AILevel = 0
 trigger1 = command = "holdback"
-trigger2 = Var(59)
+trigger2 = AILevel
 trigger2 = p2bodydist x < 30
 x = const(velocity.walk.back.x)
 
@@ -151,17 +151,17 @@ trigger1 = P2dist X < 0
 
 [State 20, 1]
 type = VelSet
-trigger1 = !Var(59)
+trigger1 = AILevel = 0
 trigger1 = command = "holdfwd"
-trigger2 = Var(59)
+trigger2 = AILevel
 trigger2 = p2bodydist x >= 40
 x = const(velocity.walk.fwd.x)
 
 [State 20, 2]
 type = VelSet
-trigger1 = !Var(59)
+trigger1 = AILevel = 0
 trigger1 = command = "holdback"
-trigger2 = Var(59)
+trigger2 = AILevel
 trigger2 = p2bodydist x < 40
 x = const(velocity.walk.back.x)
 
@@ -213,18 +213,18 @@ sysvar(1) = 0
 
 [State 40, 2]
 type = VarSet
-trigger1 = !var(59)
+trigger1 = AILevel = 0
 trigger1 = command = "holdfwd"
-trigger2 = var(59)
+trigger2 = AILevel
 trigger2 = P2bodydist X > 30
-trigger3 = var(59)
+trigger3 = AILevel
 Trigger3 = var(37) = 3
 trigger3 = var(36) = 3
 sysvar(1) = 1
 
 [State 40, 3]
 type = VarSet
-trigger1 = !var(59)
+trigger1 = AILevel = 0
 trigger1 = command = "holdback"
 sysvar(1) = -1
 
@@ -265,7 +265,7 @@ y = -6.9
 
 [State 40, 6]
 type = ChangeState
-triggerall = var(59)
+triggerall = AILevel
 trigger1 = P2StateType = L
 trigger1 = time = 0
 value = 0
@@ -454,19 +454,19 @@ x = 0
 
 [State 100, 4]
 type = ChangeState
-trigger1 = !var(59)
+trigger1 = AILevel = 0
 trigger1 = command = "holdup"
 value = 40
 
 [State 101, 3]
 type = ChangeState
 triggerall = time >= 8
-trigger1 = !var(59)
+trigger1 = AILevel = 0
 trigger1 = command != "holdfwd"
 trigger2 = time = 120
-trigger3 = var(59)
+trigger3 = AILevel
 trigger3 = P2BodyDist X < -20
-trigger4 = var(59)
+trigger4 = AILevel
 trigger4 = p2statetype = L
 trigger4 = P2BodyDist X < 40
 value = 101
@@ -496,7 +496,7 @@ flag2 = NoAutoTurn
 
 [State 100, 4]
 type = ChangeState
-trigger1 = !var(59)
+trigger1 = AILevel = 0
 trigger1 = command = "holdup"
 value = 40
 
@@ -542,13 +542,13 @@ x = -1
 
 [State 100, 4]
 type = ChangeState
-trigger1 = !var(59)
+trigger1 = AILevel = 0
 trigger1 = command = "holdup"
 value = 40
 
 [State 101, 3]
 type = ChangeState
-;triggerall = !var(59)
+;triggerall = AILevel = 0
 ;trigger1 = time >= 8
 ;trigger1 = command != "holdback"
 trigger1 = AnimTime = 0
@@ -595,13 +595,13 @@ ctrl = 0
 
 [State 100, 1]
 type = VarSet
-TriggerAll = var(59)
+TriggerAll = AILevel
 trigger1 = time = 0
 var(36) = 1
 
 [State 100, 1]
 type = VarSet
-TriggerAll = var(59)
+TriggerAll = AILevel
 trigger1 = time = 0
 var(37) = 1
 
@@ -768,9 +768,9 @@ ctrl = 1
 [State 100, 1]
 type = VelSet
 triggerAll = time = 0
-trigger1 = var(59) = 0
+trigger1 = AILevel = 0
 trigger1 = command = "holdfwd"
-trigger2 = var(59)
+trigger2 = AILevel
 trigger2 = p2bodydist x > 90
 x = 8
 y = -3
@@ -778,9 +778,9 @@ y = -3
 [State 100, 1]
 type = VelSet
 triggerAll = time = 0
-trigger1 = var(59) = 0
+trigger1 = AILevel = 0
 trigger1 = command != "holdfwd"
-trigger2 = var(59)
+trigger2 = AILevel
 trigger2 = p2bodydist x <= 90
 x = 3
 y = -1.5
@@ -1040,10 +1040,10 @@ physics = A
 
 [State 120, Hi to Lo]
 type = StateTypeSet
-trigger1 = !var(59)
+trigger1 = AILevel = 0
 trigger1 = statetype = S && command = "holddown"
 trigger2 = numhelper(50000)
-trigger2 = var(59)
+trigger2 = AILevel
 trigger2 = statetype = S && P2statetype != A
 trigger2 = !(helper(50000),var(5) = p2stateno && helper(50000),var(5))
 statetype = C
@@ -1051,15 +1051,15 @@ physics = C
 
 [State 120, Lo to Hi]
 type = StateTypeSet
-trigger1 = !var(59)
+trigger1 = AILevel = 0
 trigger1 = statetype = C && command != "holddown"
 trigger2 = numhelper(50000)
-trigger2 = var(59)
+trigger2 = AILevel
 trigger2 = statetype = C && P2statetype = A
 trigger2 = P2bodydist x <= 100
-trigger2 = random < 500+(var(59)=7)*400
+trigger2 = random < 900
 trigger3 = numhelper(50000)
-trigger3 = var(59)
+trigger3 = AILevel
 trigger3 = statetype = C
 trigger3 = (helper(50000),var(5) = p2stateno && helper(50000),var(5))
 statetype = S
@@ -1072,9 +1072,9 @@ value = 130 + (statetype = C) + (statetype = A)*2
 
 [State 120, Stop Guarding]
 type = ChangeState
-trigger1 = !var(59)
+trigger1 = AILevel = 0
 trigger1 = command != "holdback"
-trigger2 = var(59)
+trigger2 = AILevel
 trigger2 = time > 10
 trigger2 = random < 100
 trigger3 = !inguarddist
@@ -1093,19 +1093,19 @@ value = 130+var(49)
 
 [State 130, Hi to Lo]
 type = ChangeState
-trigger1 = !var(59)
+trigger1 = AILevel = 0
 trigger1 = command = "holddown"
 trigger2 = numhelper(50000)
-trigger2 = var(59)
+trigger2 = AILevel
 trigger2 = P2statetype != A
 trigger2 = !(helper(50000),var(5) = p2stateno && helper(50000),var(5))
 value = 131
 
 [State 130, Stop Guarding]
 type = ChangeState
-trigger1 = !var(59)
+trigger1 = AILevel = 0
 trigger1 = command != "holdback"
-trigger2 = var(59)
+trigger2 = AILevel
 trigger2 = time > 10
 trigger2 = random < 100
 trigger3 = !inguarddist
@@ -1124,23 +1124,23 @@ value = 131+var(49)
 
 [State 131, Lo to Hi]
 type = ChangeState
-trigger1 = !var(59)
+trigger1 = AILevel = 0
 trigger1 = command != "holddown"
 trigger2 = numhelper(50000)
-trigger2 = var(59)
+trigger2 = AILevel
 trigger2 = P2statetype = A
 trigger2 = P2bodydist x <= 100
-trigger2 = random < 500+(var(59)=7)*400
+trigger2 = random < 900
 trigger3 = numhelper(50000)
-trigger3 = var(59)
+trigger3 = AILevel
 trigger3 = (helper(50000),var(5) = p2stateno && helper(50000),var(5))
 value = 130
 
 [State 131, Stop Guarding]
 type = ChangeState
-trigger1 = !var(59)
+trigger1 = AILevel = 0
 trigger1 = command != "holdback"
-trigger2 = var(59)
+trigger2 = AILevel
 trigger2 = time > 10
 trigger2 = random < 100
 trigger3 = !inguarddist
@@ -1181,9 +1181,9 @@ y = 0
 type = ChangeState
 triggerall = sysvar(0)
 triggerall = inguarddist
-trigger1 = !var(59)
+trigger1 = AILevel = 0
 trigger1 = command = "holdback"
-trigger2 = var(59)
+trigger2 = AILevel
 value = 130
 
 [State 132, 7]
@@ -1193,9 +1193,9 @@ value = 52
 
 [State 132, Stop Guarding]
 type = ChangeState
-trigger1 = !var(59)
+trigger1 = AILevel = 0
 trigger1 = command != "holdback"
-trigger2 = var(59)
+trigger2 = AILevel
 trigger2 = time > 10
 trigger2 = random < 100
 trigger3 = !inguarddist
@@ -1230,10 +1230,10 @@ physics = A
 
 [State 140, Hi to Lo]
 type = StateTypeSet
-trigger1 = !var(59)
+trigger1 = AILevel = 0
 trigger1 = Statetype = S && command = "holddown"
 trigger2 = numhelper(50000)
-trigger2 = var(59)
+trigger2 = AILevel
 trigger2 = Statetype = S && P2statetype != A
 trigger2 = !(helper(50000),var(5) = p2stateno && helper(50000),var(5))
 statetype = C
@@ -1241,15 +1241,15 @@ physics = C
 
 [State 140, Lo to Hi]
 type = StateTypeSet
-trigger1 = !var(59)
+trigger1 = AILevel = 0
 trigger1 = statetype = C && command != "holddown"
 trigger2 = numhelper(50000)
-trigger2 = var(59)
+trigger2 = AILevel
 trigger2 = statetype = C && P2statetype = A
 trigger2 = P2bodydist x <= 100
-trigger2 = random < 500+(var(59)=7)*400
+trigger2 = random < 900
 trigger3 = numhelper(50000)
-trigger3 = var(59)
+trigger3 = AILevel
 trigger3 = statetype = C
 trigger3 = (helper(50000),var(5) = p2stateno && helper(50000),var(5))
 statetype = S
@@ -1286,10 +1286,10 @@ value = 151 + 2*(command = "holddown")
 
 [State 150, Hi to Lo]
 type = StateTypeSet
-trigger1 = !var(59)
+trigger1 = AILevel = 0
 trigger1 = Statetype = S && command = "holddown"
 trigger2 = numhelper(50000)
-trigger2 = var(59)
+trigger2 = AILevel
 trigger2 = Statetype = S && P2statetype != A
 trigger2 = !(helper(50000),var(5) = p2stateno && helper(50000),var(5))
 statetype = C
@@ -1297,15 +1297,15 @@ physics = C
 
 [State 150, Lo to Hi]
 type = StateTypeSet
-trigger1 = !var(59)
+trigger1 = AILevel = 0
 trigger1 = statetype = C && command != "holddown"
 trigger2 = numhelper(50000)
-trigger2 = var(59)
+trigger2 = AILevel
 trigger2 = statetype = C && P2statetype = A
 trigger2 = P2bodydist x <= 100
-trigger2 = random < 500+(var(59)=7)*400
+trigger2 = random < 900
 trigger3 = numhelper(50000)
-trigger3 = var(59)
+trigger3 = AILevel
 trigger3 = statetype = C
 trigger3 = (helper(50000),var(5) = p2stateno && helper(50000),var(5))
 statetype = S
@@ -1343,10 +1343,10 @@ value = 1
 
 [State 151, Hi to Lo]
 type = StateTypeSet
-trigger1 = !var(59)
+trigger1 = AILevel = 0
 trigger1 = Statetype = S && command = "holddown"
 trigger2 = numhelper(50000)
-trigger2 = var(59)
+trigger2 = AILevel
 trigger2 = Statetype = S && P2statetype != A
 trigger2 = !(helper(50000),var(5) = p2stateno && helper(50000),var(5))
 statetype = C
@@ -1354,15 +1354,15 @@ physics = C
 
 [State 151, Lo to Hi]
 type = StateTypeSet
-trigger1 = !var(59)
+trigger1 = AILevel = 0
 trigger1 = statetype = C && command != "holddown"
 trigger2 = numhelper(50000)
-trigger2 = var(59)
+trigger2 = AILevel
 trigger2 = statetype = C && P2statetype = A
 trigger2 = P2bodydist x <= 100
-trigger2 = random < 500+(var(59)=7)*400
+trigger2 = random < 900
 trigger3 = numhelper(50000)
-trigger3 = var(59)
+trigger3 = AILevel
 trigger3 = statetype = C
 trigger3 = (helper(50000),var(5) = p2stateno && helper(50000),var(5))
 statetype = S
@@ -1400,10 +1400,10 @@ value = 151 + 2*(command = "holddown")
 
 [State 152, Hi to Lo]
 type = StateTypeSet
-trigger1 = !var(59)
+trigger1 = AILevel = 0
 trigger1 = Statetype = S && command = "holddown"
 trigger2 = numhelper(50000)
-trigger2 = var(59)
+trigger2 = AILevel
 trigger2 = Statetype = S && P2statetype != A
 trigger2 = !(helper(50000),var(5) = p2stateno && helper(50000),var(5))
 statetype = C
@@ -1411,15 +1411,15 @@ physics = C
 
 [State 152, Lo to Hi]
 type = StateTypeSet
-trigger1 = !var(59)
+trigger1 = AILevel = 0
 trigger1 = statetype = C && command != "holddown"
 trigger2 = numhelper(50000)
-trigger2 = var(59)
+trigger2 = AILevel
 trigger2 = statetype = C && P2statetype = A
 trigger2 = P2bodydist x <= 100
-trigger2 = random < 500+(var(59)=7)*400
+trigger2 = random < 900
 trigger3 = numhelper(50000)
-trigger3 = var(59)
+trigger3 = AILevel
 trigger3 = statetype = C
 trigger3 = (helper(50000),var(5) = p2stateno && helper(50000),var(5))
 statetype = S
@@ -1457,10 +1457,10 @@ value = 1
 
 [State 153, Hi to Lo]
 type = StateTypeSet
-trigger1 = !var(59)
+trigger1 = AILevel = 0
 trigger1 = Statetype = S && command = "holddown"
 trigger2 = numhelper(50000)
-trigger2 = var(59)
+trigger2 = AILevel
 trigger2 = Statetype = S && P2statetype != A
 trigger2 = !(helper(50000),var(5) = p2stateno && helper(50000),var(5))
 statetype = C
@@ -1468,15 +1468,15 @@ physics = C
 
 [State 153, Lo to Hi]
 type = StateTypeSet
-trigger1 = !var(59)
+trigger1 = AILevel = 0
 trigger1 = statetype = C && command != "holddown"
 trigger2 = numhelper(50000)
-trigger2 = var(59)
+trigger2 = AILevel
 trigger2 = statetype = C && P2statetype = A
 trigger2 = P2bodydist x <= 100
-trigger2 = random < 500+(var(59)=7)*400
+trigger2 = random < 900
 trigger3 = numhelper(50000)
-trigger3 = var(59)
+trigger3 = AILevel
 trigger3 = statetype = C
 trigger3 = (helper(50000),var(5) = p2stateno && helper(50000),var(5))
 statetype = S
@@ -1555,9 +1555,9 @@ y = 0
 type = ChangeState
 triggerall = sysvar(0)
 triggerall = inguarddist
-trigger1 = !var(59)
+trigger1 = AILevel = 0
 trigger1 = command = "holdback"
-trigger2 = var(59)
+trigger2 = AILevel
 value = 130
 
 [State 155, 7]

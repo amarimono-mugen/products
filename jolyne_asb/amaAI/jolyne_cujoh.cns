@@ -18227,7 +18227,7 @@ value = 1
 type = VarSet
 triggerall = var(13) <= 0
 triggerall = var(7) > 4000
-trigger1 = var(59) = 0
+trigger1 = AILevel = 0
 trigger1 = command = "holdback"
 v = 13
 value = 1
@@ -18242,9 +18242,9 @@ value = -1
 [State -2]
 type = VarSet
 trigger1 = var(13) >= 25
-trigger1 = var(59) = 0
+trigger1 = AILevel = 0
 trigger1 = command != "holdback"
-trigger2 = var(59) = 0
+trigger2 = AILevel = 0
 trigger2 = command = "holdfwd"
 trigger2 = command != "holdback"
 trigger3 = stateno = 900 && time = 1
@@ -18561,26 +18561,6 @@ IgnoreHitPause = 1
 [Statedef -3]
 ;---------------------------------------------------------------------------
 
-[State -3, AI起動用ヘルパー]
-type=helper
-triggerall = !NumHelper(50000)
-triggerall = roundstate=2
-trigger1 = alive
-trigger1 = var(59)=0
-Trigger1 = (PrevStateNo=[190,194])||PrevStateNo=5900
-Trigger1 = ctrl&&stateno=0
-trigger2 = alive && var(59)
-Trigger2 = (ctrl || movetype=A) && stateno!=0
-helpertype=normal
-name="AI"
-stateno=50000
-ID=50000
-pos=9999,9999
-keyctrl=1
-pausemovetime=2147483647
-supermovetime=2147483647
-persistent = 0
-
 [State -3, ガード用ヘルパー]
 type=helper
 trigger1=NumHelper(51000)=0&&!ishelper
@@ -18593,12 +18573,6 @@ pos=0,0
 pausemovetime=2147483647
 supermovetime=2147483647
 persistent = 0
-
-[State -3, 関係無いステートに行かないように]
-type=changestate
-trigger1= ishelper(50000)
-trigger1= stateno!=50000
-value=50000
 
 ;スタンド被ダメ時
 [state -3, end]
@@ -18769,50 +18743,6 @@ value = 40, 0
 ;---------------------------------------------------------------------------
 ;---------------------------------------------------------------------------
 
-;-------------------------------------------------------------------------
-;AI起動用ヘルパー
-[Statedef 50000]
-anim=20000;なにも表示しないｱﾆﾒでもいいけど入れなくても全然問題ない
-ctrl=0
-
-[State 10000,間違いで本体が来たら立ちへ移行]
-type=selfstate
-trigger1=!ishelper
-value=0
-
-;----------------------------------------------------------------------------------
-; AIフラグセット
-;----------------------------------------------------------------------------------
-[State 10000,プレイヤー判定]
-type=varset
-trigger1=command="up"&&root,command="up"
-trigger2=command="down"&&root,command="down"
-trigger3=command="back"&&root,command="back"
-trigger4=command="fwd"&&root,command="fwd"
-trigger5=command="a"&&root,command="a"
-trigger6=command="b"&&root,command="b"
-trigger7=command="c"&&root,command="c"
-trigger8=command="x"&&root,command="x"
-trigger9=command="y"&&root,command="y"
-trigger10=command="z"&&root,command="z"
-trigger11=command="start"&&root,command="start"
-var(59)=-1
-
-[State 10000,ﾌﾗｸﾞON]
-type=varset
-triggerall=var(59)!=-1
-trigger1=root,command="up"
-trigger2=root,command="down"
-trigger3=root,command="back"
-trigger4=root,command="fwd"
-trigger5=root,command="a"
-trigger6=root,command="b"
-trigger7=root,command="c"
-trigger8=root,command="x"
-trigger9=root,command="y"
-trigger10=root,command="z"
-trigger11=root,command="start"
-var(59)=1
 
 ;----------------------------------------------------------------------------------
 ; 暗転計測
@@ -18820,7 +18750,7 @@ var(59)=1
 ;暗転計測
 [State -1]
 type = VarSet
-trigger1 = root,var(59) > 0
+trigger1 = root,AILevel > 0
 trigger1 = enemynear,time = 1
 v = 15
 value = 0
@@ -18828,7 +18758,7 @@ ignorehitpause = 1
 
 [State -1]
 type = VarAdd
-trigger1 = root,var(59)
+trigger1 = root,AILevel
 v = 15
 value = 1
 ignorehitpause = 1

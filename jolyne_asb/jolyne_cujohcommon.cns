@@ -378,13 +378,13 @@ x = 0
 
 [State 100, 4]
 type = ChangeState
-trigger1 = !var(59)
+trigger1 = AILevel = 0
 trigger1 = command = "holdup"
 value = 40
 
 [State 101, 3]
 type = ChangeState
-triggerall = !var(59)
+triggerall = AILevel = 0
 triggerall = time >= 8
 trigger1 = command != "holdfwd"
 trigger2 = time = 120
@@ -415,7 +415,7 @@ flag2 = NoAutoTurn
 
 [State 100, 4]
 type = ChangeState
-trigger1 = !var(59)
+trigger1 = AILevel = 0
 trigger1 = command = "holdup"
 value = 40
 
@@ -461,13 +461,13 @@ x = -1
 
 [State 100, 4]
 type = ChangeState
-trigger1 = !var(59)
+trigger1 = AILevel = 0
 trigger1 = command = "holdup"
 value = 40
 
 [State 101, 3]
 type = ChangeState
-triggerall = !var(59)
+triggerall = AILevel = 0
 ;trigger1 = time >= 8
 ;trigger1 = command != "holdback"
 trigger1 = AnimTime = 0

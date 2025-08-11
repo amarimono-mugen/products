@@ -618,7 +618,8 @@ time = 1
 [State -1, GHA]
 type = ChangeState
 value = 3300
-triggerall = var(59)<=0;&& RoundState = 2
+triggerall = AILevel = 0
+triggerall = RoundState = 2
 ;triggerall = !var(49)
 triggerall = command = "b" || command = "3button"
 triggerall = power >= 2000
@@ -1089,7 +1090,7 @@ value = 799
 ;------------------------------------------------------------------------------
 [State -1, 擬似プッツンキャンセル]
 type = ChangeState
-triggerall = var(59)<=0&& RoundState = 2
+triggerall = AILevel<=0&& RoundState = 2
 triggerall = statetype != A
 triggerall = power >= 1000
 triggerall = command = "c"
@@ -1537,7 +1538,7 @@ ignorehitpause = 0
 [State -1, エアダッシュ]
 type = ChangeState
 value = 2000
-triggerall = var(59)<=0&& RoundState = 2
+triggerall = AILevel<=0&& RoundState = 2
 ;triggerall = !var(49)
 triggerall = var(29) < 3
 triggerall = stateno != 2006
@@ -1554,7 +1555,7 @@ trigger7 = (stateno = 10620) && time >= 11
 [State -1, エアBダッシュ]
 type = ChangeState
 value = 2010
-triggerall = var(59)<=0&& RoundState = 2
+triggerall = AILevel<=0&& RoundState = 2
 ;triggerall = !var(49)
 triggerall = var(29) < 3
 triggerall = command = "BB"
