@@ -5885,7 +5885,7 @@ physics = S
 ctrl = 0
 anim = 3000
 velset = 0,0
-poweradd= -10000
+poweradd= -1000
 sprpriority = 2
 
 [State 0]

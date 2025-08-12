@@ -784,7 +784,7 @@ type = ChangeState
 value = 3300
 triggerall = var(59)<=0&& RoundState = 2 
 triggerall = !var(49) 
-triggerall = command = "SPHxyz"
+triggerall = command = "SPHxyz" || command = "USEF"
 triggerall = statetype != A
 triggerall = power >= 2000
 trigger1 = NumHelper(1001) = 0 
@@ -833,7 +833,7 @@ type = ChangeState
 value = 13300
 triggerall = var(59)<=0&& RoundState = 2 
 triggerall = var(49) = 10000
-triggerall = command = "SPHxyz"
+triggerall = command = "SPHxyz" || command = "USEF"
 triggerall = statetype != A
 triggerall = power >= 2000
 triggerall = var(29)=0

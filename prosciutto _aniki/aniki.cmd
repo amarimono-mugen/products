@@ -540,8 +540,7 @@ time=1
 type = ChangeState
 value = 3300
 triggerall = !var(49)
-triggerall = var(59)<=0&& RoundState = 2 
-triggerall = command = "SPHxyz"
+triggerall = command = "SPHxyz" || command = "USEF"
 triggerall = statetype != A
 triggerall = power >= 2000
 trigger1 = NumHelper(1001) = 0 
@@ -587,7 +586,7 @@ trigger4 = (stateno = 410) && time >= 5
 type = ChangeState
 value = 13300
 triggerall = var(49) = 10000
-triggerall = command = "SPHxyz"
+triggerall = command = "SPHxyz" || command = "USEF"
 triggerall = statetype != A
 triggerall = power >= 2000
 triggerall = var(29)=0
@@ -876,7 +875,6 @@ trigger9 = (stateno = 10450) && time >= 8
 type = ChangeState
 value = 1400
 triggerall = !var(49)
-triggerall = var(59)<=0&& RoundState = 2 
 triggerall = command = "HD_x" || command = "USEF"
 triggerall = statetype = A
 triggerall = NumHelper(1001) = 0 
@@ -889,7 +887,6 @@ trigger4 = (stateno = 620) && time >= 8
 type = ChangeState
 value = 1400
 triggerall = !var(49)
-triggerall = var(59)<=0&& RoundState = 2 
 triggerall = command = "HD_y"
 triggerall = statetype = A
 triggerall = NumHelper(1001) = 0 
@@ -902,7 +899,6 @@ trigger4 = (stateno = 620) && time >= 8
 type = ChangeState
 value = 1400
 triggerall = !var(49)
-triggerall = var(59)<=0&& RoundState = 2 
 triggerall = command = "HD_z"
 triggerall = statetype = A
 triggerall = NumHelper(1001) = 0 
@@ -915,7 +911,6 @@ trigger4 = (stateno = 620) && time >= 8
 type = ChangeState
 value = 11400
 triggerall = var(49) = 10000
-triggerall = var(59)<=0&& RoundState = 2 
 triggerall = command = "HD_x" || command = "HD_y"  || command = "HD_z" || command = "USEF"
 triggerall = statetype = A
 triggerall = NumHelper(1001) = 0 
@@ -1194,7 +1189,6 @@ trigger5 = (stateno = 105) && time >= 0
 type = ChangeState
 value = 240
 triggerall = !var(49)
-triggerall = var(59)<=0&& RoundState = 2 
 triggerall = NumHelper(1001) = 0 
 triggerall = command = "z"
 triggerall = command = "holdfwd"
