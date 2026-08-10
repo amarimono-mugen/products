@@ -1534,6 +1534,7 @@ triggerall = P2StateType != L
 triggerall = P2stateno != 5120
 triggerall = P2stateno != 5201
 triggerall = !inguarddist
+triggerall = !numtarget
 
 trigger1 = P2StateType != A
 trigger1 = ctrl || (stateno = [120,131]) || stateno = 21
@@ -2573,7 +2574,6 @@ trigger1 = (stateno = 10210) && time >= 8
 trigger1 = p2bodydist x = [-20,120]
 trigger2 = (stateno = 10220) && time >= 11
 trigger2 = p2bodydist x = [-20,120]
-
 value = 11000
 
 [State -1, コンボルート進行]

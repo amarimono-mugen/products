@@ -9899,16 +9899,6 @@ type = width
 trigger1 = 1
 edge = 220,10
 
-[State 0, nhb]
-type = screenbound
-trigger1 = 1
-value = 0
-
-[State 0, nhb]
-type = screenbound
-trigger1 = time < 1
-value = 1
-
 [State 230, 2]
 type = playerpush
 trigger1 = 1
@@ -10625,16 +10615,6 @@ sprpriority = 2
 type = width
 trigger1 = 1
 edge = 220,10
-
-[State 0, nhb]
-type = screenbound
-trigger1 = 1
-value = 0
-
-[State 0, nhb]
-type = screenbound
-trigger1 = time < 1
-value = 1
 
 [State 230, 2]
 type = playerpush
@@ -11793,7 +11773,7 @@ trigger1 = 1
 edge = 220,10
 
 [State 0, nhb]
-type = screenbound
+type = null;screenbound
 trigger1 = 1
 value = 0
 
@@ -11827,7 +11807,7 @@ kill = 0
 [State 901, Hurt]
 type = TargetLifeAdd
 trigger1 = Time = 160
-value = ifelse(var(40) > 5,(-80 - (45*fvar(1)))*fvar(8),-125*0.8*fvar(8))
+value = ifelse(var(40) > 5,(-140 - (45*fvar(1)))*fvar(8),-185*0.8*fvar(8))
 
 [State 215]
 type = HitAdd
@@ -12346,7 +12326,7 @@ trigger1 = time = 170
 [State 1000, ステート変更]
 type = ChangeState
 trigger1 = anim = 3334
-trigger1 = time = 180
+trigger1 = animtime = 0
 ;trigger2 = root,stateno != 3310
 value = 225
 ;---------------------------------------------------------------------------
@@ -18413,52 +18393,52 @@ fvar(1) = 0.75
 [State -2, 補正レベル2]
 type=varset
 trigger1= var(40) >= 5
-fvar(1) = 0.68
+fvar(1) = 0.65
 
 [State -2, 補正レベル3]
 type=varset
 trigger1= var(40) >= 8
-fvar(1) = 0.60
+fvar(1) = 0.55
 
 [State -2, 補正レベル4]
 type=varset
 trigger1= var(40) >= 11
-fvar(1) = 0.55
+fvar(1) = 0.50
 
 [State -2, 補正レベル5]
 type=varset
 trigger1= var(40) >= 14
-fvar(1) = 0.50
+fvar(1) = 0.45
 
 [State -2, 補正レベル6]
 type=varset
 trigger1= var(40) >= 17
-fvar(1) = 0.45
+fvar(1) = 0.40
 
 [State -2, 補正レベル7]
 type=varset
 trigger1= var(40) >= 20
-fvar(1) = 0.40
+fvar(1) = 0.45
 
 [State -2, 補正レベル8]
 type=varset
 trigger1= var(40) >= 25
-fvar(1) = 0.35
+fvar(1) = 0.30
 
 [State -2, 補正レベル9]
 type=varset
 trigger1= var(40) >= 30
-fvar(1) = 0.30
+fvar(1) = 0.25
 
 [State -2, 補正レベル8]
 type=varset
 trigger1= var(40) >= 35
-fvar(1) = 0.25
+fvar(1) = 0.20
 
 [State -2, 補正レベル9]
 type=varset
 trigger1= var(40) >= 40
-fvar(1) = 0.2
+fvar(1) = 0.15
 
 [State -2, 補正適用]
 type=attackmulset
