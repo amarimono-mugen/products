@@ -9313,6 +9313,94 @@ value = 0
 ctrl = 1
 
 ;---------------------------------------------------------------------------
+;ピラニア　M
+[Statedef 11220]
+type    = S
+movetype= A
+physics = S
+juggle  = 4
+poweradd= 90
+ctrl = 0
+velset = 0,0
+anim = 11200
+hitcountpersist = 1
+
+[State 0, 1]
+type = Offset
+trigger1 = 1
+y = 10
+
+[State -2]
+type = Helper
+trigger1 = animelem = 8
+triggerall = var(10) = 0
+trigger1 = numhelper(11201) = 0
+helpertype = normal
+name = "fish"
+stateno = 11225
+id = 11201
+pos = 15, -85
+postype = p1
+ownpal = 1
+facing = 1
+
+[State 1027, Sound]
+type = PlaySnd
+trigger1 = animelem = 2
+value = 100,18
+channel = 0  
+
+[State 440, 4]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;---------------------------------------------------------------------------
+;ピラニア　H
+[Statedef 11230]
+type    = S
+movetype= A
+physics = S
+juggle  = 4
+poweradd= 90
+ctrl = 0
+velset = 0,0
+anim = 11200
+hitcountpersist = 1
+
+[State 0, 1]
+type = Offset
+trigger1 = 1
+y = 10
+
+[State -2]
+type = Helper
+trigger1 = animelem = 8
+triggerall = var(10) = 0
+trigger1 = numhelper(11201) = 0
+helpertype = normal
+name = "fish"
+stateno = 11235
+id = 11201
+pos = 15, -85
+postype = p1
+ownpal = 1
+facing = 1
+
+[State 1027, Sound]
+type = PlaySnd
+trigger1 = animelem = 2
+value = 100,18
+channel = 0  
+
+[State 440, 4]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;---------------------------------------------------------------------------
 ;ギョギョーッ
 [Statedef 11201]
 type    = S
@@ -9531,27 +9619,57 @@ time = -1
 type = destroyself
 trigger1 = pos x <= -240 || pos x >= 240
 ;---------------------------------------------------------------------------
-;ご存知ピラニアにだ…
+;ご存知ピラニアにだ… L
 [Statedef 11210]
-type    = S
+type    = A
 movetype= A
-physics = S
+physics = N
 poweradd= 0
 ctrl = 0
 anim = 11210
 sprpriority = 3
 
-[State 1010, 移動速度]
+[State 1010, 初回速度（斜め上への飛び出し）]
 type = VelSet
+trigger1 = time = 0
+x = 2
+y = -12
+
+;--- 反時計回り回転処理ここから ---
+[State 0, 角度初期化]
+type = VarSet
+trigger1 = time = 0
+fv = 10
+value = 0
+
+[State 0, 角度減算（反時計回りに最大-45度まで）]
+type = VarAdd
+trigger1 = fvar(10) > -90
+fv = 10
+value = -3  ; マイナスにすることで反時計回りに回転します
+
+[State 0, 描画角度設定]
+type = AngleSet
 trigger1 = 1
-x = 10
+value = fvar(10)
+
+[State 0, スプライト回転描画]
+type = AngleDraw
+trigger1 = 1
+value = fvar(10)
+;--- 回転処理ここまで ---
+
+[State 1010, 重力加速度]
+type = VelAdd
+trigger1 = 1
+y = 0.5
 
 [State 210, 2]
 type = HitDef
 trigger1 = time = 0
 attr = S, NP
 animtype  = Medium
-damage = ceil(ifelse((40*root,fvar(7))<7,7,(40*root,fvar(7)))),3
+damage = ceil(ifelse((15*root,fvar(7))<7,7,(15*root,fvar(7)))),3
 priority = 3, Hit
 guardflag = MA
 pausetime = 0,11
@@ -9575,11 +9693,6 @@ guard.kill = 0
 type = parentvaradd
 trigger1 = movehit = 1
 var(30) = 1
-
-[State 1010, 移動速度]
-type = VelSet
-trigger1 = MoveContact
-x = 0
 
 [State 3010, 2]
 type = changestate
@@ -9616,7 +9729,247 @@ stateno = 11212
 attr = SCA, NP, SP, HP
 time = -1
 
+[State 3010, 地面接触で消去]
+type = destroyself
+trigger1 = pos y >= 0
+
+[State 3010, 画面外で消去]
+type = destroyself
+trigger1 = pos x <= -240 || pos x >= 240
+;---------------------------------------------------------------------------
+;ご存知ピラニアにだ… M
+[Statedef 11225]
+type    = A
+movetype= A
+physics = N
+poweradd= 0
+ctrl = 0
+anim = 11210
+sprpriority = 3
+
+[State 1010, 初回速度（斜め上への飛び出し）]
+type = VelSet
+trigger1 = time = 0
+x = 3
+y = -9
+
+;--- 反時計回り回転処理ここから ---
+[State 0, 角度初期化]
+type = VarSet
+trigger1 = time = 0
+fv = 10
+value = 0
+
+[State 0, 角度減算（反時計回りに最大-45度まで）]
+type = VarAdd
+trigger1 = fvar(10) > -90
+fv = 10
+value = -3  ; マイナスにすることで反時計回りに回転します
+
+[State 0, 描画角度設定]
+type = AngleSet
+trigger1 = 1
+value = fvar(10)
+
+[State 0, スプライト回転描画]
+type = AngleDraw
+trigger1 = 1
+value = fvar(10)
+;--- 回転処理ここまで ---
+
+[State 1010, 重力加速度]
+type = VelAdd
+trigger1 = 1
+y = 0.5
+
+[State 210, 2]
+type = HitDef
+trigger1 = time = 0
+attr = S, NP
+animtype  = Medium
+damage = ceil(ifelse((15*root,fvar(7))<7,7,(15*root,fvar(7)))),3
+priority = 3, Hit
+guardflag = MA
+pausetime = 0,11
+sparkno = s820
+guard.sparkno = s840
+sparkxy = -10,-10
+hitsound = s1, 4
+guardsound = s1,5
+ground.type = low
+ground.slidetime = 13
+ground.hittime  = 13
+ground.velocity = -4*const(size.xscale)
+air.velocity = -3,-3
+p2facing = 1
+givepower = 10,0
+id = 200
+ground.cornerpush.veloff = 0
+guard.kill = 0
+
+[State 230, 2]
+type = parentvaradd
+trigger1 = movehit = 1
+var(30) = 1
+
 [State 3010, 2]
+type = changestate
+trigger1 = numtarget
+trigger1 = !target,ishelper
+trigger1 = Movehit
+value = 11211
+
+[State 3010, 2]
+type = changestate
+trigger1 = movecontact
+value = 11212
+
+[State 200, 音を鳴らす]
+type = PlaySnd
+trigger1 = time = 0
+value = 100, 27
+
+[State 10000, HitBy]
+type = HitBy
+trigger1 = 1
+value = SCA, NP, SP, HP
+
+[State 10000, PlayerPush]
+type = PlayerPush
+trigger1 = 1
+value = 0
+
+[State 10000, HitOverRide] 
+type = HitOverRide
+trigger1 = 1
+slot = 0
+stateno = 11212
+attr = SCA, NP, SP, HP
+time = -1
+
+[State 3010, 地面接触で消去]
+type = destroyself
+trigger1 = pos y >= 0
+
+[State 3010, 画面外で消去]
+type = destroyself
+trigger1 = pos x <= -240 || pos x >= 240
+;---------------------------------------------------------------------------
+;ご存知ピラニアにだ… H
+[Statedef 11235]
+type    = A
+movetype= A
+physics = N
+poweradd= 0
+ctrl = 0
+anim = 11210
+sprpriority = 3
+
+[State 1010, 初回速度（斜め上への飛び出し）]
+type = VelSet
+trigger1 = time = 0
+x = 4
+y = -8
+
+;--- 反時計回り回転処理ここから ---
+[State 0, 角度初期化]
+type = VarSet
+trigger1 = time = 0
+fv = 10
+value = 0
+
+[State 0, 角度減算（反時計回りに最大-45度まで）]
+type = VarAdd
+trigger1 = fvar(10) > -90
+fv = 10
+value = -3  ; マイナスにすることで反時計回りに回転します
+
+[State 0, 描画角度設定]
+type = AngleSet
+trigger1 = 1
+value = fvar(10)
+
+[State 0, スプライト回転描画]
+type = AngleDraw
+trigger1 = 1
+value = fvar(10)
+;--- 回転処理ここまで ---
+
+[State 1010, 重力加速度]
+type = VelAdd
+trigger1 = 1
+y = 0.5
+
+[State 210, 2]
+type = HitDef
+trigger1 = time = 0
+attr = S, NP
+animtype  = Medium
+damage = ceil(ifelse((15*root,fvar(7))<7,7,(15*root,fvar(7)))),3
+priority = 3, Hit
+guardflag = MA
+pausetime = 0,11
+sparkno = s820
+guard.sparkno = s840
+sparkxy = -10,-10
+hitsound = s1, 4
+guardsound = s1,5
+ground.type = low
+ground.slidetime = 13
+ground.hittime  = 13
+ground.velocity = -4*const(size.xscale)
+air.velocity = -3,-3
+p2facing = 1
+givepower = 10,0
+id = 200
+ground.cornerpush.veloff = 0
+guard.kill = 0
+
+[State 230, 2]
+type = parentvaradd
+trigger1 = movehit = 1
+var(30) = 1
+
+[State 3010, 2]
+type = changestate
+trigger1 = numtarget
+trigger1 = !target,ishelper
+trigger1 = Movehit
+value = 11211
+
+[State 3010, 2]
+type = changestate
+trigger1 = movecontact
+value = 11212
+
+[State 200, 音を鳴らす]
+type = PlaySnd
+trigger1 = time = 0
+value = 100, 27
+
+[State 10000, HitBy]
+type = HitBy
+trigger1 = 1
+value = SCA, NP, SP, HP
+
+[State 10000, PlayerPush]
+type = PlayerPush
+trigger1 = 1
+value = 0
+
+[State 10000, HitOverRide] 
+type = HitOverRide
+trigger1 = 1
+slot = 0
+stateno = 11212
+attr = SCA, NP, SP, HP
+time = -1
+
+[State 3010, 地面接触で消去]
+type = destroyself
+trigger1 = pos y >= 0
+
+[State 3010, 画面外で消去]
 type = destroyself
 trigger1 = pos x <= -240 || pos x >= 240
 ;---------------------------------------------------------------------------
@@ -9664,8 +10017,8 @@ sparkxy = -20,10
 hitsound = s1, 4
 guardsound = s1,5
 ground.type = low
-ground.slidetime = 13
-ground.hittime  = 13
+ground.slidetime = 18
+ground.hittime  = 18
 ground.velocity = 0*const(size.xscale)
 air.velocity = 0,-1
 p2facing = 1

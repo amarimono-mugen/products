@@ -558,7 +558,7 @@ ignorehitpause = 1
 ;ピラニア 中　s
 [State -1, Stand Strong Punch]
 type = ChangeState
-value = 11200
+value = 11220
 triggerall = numhelper(11201) = 0
 triggerall = numhelper(10441) = 0
 triggerall = var(49) = 10000
@@ -571,7 +571,7 @@ ignorehitpause = 1
 ;ピラニア 強　s
 [State -1, Stand Strong Punch]
 type = ChangeState
-value = 11200
+value = 11230
 triggerall = numhelper(11201) = 0
 triggerall = numhelper(10441) = 0
 triggerall = var(49) = 10000

@@ -832,7 +832,7 @@ ignorehitpause = 0
 ;ピラニア 中　s
 [State -1, Stand Strong Punch]
 type = ChangeState
-value = 11200
+value = 11220
 triggerall = var(59)<=0&& RoundState = 2 
 triggerall = numhelper(11201) = 0
 triggerall = numhelper(10441) = 0
@@ -846,7 +846,7 @@ ignorehitpause = 0
 ;ピラニア 強　s
 [State -1, Stand Strong Punch]
 type = ChangeState
-value = 11200
+value = 11230
 triggerall = var(59)<=0&& RoundState = 2 
 triggerall = numhelper(11201) = 0
 triggerall = numhelper(10441) = 0
@@ -2893,7 +2893,7 @@ triggerall = numhelper(10441) = 0
 trigger1 = Random <= var(58)*6
 trigger1 = P2BodyDist X = [100,150]
 ;---------------------------------------------------------------------------
-[State -1, ピラニア];ON時遠距離牽制
+[State -1, ピラニア L];ON時遠距離牽制
 type = ChangeState
 value = 11200 
 triggerall = var(59)=1&& RoundState = 2 
@@ -2905,9 +2905,43 @@ TriggerAll = statetype != A
 Triggerall = EnemyNear,StateType != L
 Triggerall = EnemyNear,MoveType != H
 triggerall = var(47) >= 80 || var(47) = 0 || var(47) <= -30
-trigger1 = Random <= var(58)*10
+trigger1 = Random <= var(58)*4
 trigger1 = ctrl
-trigger1 = P2BodyDist X >= 160
+trigger1 = P2BodyDist X = [60,140]
+trigger1 = P2BodyDist Y = [-120,0]
+
+[State -1, ピラニア M];ON時遠距離牽制
+type = ChangeState
+value = 11220 
+triggerall = var(59)=1&& RoundState = 2 
+triggerall = numhelper(1001) = 0
+triggerall = numhelper(11201) = 0
+triggerall = numhelper(10441) = 0
+triggerall = var(49) = 10000
+TriggerAll = statetype != A
+Triggerall = EnemyNear,StateType != L
+Triggerall = EnemyNear,MoveType != H
+triggerall = var(47) >= 80 || var(47) = 0 || var(47) <= -30
+trigger1 = Random <= var(58)*4
+trigger1 = ctrl
+trigger1 = P2BodyDist X = [120,180]
+trigger1 = P2BodyDist Y = [-80,0]
+
+[State -1, ピラニア H];ON時遠距離牽制
+type = ChangeState
+value = 11230 
+triggerall = var(59)=1&& RoundState = 2 
+triggerall = numhelper(1001) = 0
+triggerall = numhelper(11201) = 0
+triggerall = numhelper(10441) = 0
+triggerall = var(49) = 10000
+TriggerAll = statetype != A
+Triggerall = EnemyNear,StateType != L
+Triggerall = EnemyNear,MoveType != H
+triggerall = var(47) >= 80 || var(47) = 0 || var(47) <= -30
+trigger1 = Random <= var(58)*4
+trigger1 = ctrl
+trigger1 = P2BodyDist X = [140,200]
 trigger1 = P2BodyDist Y = [-80,0]
 ;---------------------------------------------------------------------------
 [State -1,カエル生成];ON時設置牽制
