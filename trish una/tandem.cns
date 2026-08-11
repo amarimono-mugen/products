@@ -171,6 +171,18 @@ postype = p1
 ownpal = 1
 keyctrl = 0
 
+[State 3900 e];制限
+type = Helper
+trigger1 = time = 0
+helpertype = normal
+stateno = 4657
+id = 4657
+pos = 0,0
+postype = p1
+ownpal = 1
+supermovetime = 9999999999999
+pausemovetime = 9999999999999
+
 [State 3900 e];無敵
 type = Helper
 trigger1 = time = 0

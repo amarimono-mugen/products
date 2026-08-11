@@ -8445,76 +8445,28 @@ ctrl = 1
 ctrl = 0
 movetype= H
 velset = 0,0
+anim = 5070
 
 [State 820, 1]
-type = ChangeAnim2
+type = null;ChangeAnim2
 trigger1 = time = 0
 value = 1110
 
 [state 3000]
 type = pause
 trigger1 = time = 0
-time = 10
-movetime = 10
+time = 5
+movetime = 5
 
 [State 5200, 2]
 type = Velset
-trigger1 = time >= 2 
-trigger1 = time <= 8
-y = -10
-
-[State 5200, 2]
-type = Velset
-trigger1 = time >= 9 
-trigger1 = time <= 11
-y = -8
-
-[State 5200, 2]
-type = Velset
-trigger1 = time >= 12 
-trigger1 = time <= 14
-y = -6
-
-[State 5200, 2]
-type = Velset
-trigger1 = time >= 15
-trigger1 = time <= 18
+trigger1 = time = 2
 y = -4
 
 [State 5200, 2]
-type = Velset
-trigger1 = time >= 19
-trigger1 = time <= 24
-y = -2
-
-[State 5200, 2]
-type = Velset
-trigger1 = time >= 25
-trigger1 = time <= 33
-y = 0
-
-[State 5200, 2]
-type = Velset
-trigger1 = time >= 33
-trigger1 = time <= 38
-y = 1
-
-[State 5200, 2]
-type = Velset
-trigger1 = time >= 39
-trigger1 = time <= 42
-y = 3
-
-[State 5200, 2]
-type = Velset
-trigger1 = time >= 42
-trigger1 = time <= 44
-y = 5
-
-[State 5200, 2]
-type = Velset
-trigger1 = time >= 45
-y = 8
+type = Veladd
+trigger1 = time >= 4
+y = 0.5
 
 [State 170, 1]
 type = statetypeset
@@ -8524,7 +8476,7 @@ ignorehitpause = 1
 
 [State 170, 1]
 type = SelfState
-trigger1 = time >= 58
+trigger1 = pos y > 0
 value = 5050
 ;---------------------------------------------------------------------------
 ;罠　味方はねる
