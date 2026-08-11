@@ -1823,14 +1823,13 @@ ground.type = High
 ground.slidetime = 11
 ground.hittime  = 11
 guard.hittime  = 9
-ground.velocity = -5.5*parent,const(size.xscale),-3
+ground.velocity = -7*parent,const(size.xscale),0
 air.velocity = -2*parent,const(size.xscale),-3
-getpower = 0,0
+getpower = 24,0
 givepower = 40,20
-fall = 1
+fall = 0
 air.fall = 1
 fall.recover = 0
-getpower = 72,0
 guard.kill = 0
 
 [State 1000, 7　軌道変化]
@@ -1935,11 +1934,11 @@ ground.type = High
 ground.slidetime = 11
 ground.hittime  = 11
 guard.hittime  = 9
-ground.velocity = -5.5*parent,const(size.xscale),-3
+ground.velocity = -7*parent,const(size.xscale),0
 air.velocity = -2*parent,const(size.xscale),-3
 getpower = 24,0
 guard.kill = 0
-fall = 1
+fall = 0
 air.fall = 1
 fall.recover = 0
 getpower = 72,0
@@ -2464,14 +2463,13 @@ ground.type = High
 ground.slidetime = 11
 ground.hittime  = 11
 guard.hittime  = 9
-ground.velocity = -5.5*parent,const(size.xscale),-3
+ground.velocity = -7*parent,const(size.xscale),0
 air.velocity = -2*parent,const(size.xscale),-3
 getpower = 0,0
 givepower = 40,20
-fall = 1
+fall = 0
 air.fall = 1
 fall.recover = 0
-getpower = 72,0
 guard.kill = 0
 
 [State 1000, 7　消滅]
@@ -2658,14 +2656,13 @@ ground.type = High
 ground.slidetime = 11
 ground.hittime  = 11
 guard.hittime  = 9
-ground.velocity = -5.5*parent,const(size.xscale),-3
+ground.velocity = -7*parent,const(size.xscale),0
 air.velocity = -2*parent,const(size.xscale),-3
 getpower = 0,0
 givepower = 40,20
-fall = 1
+fall = 0
 air.fall = 1
 fall.recover = 0
-getpower = 72,0
 guard.kill = 0
 
 [State 1000, 7]
@@ -3071,11 +3068,11 @@ ground.type = High
 ground.slidetime = 11
 ground.hittime  = 11
 guard.hittime  = 9
-ground.velocity = -5.5*parent,const(size.xscale),-3
+ground.velocity = -7*parent,const(size.xscale),0
 air.velocity = -2*parent,const(size.xscale),-3
 getpower = 24,0
 givepower = 40,20
-fall = 1
+fall = 0
 air.fall = 1
 fall.recover = 0
 getpower = 0,0
@@ -3458,14 +3455,13 @@ ground.type = High
 ground.slidetime = 11
 ground.hittime  = 11
 guard.hittime  = 9
-ground.velocity = -5.5*parent,const(size.xscale),-3
+ground.velocity = -5.5*parent,const(size.xscale),0
 air.velocity = -2*parent,const(size.xscale),-3
 getpower = 0,0
 givepower = 40,20
-fall = 1
+fall = 0
 air.fall = 1
 fall.recover = 0
-getpower = 72,0
 guard.kill = 0
 
 [State 1000, 7　消滅]
@@ -3845,14 +3841,13 @@ ground.type = High
 ground.slidetime = 11
 ground.hittime  = 11
 guard.hittime  = 9
-ground.velocity = -5.5*parent,const(size.xscale),-3
+ground.velocity = -5.5*parent,const(size.xscale),0
 air.velocity = -2*parent,const(size.xscale),-3
 getpower = 0,0
 givepower = 40,20
-fall = 1
+fall = 0
 air.fall = 1
 fall.recover = 0
-getpower = 72,0
 guard.kill = 0
 
 [State 1000, 7]
@@ -3956,14 +3951,13 @@ ground.type = High
 ground.slidetime = 11
 ground.hittime  = 11
 guard.hittime  = 9
-ground.velocity = -5.5*parent,const(size.xscale),-3
+ground.velocity = -5.5*parent,const(size.xscale),0
 air.velocity = -2*parent,const(size.xscale),-3
 getpower = 0,0
 givepower = 40,20
-fall = 1
+fall = 0
 air.fall = 1
 fall.recover = 0
-getpower = 72,0
 guard.kill = 0
 
 [State 1000, 7　消滅]
@@ -5164,14 +5158,13 @@ ground.type = High
 ground.slidetime = 11
 ground.hittime  = 11
 guard.hittime  = 9
-ground.velocity = -5.5*parent,const(size.xscale),-3
+ground.velocity = -7*parent,const(size.xscale),0
 air.velocity = -2*parent,const(size.xscale),-3
 getpower = 0,0
 givepower = 40,20
-fall = 1
+fall = 0
 air.fall = 1
 fall.recover = 0
-getpower = 72,0
 guard.kill = 0
 
 [State 1000, 7　消滅]
